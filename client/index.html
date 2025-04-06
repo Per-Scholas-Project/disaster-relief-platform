@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Disaster Relief Coordinating Platform to connect volunteers with people in need during emergencies.">
+    <meta name="keywords" content="disaster relief, AWS, volunteer, help, aid, platform">
+    <meta name="author" content="Sauel Almonte">
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- Favicon (optional) -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- Title -->
+    <title>Disaster Relief Platform</title>
+</head>
+<body>
+
+<main>
+    <h1>Disaster Relief Coordinating Platform</h1>
+    <form id="helpRequestForm">
+        <label for="name">Full Name</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="category">Help Category</label><br>
+        <select id="category" name="category" required>
+            <option value="">-- Select --</option>
+            <option value="food">Food</option>
+            <option value="shelter">Shelter</option>
+            <option value="medical">Medical</option>
+            <option value="rescue">Rescue</option>
+        </select><br><br>
+
+        <label for="description">Description</label><br>
+        <textarea id="description" name="description" rows="4" required></textarea><br><br>
+
+        <label for="photo">Upload Photo (optional)</label><br>
+        <input type="file" id="photo" name="photo" accept="image/*"><br><br>
+
+        <button type="submit">Submit Request</button>
+    </form>
+
+    <div id="statusMessage"></div>
+</main>
+
+<!-- Link to external JS -->
+<script src="scripts/main.js"></script>
+
+</body>
+</html>
