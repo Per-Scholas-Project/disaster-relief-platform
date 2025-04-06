@@ -5,47 +5,103 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Disaster Relief Coordinating Platform to connect volunteers with people in need during emergencies.">
-    <meta name="keywords" content="disaster relief, AWS, volunteer, help, aid, platform">
+    <!-- ✅ Basic SEO -->
+    <meta name="title" content="Disaster Relief Coordinating Platform">
+    <meta name="description" content="A platform that helps connect disaster victims with volunteers and resources. Built using AWS services.">
+    <meta name="keywords" content="disaster relief, emergency aid, volunteer help, AWS, S3, Lambda, DynamoDB">
     <meta name="author" content="Sauel Almonte">
-    <!-- Link to external CSS -->
-    <link rel="stylesheet" href="styles/main.css">
+
+    <!-- ✅ Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourdomain.com/">
+    <meta property="og:title" content="Disaster Relief Coordinating Platform">
+    <meta property="og:description" content="Connect disaster victims with help. Built on AWS.">
+    <meta property="og:image" content="https://yourdomain.com/preview.png">
+
+    <!-- ✅ Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://yourdomain.com/">
+    <meta name="twitter:title" content="Disaster Relief Coordinating Platform">
+    <meta name="twitter:description" content="Connect disaster victims with help. Built on AWS.">
+    <meta name="twitter:image" content="https://yourdomain.com/preview.png">
+
     <!-- Favicon (optional) -->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="styles/main.css">
+
     <!-- Title -->
     <title>Disaster Relief Platform</title>
 </head>
 <body>
 
+<!-- 🌐 Header -->
+<header>
+    <nav>
+        <h2>Disaster Relief Platform</h2>
+        <ul>
+            <li><a href="pages/request.html">Submit Help Request</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#footer">Contact</a></li>
+            <li><a href="pages/request.html">Sign In</a></li>
+            <li><a href="pages/request.html">Sign Up</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- 📄 Main Content -->
 <main>
-    <h1>Disaster Relief Coordinating Platform</h1>
-    <form id="helpRequestForm">
-        <label for="name">Full Name</label><br>
-        <input type="text" id="name" name="name" required><br><br>
+    <!-- 🦸 Hero Section -->
+    <section id="hero">
+        <h1>Helping Hands in Times of Crisis</h1>
+        <p>We connect disaster victims with real-time support and volunteers, using secure AWS technology.</p>
+        <a href="pages/request.html">
+            <button aria-label="Go to help request form">Submit a Help Request</button>
+        </a>
+    </section>
 
-        <label for="category">Help Category</label><br>
-        <select id="category" name="category" required>
-            <option value="">-- Select --</option>
-            <option value="food">Food</option>
-            <option value="shelter">Shelter</option>
-            <option value="medical">Medical</option>
-            <option value="rescue">Rescue</option>
-        </select><br><br>
+    <!-- 📦 About Section -->
+    <section id="about">
+        <h2>About This Platform</h2>
+        <p>
+            This platform is powered by AWS Lambda, API Gateway, DynamoDB, and Cognito to ensure fast, secure, and scalable coordination of relief efforts during emergencies.
+        </p>
+    </section>
 
-        <label for="description">Description</label><br>
-        <textarea id="description" name="description" rows="4" required></textarea><br><br>
+    <!-- 📦 About Section -->
+    <section id="about">
+        <h2>Section 2</h2>
+        <p>
+            This platform is powered by AWS Lambda, API Gateway, DynamoDB, and Cognito to ensure fast, secure, and scalable coordination of relief efforts during emergencies.
+        </p>
+    </section>
 
-        <label for="photo">Upload Photo (optional)</label><br>
-        <input type="file" id="photo" name="photo" accept="image/*"><br><br>
+    <section id="about">
+        <h2>Section 3</h2>
+        <p>
+            This platform is powered by AWS Lambda, API Gateway, DynamoDB, and Cognito to ensure fast, secure, and scalable coordination of relief efforts during emergencies.
+        </p>
+    </section>
 
-        <button type="submit">Submit Request</button>
-    </form>
+    <section id="about">
+        <h2>Section 4</h2>
+        <p>
+            This platform is powered by AWS Lambda, API Gateway, DynamoDB, and Cognito to ensure fast, secure, and scalable coordination of relief efforts during emergencies.
+        </p>
+    </section>
 
-    <div id="statusMessage"></div>
 </main>
 
-<!-- Link to external JS -->
+<!-- 📞 Footer -->
+<footer id="footer">
+    <p>&copy; 2025 Disaster Relief Coordinating Platform</p>
+    <p>Contact: <a href="mailto:help@relief.org">help@relief.org</a></p>
+</footer>
+
+<!-- JS -->
 <script src="scripts/main.js"></script>
 
 </body>
+
 </html>
