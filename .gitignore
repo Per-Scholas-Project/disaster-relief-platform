@@ -1,48 +1,41 @@
-# Python cache
+# ─── Python ──────────────────────────────────────────────
 __pycache__/
 *.py[cod]
+*.pyo
+*.pyd
 *.egg-info/
-pip-log.txt
-pip-delete-this-directory.txt
 
-# Virtual environments
-venv/
+# Virtual environment
+server/venv/
+
+# Environment variables
 .env
 .env.*
 
-# Node modules (if you later use npm or a bundler for client)
-node_modules/
-
-# VSCode settings
-.vscode/
-# WebStorm
-.idea/
-
-# Mac system files
-.DS_Store
-
-# AWS deployment artifacts
-*.zip
-*.egg-info/
-.aws-sam/
-.serverless/
-
-# Logs and debug
+# Log files
 *.log
-
-# Python package manager files
 pip-log.txt
 pip-delete-this-directory.txt
 
-# Local environment config
+# Lambda deployment bundles
+*.zip
+
+# ─── AWS/Serverless ───────────────────────────────────────
+.aws-sam/
+.serverless/
+
+# ─── IDEs/Editors ─────────────────────────────────────────
+.idea/
+.vscode/
+
+# ─── OS/System ────────────────────────────────────────────
+.DS_Store
 *.local
 
-# macOS
-.DS_Store
+# ─── Frontend (client/) ───────────────────────────────────
+client/node_modules/
+client/dist/
+client/build/
 
-# Frontend build artifacts (if using a build system later)
-dist/
-build/
-
-# Misc
+# ─── Test/Reports ─────────────────────────────────────────
 coverage/
