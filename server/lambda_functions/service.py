@@ -5,8 +5,6 @@ from datetime import datetime
 from dynamodb_service import DynamoDBService
 from s3_service import S3Service
 
-# Just test
-
 class Service:
     def __init__(self):
         self.bucket_name = os.getenv("BUCKET_NAME", "disaster-aid-images-2025")
