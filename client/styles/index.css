@@ -1,0 +1,61 @@
+@import '../styles/main.css';
+header {
+    width: 100%;
+    background-color: var(--clr-light);
+    color: var(--clr-primary);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    max-width: var(--max-width);
+    padding: var(--spacing-md);
+}
+
+ul {
+    display: flex;
+    align-items: center;
+}
+
+li {
+    margin-right: var(--spacing-md);
+}
+
+main {
+    width: 100%;
+}
+
+.hero{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    /*min-height: 500px;*/
+    background: var(--clr-primary);
+}
+
+.hero-container {
+    width: 100%;
+    border: 2px solid white;
+    padding: var(--spacing-md);
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+
+.hero-container div {
+    border: 2px solid white;
+    width: 50%;
+}
+
+.hero h1 {
+    font-size: var(--font-size-xl);
+    color: var(--clr-light);
+    text-align: left;
+}
+
+.hero p {
+    color: var(--clr-secondary);
+    text-align: left;
+}

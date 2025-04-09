@@ -1,3 +1,17 @@
+/* ✅ Set base font size to 10px for easier rem calculations */
+html {
+    font-size: 62.5%;
+}
+
+/* ✅ Base Styles */
+body {
+    font-family: var(--font-family-base), sans-serif;
+    font-size: var(--font-size-base);
+    color: var(--clr-text);
+    background-color: var(--clr-background);
+    line-height: 1.6;
+}
+
 /* 🔁 CSS Reset & Global Box Sizing */
 *,
 *::before,
@@ -18,31 +32,40 @@
     --clr-light: #FFFFFF;
 
     /* Typography */
-    --font-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    --font-size-base: 16px;
-    --font-size-lg: 24px;
-    --font-size-xl: 32px;
+    --font-family-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    /* Font Styles */
+    --font-style-normal: normal;
+    --font-style-italic: italic;
+
+    /* Font Sizes */
+    --font-size-xs: 1.2rem;   /* Extra small (12px) */
+    --font-size-sm: 1.4rem;   /* Small (14px) */
+    --font-size-base: 1.6rem; /* Body text (16px) */
+    --font-size-md: 1.8rem;   /* Medium (18px) */
+    --font-size-lg: 2.4rem;   /* h3 / h2 depending on design */
+    --font-size-xl: 3.2rem;   /* h2 / h1 */
+    --font-size-xxl: 4.8rem;  /* h1 / hero */
+
+    /* Font Weights */
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
     --font-weight-bold: 700;
 
     /* Spacing */
-    --spacing-xs: 4px;
-    --spacing-sm: 8px;
-    --spacing-md: 16px;
-    --spacing-lg: 24px;
-    --spacing-xl: 32px;
+    --spacing-xs: 0.4rem;
+    --spacing-sm: 0.8rem;
+    --spacing-md: 1.6rem;
+    --spacing-lg: 2.4rem;
+    --spacing-xl: 3.2rem;
 
     /* Border Radius */
-    --radius: 8px;
-}
+    --radius: 0.8rem;
 
-/* ✅ Base Styles */
-body {
-    font-family: var(--font-base), sans-serif;
-    font-size: var(--font-size-base);
-    color: var(--clr-text);
-    background-color: var(--clr-background);
-    line-height: 1.6;
-    padding: var(--spacing-lg);
+    /* Width */
+    --max-width: 1600px;
 }
 
 /* Lists */
@@ -54,6 +77,7 @@ ul, li {
 
 /* Links */
 a {
+    font-size: var(--font-size-base);
     color: var(--clr-primary);
     text-decoration: none;
 }
@@ -65,7 +89,7 @@ a:hover {
 /* Buttons */
 button {
     padding: var(--spacing-sm) var(--spacing-md);
-    background-color: var(--clr-primary);
+    background-color: var(--clr-secondary);
     color: var(--clr-light);
     border: none;
     border-radius: var(--radius);
@@ -73,7 +97,7 @@ button {
     font-weight: var(--font-weight-bold);
 }
 button:hover {
-    background-color: var(--clr-secondary);
+    background-color: var(--clr-background);
 }
 
 /* Form Elements */
@@ -82,7 +106,7 @@ input, select, textarea {
     font-size: var(--font-size-base);
     padding: var(--spacing-sm);
     border-radius: var(--radius);
-    border: 1px solid #ccc;
+    border: 1rem solid #ccc;
     width: 100%;
     margin-top: var(--spacing-xs);
 }
