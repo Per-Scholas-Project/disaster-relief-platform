@@ -1,0 +1,64 @@
+@import '../base/main.css';
+@import '../components/header.css';
+@import '../components/footer.css';
+
+/* ================
+   Skip Link Scroll Adjustment
+   ================ */
+:target {
+    scroll-margin-top: 6rem; /* adjust if your header height changes */
+}
+
+.hero_section {
+    border: 1px solid black;
+}
+
+.hero__container{
+    max-width: 120rem;
+    margin: 0 auto;
+}
+
+.about_section {
+    border: 1px solid black;
+}
+
+.about__container {
+    max-width: 120rem;
+    margin: 0 auto;
+}
+
+.volunteer_section {
+    border: 1px solid black;
+}
+
+.volunteer__container {
+    max-width: 120rem;
+    margin: 0 auto;
+}
+
+.partners_section {
+    border: 1px solid black;
+}
+
+.partners__container {
+    max-width: 120rem;
+    margin: 0 auto;
+}
+
+.impact_section {
+    border: 1px solid black;
+}
+
+.impact__container {
+    max-width: 120rem;
+    margin: 0 auto;
+}
+
+.testimonials_section {
+    border: 1px solid black;
+}
+
+.testimonials__container {
+    max-width: 120rem;
+    margin: 0 auto;
+}
