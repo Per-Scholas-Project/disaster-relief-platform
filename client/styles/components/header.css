@@ -1,0 +1,116 @@
+@import "../base/main.css";
+/* =============================
+   Header Component Styles
+   ============================= */
+
+/* ---------- Accessibility Skip Link ---------- */
+.skip-link {
+    position: absolute;
+    top: -1000rem;
+    left: 0;
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    padding: var(--space-sm) var(--space-md);
+    z-index: 100;
+    text-decoration: none;
+    border: 0.2rem solid var(--color-primary);
+    font-size: var(--font-size-body);
+}
+
+.skip-link:focus {
+    top: 0;
+    left: 0;
+}
+
+/* ---------- Header Styles ---------- */
+.header {
+    background-color: var(--color-white);
+    padding: var(--space-lg) var(--space-xl);
+}
+
+.header__nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 120rem; /* 1200px */
+    margin: 0 auto;
+}
+
+.header__nav-list {
+    display: flex;
+    gap: var(--space-xl);
+}
+
+.header__nav-item {
+    list-style: none;
+}
+
+/*.header__nav-link {*/
+/*    font-family: var(--font-body), Arial, sans-serif;*/
+/*    font-size: var(--font-size-body);*/
+/*    font-weight: var(--font-weight-regular);*/
+/*    color: var(--color-primary);*/
+/*    text-decoration: none;*/
+/*}*/
+
+/* ---------- Hamburger Menu Button (hidden by default) ---------- */
+.header__toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* =============================
+   Responsive Adjustments (≤768px)
+   ============================= */
+@media (max-width: 768px) {
+    .header__nav {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--space-sm);
+    }
+
+    .header__top-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    /* Show hamburger icon */
+    .header__toggle {
+        display: block;
+        margin-left: auto;
+        background: var(--gray-400);
+        border: 1px solid var(--color-black);
+        cursor: pointer;
+    }
+
+    .header__hamburger-menu {
+        width: 2.4rem;
+        height: 2.4rem;
+        display: block;
+        fill: var(--color-black);
+    }
+
+    /* ---------- Nav Menu (mobile dropdown) ---------- */
+    .header__nav-list {
+        display: none;
+        flex-direction: column;
+        align-items: flex-end;
+        width: 100%;
+        margin-top: var(--space-sm);
+        gap: var(--space-md);
+        z-index: 1000;
+    }
+
+    .header__nav-list--visible {
+        display: flex;
+    }
+
+    .header__nav-link {
+        font-size: var(--font-size-body);
+        padding: var(--space-sm) var(--space-md);
+    }
+}
