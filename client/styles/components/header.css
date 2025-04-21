@@ -1,6 +1,9 @@
+@import "../base/main.css";
 /* =============================
    Header Component Styles
    ============================= */
+
+/* ---------- Accessibility Skip Link ---------- */
 .skip-link {
     position: absolute;
     top: -1000rem;
@@ -10,7 +13,7 @@
     padding: var(--space-sm) var(--space-md);
     z-index: 100;
     text-decoration: none;
-    border: 0.2rem solid var(--primary-600);
+    border: 0.2rem solid var(--color-primary);
     font-size: var(--font-size-body);
 }
 
@@ -33,11 +36,6 @@
     margin: 0 auto;
 }
 
-.header__logo-link {
-    color: var(--color-primary);
-    font-weight: var(--font-weight-bold);
-}
-
 .header__nav-list {
     display: flex;
     gap: var(--space-xl);
@@ -47,12 +45,13 @@
     list-style: none;
 }
 
-.header__nav-link {
-    font-size: var(--font-size-body);
-    font-weight: var(--font-weight-medium);
-    color: var(--color-primary);
-    text-decoration: none;
-}
+/*.header__nav-link {*/
+/*    font-family: var(--font-body), Arial, sans-serif;*/
+/*    font-size: var(--font-size-body);*/
+/*    font-weight: var(--font-weight-regular);*/
+/*    color: var(--color-primary);*/
+/*    text-decoration: none;*/
+/*}*/
 
 /* ---------- Hamburger Menu Button (hidden by default) ---------- */
 .header__toggle {
@@ -83,8 +82,8 @@
     .header__toggle {
         display: block;
         margin-left: auto;
-        background: var(--grey-400);
-        border: 1px solid var(--color-dark);
+        background: var(--gray-400);
+        border: 1px solid var(--color-black);
         cursor: pointer;
     }
 
@@ -92,7 +91,7 @@
         width: 2.4rem;
         height: 2.4rem;
         display: block;
-        fill: var(--color-dark);
+        fill: var(--color-black);
     }
 
     /* ---------- Nav Menu (mobile dropdown) ---------- */
@@ -106,7 +105,6 @@
         z-index: 1000;
     }
 
-    /* Nav becomes visible after toggle */
     .header__nav-list--visible {
         display: flex;
     }
