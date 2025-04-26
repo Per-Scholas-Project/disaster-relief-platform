@@ -181,7 +181,7 @@ img {
     --color-black: var(--black-500);
     --color-muted: var(--gray-500);
     --color-border: var(--gray-200);
-    --color-background: var(--white-100);
+    --color-background: var(--white-500);
 
     /* ---------- Typography ---------- */
 
@@ -197,9 +197,9 @@ img {
     --font-body: 'Montserrat Pro', sans-serif;
 
     /* Font Size */
-    --font-size-h1: clamp(2.4rem, 1.5rem + 2vw, 3.6rem);  /* 24px → ~30px → 36px */
-    --font-size-h2: clamp(2rem, 1.2rem + 1.5vw, 3rem);    /* 20px → ~24px → 30px */
-    --font-size-h3: clamp(1.6rem, 1rem + 1vw, 2.4rem);    /* 16px → ~18px → 24px */
+    --font-size-h1: clamp(3rem, 2rem + 2vw, 4.2rem); /* 30px → ~36px → 42px */
+    --font-size-h2: clamp(2.4rem, 1.6rem + 1.5vw, 3.6rem); /* 24px → ~30px → 36px */
+    --font-size-h3: clamp(2rem, 1.2rem + 1vw, 3rem); /* 20px → ~24px → 30px */
     --font-size-body: clamp(1.4rem, 0.9rem + 0.5vw, 1.8rem); /* 14px → ~16px → 18px */
     --font-size-small: clamp(1rem, 0.8rem + 0.3vw, 1.2rem);  /* 10px → ~11.5px → 12px */
 
@@ -223,6 +223,7 @@ img {
     --space-md: 1rem;     /* 16px */
     --space-lg: 1.5rem;   /* 24px */
     --space-xl: 2rem;     /* 32px */
+    --space-xxl: 3rem;     /* 32px */
 
     /* Radius */
     --radius-sm: 4px;
@@ -238,8 +239,8 @@ img {
         offset-y (Vertical offset (down if positive, up if negative)
         blur-radius color
     */
-    --shadow-sm: -2px 4px 4px var(--gray-600);
-    --shadow-md: -3px 8px 8px var(--gray-600);
+    --shadow-sm: -2px 4px 5px var(--gray-800);
+    --shadow-md: -2px 4px 4px var(--black-500);
     --shadow-lg: -4px 16px 16px var(--gray-600);
 
 }
@@ -278,10 +279,12 @@ a:focus {
 
 /* --- Base button styles --- */
 button {
-    font-size: var(--font-size-body);
-    background-color: var(--color-primary);
-    color: var(--color-white);
     padding: var(--space-md) var(--space-lg);
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-semi-bold);
+    color: var(--white-500);
+    text-shadow: -0.05rem 0.10rem 0.25rem var(--black-500);
+    background-color: var(--blue-500);
     border-radius: var(--radius-md);
     border: 1px solid var(--color-primary);
     box-shadow: var(--shadow-md);

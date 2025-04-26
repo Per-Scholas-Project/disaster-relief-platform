@@ -78,7 +78,7 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
     <!-- Link to external CSS -->
-    <link rel="stylesheet" href="styles/layouts/index.css">
+    <link rel="stylesheet" href="./styles/layouts/index.css">
 
     <!-- Title -->
     <title>United Relief</title>
@@ -95,16 +95,18 @@
 <main id="main-content">
     <!-- Hero Section -->
     <section id="hero" class="hero_section">
+        <img src="./assets/images/businessman.jpeg" alt="Businessman" class="hero__image" />
+        <div class="hero__overlay"></div> <!-- ✅ THIS IS THE OVERLAY -->
         <div class="hero__container">
             <div class="hero__content">
-                <h1 class="hero__title" id="hero-header">United for Relief. Built for Response.</h1>
+                <h1 class="hero__title" id="hero-header">UnitedRelief <br> <span> Built for Response</span></h1>
                 <p class="hero__description">
                     When disaster strikes, we help connect people in need with real-time support, verified resources, and compassionate volunteers ready to take action.
                 </p>
-                <a class="hero__cta-link" href="pages/form.html">
-                    <button class="hero__cta-button" aria-label="Go to help request form">Submit a Help Request</button>
-                </a>
             </div>
+            <a class="hero__cta-link" href="pages/form.html">
+                <button class="hero__cta-button" aria-label="Submit relief request">Relief Request</button>
+            </a>
         </div>
     </section>
 
@@ -139,41 +141,55 @@
     <!-- Volunteer / Get Involved Section -->
     <section id="volunteer" class="volunteer_section" role="region" aria-labelledby="volunteer__header">
         <div class="volunteer__container">
+
             <h2 id="volunteer__header" class="volunteer__title">Get Involved with United Relief</h2>
+
             <p class="volunteer__intro">
                 Every helping hand counts. At United Relief, we are powered by a community of compassionate individuals who dedicate their time and resources to make a difference in times of crisis. By volunteering with us, you can be part of something bigger, help those in need, and bring hope where it's needed most.
             </p>
 
-            <h3 id="volunteer__ways-header" class="volunteer__subheading">Ways You Can Help</h3>
-            <p class="volunteer__text">
-                There are many ways to get involved and make a real impact. Whether you're interested in volunteering your time, donating resources, or helping us spread the word, your contribution is invaluable. Here are some ways you can help:
-            </p>
+            <!-- ✅ Newly named wrapper -->
+            <div class="volunteer__content">
 
-            <ul class="volunteer__list">
-                <li class="volunteer__list-item"><strong>Volunteer Your Time:</strong> Join our community of volunteers to assist in emergency response efforts, provide support to victims, and help with organizing relief operations.</li>
-                <li class="volunteer__list-item"><strong>Donate Resources:</strong> Whether it's financial support or essential goods like food, water, and medical supplies, your donations help us provide immediate aid.</li>
-                <li class="volunteer__list-item"><strong>Spread the Word:</strong> Help us reach more people by sharing our mission, engaging on social media, and encouraging others to get involved.</li>
-            </ul>
+                <!-- ✅ First side -->
+                <div class="volunteer__column">
+                    <h3 id="volunteer__ways-header" class="volunteer__subheading">Ways You Can Help</h3>
+                    <p class="volunteer__text">
+                        There are many ways to get involved and make a real impact. Whether you're interested in volunteering your time, donating resources, or helping us spread the word, your contribution is invaluable. Here are some ways you can help:
+                    </p>
 
-            <h3 id="volunteer__start-header" class="volunteer__subheading">How to Get Started</h3>
-            <p class="volunteer__text">
-                Getting started is easy! Here’s how you can begin your journey with United Relief:
-            </p>
+                    <ul class="volunteer__list">
+                        <li class="volunteer__list-item"><strong>Volunteer Your Time:</strong> Join our community of volunteers to assist in emergency response efforts, provide support to victims, and help with organizing relief operations.</li>
+                        <li class="volunteer__list-item"><strong>Donate Resources:</strong> Whether it's financial support or essential goods like food, water, and medical supplies, your donations help us provide immediate aid.</li>
+                        <li class="volunteer__list-item"><strong>Spread the Word:</strong> Help us reach more people by sharing our mission, engaging on social media, and encouraging others to get involved.</li>
+                    </ul>
+                </div>
 
-            <ol class="volunteer__steps">
-                <li class="volunteer__step"><strong>Sign Up:</strong> Create an account to join our volunteer network or make a donation. Our platform is easy to use and free to join.</li>
-                <li class="volunteer__step"><strong>Choose Your Role:</strong> Whether you're volunteering your time or donating resources, select the way you want to contribute.</li>
-                <li class="volunteer__step"><strong>Make an Impact:</strong> Once you're signed up, you'll receive notifications about upcoming opportunities and events where you can help.</li>
-            </ol>
+                <!-- ✅ Second side -->
+                <div class="volunteer__column">
+                    <h3 id="volunteer__start-header" class="volunteer__subheading">How to Get Started</h3>
+                    <p class="volunteer__text">
+                        Getting started is easy! Here’s how you can begin your journey with United Relief:
+                    </p>
+
+                    <ol class="volunteer__steps">
+                        <li class="volunteer__step"><strong>Sign Up:</strong> Create an account to join our volunteer network or make a donation. Our platform is easy to use and free to join.</li>
+                        <li class="volunteer__step"><strong>Choose Your Role:</strong> Whether you're volunteering your time or donating resources, select the way you want to contribute.</li>
+                        <li class="volunteer__step"><strong>Make an Impact:</strong> Once you're signed up, you'll receive notifications about upcoming opportunities and events where you can help.</li>
+                    </ol>
+                </div>
+
+            </div>
 
             <div class="volunteer__cta-buttons">
-                <a class="volunteer__cta-link" href="pages/sign-up.html">
+                <a class="volunteer__cta-link" href="pages/forms/sign-up.html">
                     <button class="volunteer__cta-button" aria-label="Sign up to volunteer and get involved">Sign Up to Volunteer</button>
                 </a>
                 <a class="volunteer__cta-link" href="pages/donate.html">
                     <button class="volunteer__cta-button" aria-label="Donate to help support disaster relief efforts">Donate Now</button>
                 </a>
             </div>
+
         </div>
     </section>
 
