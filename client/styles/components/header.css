@@ -1,7 +1,7 @@
 @import "../base/main.css";
 
 /* =============================
-   Header Component Styles (Updated Background)
+   Header Component Styles
    ============================= */
 
 /* ---------- Accessibility Skip Link ---------- */
@@ -123,6 +123,10 @@
    Responsive Adjustments (≤768px)
    ============================= */
 @media (max-width: 768px) {
+    .header {
+        position: relative;
+    }
+
     .header__nav {
         flex-direction: column;
         align-items: stretch;
@@ -146,13 +150,19 @@
 
     /* Nav List - Mobile Menu */
     .header__nav-list {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 100%;
         display: none;
         flex-direction: column;
         align-items: flex-end;
         width: 100%;
-        margin-top: var(--space-sm);
+        margin-top: 0;
         gap: var(--space-md);
         z-index: 1000;
+        background-color: var(--blue-900);
+        padding: var(--space-md);
     }
 
     .header__nav-list--visible {
