@@ -209,7 +209,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100rem;
+    height: auto;
     overflow: hidden;
 }
 
@@ -246,7 +246,7 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     max-width: 120rem;
-    height: 100%;
+    height: auto;
     padding: var(--space-xxl);
     gap: var(--space-lg);
     margin: 0 auto;
