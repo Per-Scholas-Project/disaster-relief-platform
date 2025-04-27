@@ -83,7 +83,7 @@
 }
 
 .header__nav-item-bg:hover {
-    background: var(--blue-100);
+    background: var(--blue-50);
 }
 
 .header__nav-link-signin {
@@ -94,7 +94,7 @@
 }
 
 .header__nav-link-signin:hover {
-    color: var(--blue-700);
+    color: var(--blue-500);
     transition: color 0.3s ease;
 }
 
