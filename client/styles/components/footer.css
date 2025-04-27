@@ -8,7 +8,7 @@
     background-color: var(--blue-900);
     color: var(--white-100);
     padding: var(--space-xl) var(--space-xl);
-    overflow-x: hidden;
+    /*overflow-x: hidden;*/
     margin-top: var(--space-lg);
 }
 

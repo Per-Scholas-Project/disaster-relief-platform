@@ -15,11 +15,6 @@ body {
     min-height: 100vh;
 }
 
-/* Target Anchor Offset */
-:target {
-    scroll-margin-top: 6rem; /* adjust if your header height changes */
-}
-
 /* =========================
    Hero Section
    ========================= */
@@ -30,7 +25,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 60rem;
+    height: 50rem;
     overflow: hidden;
     color: var(--color-white);
     padding: var(--space-xl) var(--space-lg);
@@ -70,46 +65,43 @@ body {
     justify-content: center;
     max-width: 120rem;
     margin: 0 auto;
-    height: auto;
     padding: var(--space-xxl);
-    gap: var(--space-xl);
+    gap: var(--space-lg); /* ADD gap between title and description */
 }
 
-/* Hero Content Wrapper */
 .hero__content {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    max-width: 120rem;
     width: 50%;
-    height: auto;
-    gap: var(--space-lg);
+    gap: var(--space-md); /* ADD gap inside hero content */
 }
 
-/* Hero Title (h1) */
 .hero__title {
-    max-width: clamp(40ch, 60%, 65ch);
+    font-size: var(--font-size-h1);
     font-weight: var(--font-weight-black);
     font-family: var(--font-heading), serif;
-    font-size: var(--font-size-h1);
-    letter-spacing: .05rem;
+    letter-spacing: 0.05rem;
     color: var(--white-500);
-    line-height: 0.75;
+    line-height: 1.1; /* FIX line-height for better spacing */
+    margin: 0; /* Remove default margin */
 }
 
-/* Hero Title Span (smaller text inside h1) */
-.hero__title > span {
+.hero__title span {
+    display: block; /* Force span to act like a line-break */
     font-size: var(--font-size-h3);
     color: var(--white-500);
+    margin-top: var(--space-sm); /* Optional: small gap between title and subtitle */
 }
 
-/* Hero Description Paragraph */
 .hero__description {
-    max-width: clamp(35ch, 60%, 40ch);
+    font-size: var(--font-size-body);
     font-weight: var(--font-weight-regular);
-    letter-spacing: .05rem;
-    line-height: 1.2;
-    color: var(--gray-200);
+    letter-spacing: 0.05rem;
+    line-height: 1.5;
+    color: var(--gray-100);
+    margin: 0; /* Remove default margin */
+    text-wrap: balance;
+    align-self: flex-start; /* Force it to align left */
 }
 
 /* =========================

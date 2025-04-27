@@ -1,13 +1,347 @@
-<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Sign In</h1>
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"
+		/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<!-- Basic SEO -->
+		<meta name="title" content="Disaster Relief Coordinating Platform" />
+		<meta
+			name="description"
+			content="A platform that helps connect disaster victims with volunteers and resources. Built using AWS services."
+		/>
+		<meta
+			name="keywords"
+			content="disaster relief, emergency aid, volunteer help, AWS, S3, Lambda, DynamoDB"
+		/>
+		<meta name="author" content="Sauel Almonte" />
+
+		<!-- Open Graph / Facebook / LinkedIn -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://yourdomain.com/" />
+		<meta property="og:title" content="Disaster Relief Coordinating Platform" />
+		<meta
+			property="og:description"
+			content="Connect disaster victims with help. Built on AWS."
+		/>
+		<meta property="og:image" content="https://yourdomain.com/preview.png" />
+
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:url" content="https://yourdomain.com/" />
+		<meta name="twitter:title" content="Disaster Relief Coordinating Platform" />
+		<meta
+			name="twitter:description"
+			content="Connect disaster victims with help. Built on AWS."
+		/>
+		<meta name="twitter:image" content="https://yourdomain.com/preview.png" />
+
+		<!-- Structured Data for SEO: Organization -->
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "Organization",
+				"name": "Disaster Relief Coordinating Platform",
+				"url": "https://yourdomain.com",
+				"logo": "https://yourdomain.com/logo.png",
+				"contactPoint": {
+					"@type": "ContactPoint",
+					"telephone": "+1-800-555-5555",
+					"contactType": "Customer Service"
+				},
+				"sameAs": [
+					"https://www.facebook.com/YourPage",
+					"https://twitter.com/YourProfile",
+					"https://www.linkedin.com/company/yourcompany"
+				]
+			}
+		</script>
+
+		<!-- Structured Data for SEO: Event (Optional) -->
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "Event",
+				"name": "Disaster Relief Fundraising Event",
+				"startDate": "2025-05-01T19:00:00Z",
+				"endDate": "2025-05-01T22:00:00Z",
+				"location": {
+					"@type": "Place",
+					"name": "Community Center",
+					"address": {
+						"@type": "PostalAddress",
+						"streetAddress": "123 Relief St.",
+						"addressLocality": "Boston",
+						"addressRegion": "MA",
+						"postalCode": "02115",
+						"addressCountry": "US"
+					}
+				},
+				"image": "https://yourdomain.com/images/event-image.jpg",
+				"description": "Join us for a fundraising event to support disaster relief efforts."
+			}
+		</script>
+
+		<!-- Performance & Font Optimization -->
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+			rel="stylesheet"
+		/>
+
+		<!-- Favicon (optional) -->
+		<link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+		<!-- Link to external CSS -->
+		<!-- Link your main CSS and header/footer CSS -->
+		<link rel="stylesheet" href="../../styles/base/main.css" />
+		<link rel="stylesheet" href="../../styles/pages/sign-in-up.css" />
+		<link rel="stylesheet" href="../../styles/components/header.css" />
+		<link rel="stylesheet" href="../../styles/components/footer.css" />
+
+		<!-- Title -->
+		<title>United Relief</title>
+	</head>
+	<body>
+		<!-- Header -->
+		<!-- Header -->
+		<header class="header" id="site-header">
+			<nav class="header__nav" role="navigation" aria-label="Main navigation">
+				<!-- Top row: logo and hamburger -->
+				<div class="header__top-row">
+					<h2 class="header__title">
+						<a class="logo-link" href="../../index.html" aria-current="page"
+							>UnitedRelief</a
+						>
+					</h2>
+
+					<!-- Hamburger Button -->
+					<button class="header__toggle" aria-label="Toggle navigation">
+						<img
+							src="../assets/icons/hamburger-button-50.png"
+							alt="burger menu"
+							class="header__hamburger-menu"
+							aria-hidden="true"
+						/>
+					</button>
+				</div>
+				<!-- Nav Links -->
+				<ul class="header__nav-list" id="header-menu">
+					<!--    <li class="header__nav-item">-->
+					<!--      <a class="header__nav-link" href="../pages/forms/relief_request.html">Submit Help Request</a>-->
+					<!--    </li>-->
+					<li class="header__nav-item">
+						<a class="header__nav-link" href="#about">About Us</a>
+					</li>
+					<li class="header__nav-item">
+						<a class="header__nav-link" href="#contact">Contact Us</a>
+					</li>
+					<li class="header__nav-item-bg">
+						<a class="header__nav-link-signin" href="./pages/forms/sign-in-up.html"
+							>Sign In / Sign Up</a
+						>
+					</li>
+					<!--    <li class="header__nav-item">-->
+					<!--      <a class="header__nav-link" href="pages/sign-up.html">Sign Up</a>-->
+					<!--    </li>-->
+				</ul>
+			</nav>
+		</header>
+		<!--	Main Section	-->
+		<main class="form-section" role="main">
+			<div class="form-section__container">
+				<form class="form-section__form" aria-labelledby="sign-in-heading">
+					<h1 id="sign-in-heading" class="form-section__heading">Sign In</h1>
+
+					<div class="form-section__group">
+						<input
+								type="email"
+								id="email"
+								name="email"
+								class="form-section__input"
+								placeholder=" "
+								required
+								aria-required="true"
+								autocomplete="email"
+						/>
+						<label for="email" class="form-section__label">Email Address</label>
+					</div>
+
+					<div class="form-section__group">
+						<input
+								type="password"
+								id="password"
+								name="password"
+								class="form-section__input"
+								placeholder=" "
+								required
+								aria-required="true"
+								autocomplete="current-password"
+						/>
+						<label for="password" class="form-section__label">Password</label>
+					</div>
+
+					<button type="submit" class="form-section__button" aria-label="Sign in with email and password">
+						Sign In
+					</button>
+
+					<div class="form-section__divider" role="presentation" aria-hidden="true">
+						<span class="form-section__divider-text">or</span>
+					</div>
+
+					<button type="button" class="form-section__button form-section__button--google" aria-label="Sign in with Google">
+						Sign in with Google
+					</button>
+				</form>
+			</div>
+		</main>
+
+		<!-- Footer -->
+		<footer id="footer" class="footer" role="contentinfo">
+				<div class="footer__container">
+					<div class="footer__title-container">
+						<!-- Logo / Title -->
+						<h2 class="footer__title">
+							<a class="footer__logo-link" href="../index.html" aria-current="page"
+								>United Relief</a
+							>
+						</h2>
+					</div>
+
+					<div class="footer__container-2">
+						<!-- Contact Info -->
+						<div id="contact" class="footer__contact-section">
+							<h2>Contact</h2>
+							<address
+								class="footer__contact"
+								aria-label="United Relief contact details"
+							>
+								<p>
+									Email:
+									<br />
+									<a class="footer__email" href="mailto:help@relief.org"
+										>help@relief.org</a
+									>
+								</p>
+								<p>
+									Phone:
+									<br />
+									<a class="footer__phone" href="tel:+18005555555">(800) 555-5555</a>
+								</p>
+								<p>
+									Address: <br />123 Relief Way, <br />
+									Boston, MA 02115
+								</p>
+							</address>
+						</div>
+
+						<!-- Footer Navigation -->
+						<div class="footer__navigation-section">
+							<h2 class="footer__navigation-section-title">Navigation</h2>
+							<nav class="footer__nav" aria-label="Footer Navigation">
+								<ul class="footer__nav-list">
+									<li class="footer__nav-item">
+										<a class="footer__nav-link" href="pages/contact.html">Contact</a>
+									</li>
+									<li class="footer__nav-item">
+										<a class="footer__nav-link" href="pages/sign-in.html">Sign In</a>
+									</li>
+									<li class="footer__nav-item">
+										<a class="footer__nav-link" href="pages/sign-up.html">Sign Up</a>
+									</li>
+								</ul>
+							</nav>
+						</div>
+
+						<!-- Social Links -->
+						<div class="footer__social-section">
+							<h2 class="footer__social-section-title">Connect</h2>
+							<div
+								class="footer__social"
+								aria-label="United Relief social media links"
+							>
+								<ul class="footer__social-list">
+									<li class="footer__social-item">
+										<a
+											class="footer__social-link"
+											href="https://www.facebook.com/UnitedRelief"
+											target="_blank"
+											rel="noopener noreferrer"
+											aria-label="Follow United Relief on Facebook"
+										>
+											<img
+												src="../assets/icons/facebook.svg"
+												alt=""
+												class="footer__social-icon"
+												aria-hidden="true"
+											/>
+										</a>
+									</li>
+									<li class="footer__social-item">
+										<a
+											class="footer__social-link"
+											href="https://www.twitter.com/UnitedRelief"
+											target="_blank"
+											rel="noopener noreferrer"
+											aria-label="Follow United Relief on Twitter"
+										>
+											<img
+												src="../assets/icons/twitter.svg"
+												alt=""
+												class="footer__social-icon"
+												aria-hidden="true"
+											/>
+										</a>
+									</li>
+									<li class="footer__social-item">
+										<a
+											class="footer__social-link"
+											href="https://www.instagram.com/UnitedRelief"
+											target="_blank"
+											rel="noopener noreferrer"
+											aria-label="Follow United Relief on Instagram"
+										>
+											<img
+												src="../assets/icons/instagram.svg"
+												alt=""
+												class="footer__social-icon"
+												aria-hidden="true"
+											/>
+										</a>
+									</li>
+									<li class="footer__social-item">
+										<a
+											class="footer__social-link"
+											href="https://www.tiktok.com/@UnitedRelief"
+											target="_blank"
+											rel="noopener noreferrer"
+											aria-label="Follow United Relief on TikTok"
+										>
+											<img
+												src="../assets/icons/tiktok.svg"
+												alt=""
+												class="footer__social-icon"
+												aria-hidden="true"
+											/>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Copyright at Bottom -->
+				<div class="footer__bottom">
+					<p class="footer__copyright">
+						&copy; 2025 United Relief. All rights reserved.
+					</p>
+				</div>
+		</footer>
+
+		<!-- JS -->
+		<script src="../../scripts/components/header.js" defer></script>
+<!--		<script src="../../scripts/components/footer.js" defer></script>-->
+	</body>
 </html>
