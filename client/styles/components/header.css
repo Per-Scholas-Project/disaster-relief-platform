@@ -89,7 +89,7 @@
 .header__nav-link-signin {
     font-size: var(--font-size-body);
     font-weight: var(--font-weight-semi-bold);
-    color: var(--blue-100);
+    color: var(--blue-500);
     transition: color 0.3s ease;
 }
 
