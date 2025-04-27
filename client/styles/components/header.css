@@ -1,6 +1,7 @@
 @import "../base/main.css";
+
 /* =============================
-   Header Component Styles
+   Header Component Styles (Updated Background)
    ============================= */
 
 /* ---------- Accessibility Skip Link ---------- */
@@ -24,41 +25,98 @@
 
 /* ---------- Header Styles ---------- */
 .header {
-    background-color: var(--color-white);
-    padding: var(--space-lg) var(--space-xl);
+    background-color: var(--blue-900); /* ✅ Updated to match footer */
+    padding: var(--space-xl) var(--space-xxl);
 }
 
+/* Header Navigation Layout */
 .header__nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
     max-width: 120rem; /* 1200px */
     margin: 0 auto;
+    gap: var(--space-md);
+    width: 100%;
 }
 
+/* Top Row: Logo and Hamburger */
+.header__top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Header Title */
+.header__title {
+    font-size: var(--font-size-h2);
+    font-weight: var(--font-weight-bold);
+    margin: 0;
+}
+
+/* Logo Link */
+.logo-link {
+    color: var(--white-100);
+    text-decoration: none;
+    font-family: var(--font-heading), serif;
+}
+
+.logo-link:hover,
+.logo-link:focus {
+    color: var(--blue-300);
+    text-decoration: underline;
+}
+
+/* Nav List */
+/* Navigation List */
 .header__nav-list {
     display: flex;
     gap: var(--space-xl);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: var(--white-100);
 }
 
 .header__nav-item {
-    list-style: none;
+    color: var(--white-100);
 }
 
-/*.header__nav-link {*/
-/*    font-family: var(--font-body), Arial, sans-serif;*/
-/*    font-size: var(--font-size-body);*/
-/*    font-weight: var(--font-weight-regular);*/
-/*    color: var(--color-primary);*/
-/*    text-decoration: none;*/
-/*}*/
+/* Nav Items */
+.header__nav-item > a {
+    color: var(--white-100);
+}
 
-/* ---------- Hamburger Menu Button (hidden by default) ---------- */
+/* Nav Links */
+/* Navigation Links */
+.header__nav-link {
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-regular);
+    color: var(--white-100);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.header__nav-link:hover,
+.header__nav-link:focus {
+    color: var(--blue-300);
+    text-decoration: underline;
+}
+
+/* ---------- Hamburger Menu Button (Hidden on Desktop) ---------- */
 .header__toggle {
     display: none;
     background: none;
     border: none;
     cursor: pointer;
+}
+
+/* Hamburger Icon */
+.header__hamburger-menu {
+    width: 2.4rem;
+    height: 2.4rem;
+    display: block;
+    filter: brightness(0) invert(1); /* ✅ Hamburger turns white */
 }
 
 /* =============================
@@ -78,23 +136,15 @@
         width: 100%;
     }
 
-    /* Show hamburger icon */
+    /* Show Hamburger */
     .header__toggle {
         display: block;
         margin-left: auto;
-        background: var(--gray-400);
-        border: 1px solid var(--color-black);
-        cursor: pointer;
+        background: none;
+        border: none;
     }
 
-    .header__hamburger-menu {
-        width: 2.4rem;
-        height: 2.4rem;
-        display: block;
-        fill: var(--color-black);
-    }
-
-    /* ---------- Nav Menu (mobile dropdown) ---------- */
+    /* Nav List - Mobile Menu */
     .header__nav-list {
         display: none;
         flex-direction: column;

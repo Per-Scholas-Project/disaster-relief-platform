@@ -240,7 +240,7 @@ img {
         blur-radius color
     */
     --shadow-sm: -2px 4px 5px var(--gray-800);
-    --shadow-md: -2px 4px 4px var(--black-500);
+    --shadow-md: -2px 4px 10px var(--black-500);
     --shadow-lg: -4px 16px 16px var(--gray-600);
 
 }
