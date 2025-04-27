@@ -51,7 +51,7 @@
 .footer__contact-section,
 .footer__navigation-section,
 .footer__social-section {
-    flex: 1 1 25rem; /* ✅ Flexible sizing with a minimum width */
+    flex: 1 1 25rem;
     display: flex;
     flex-direction: column;
     gap: var(--space-sm);

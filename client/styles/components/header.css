@@ -25,7 +25,7 @@
 
 /* ---------- Header Styles ---------- */
 .header {
-    background-color: var(--blue-900); /* ✅ Updated to match footer */
+    background-color: var(--blue-900);
     padding: var(--space-xl) var(--space-xxl);
 }
 
@@ -116,7 +116,7 @@
     width: 2.4rem;
     height: 2.4rem;
     display: block;
-    filter: brightness(0) invert(1); /* ✅ Hamburger turns white */
+    filter: brightness(0) invert(1);
 }
 
 /* =============================
