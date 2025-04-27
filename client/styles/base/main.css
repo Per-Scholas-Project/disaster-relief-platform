@@ -288,7 +288,7 @@ button {
     font-size: var(--font-size-body);
     font-weight: var(--font-weight-semi-bold);
     color: var(--white-500);
-    text-shadow: -0.05rem 0.10rem 0.25rem var(--black-500);
+    /*text-shadow: -0.05rem 0.10rem 0.25rem var(--black-500);*/
     background-color: var(--blue-500);
     border-radius: var(--radius-md);
     border: 1px solid var(--color-primary);
@@ -298,28 +298,27 @@ button {
 }
 
 /* --- Hover and Focus states --- */
-button:hover,
-button:focus {
+button:hover {
     background-color: var(--blue-700);
     border-color: var(--blue-700);
     /*box-shadow: var(--shadow-sm);*/
 }
 
 /* --- Active (pressed) state --- */
-button:active {
-    background-color: var(--blue-800);
-    border-color: var(--blue-800);
-    /*box-shadow: var(--shadow-sm);*/
-}
+/*button:active {*/
+/*    background-color: var(--blue-800);*/
+/*    border-color: var(--blue-800);*/
+/*    !*box-shadow: var(--shadow-sm);*!*/
+/*}*/
 
 /* --- Disabled state --- */
-button:disabled {
-    background-color: var(--gray-400);
-    border-color: var(--gray-400);
-    color: var(--gray-700);
-    cursor: not-allowed;
-    box-shadow: none;
-}
+/*button:disabled {*/
+/*    background-color: var(--gray-400);*/
+/*    border-color: var(--gray-400);*/
+/*    color: var(--gray-700);*/
+/*    cursor: not-allowed;*/
+/*    box-shadow: none;*/
+/*}*/
 
 /* ---------- Form Elements ---------- */
 

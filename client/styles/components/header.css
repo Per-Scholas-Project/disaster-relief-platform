@@ -55,8 +55,7 @@
     font-weight: var(--font-weight-bold);
 }
 
-.logo-link:hover,
-.logo-link:focus {
+.logo-link:hover {
     color: var(--blue-300);
     text-decoration: underline;
 }
@@ -69,7 +68,6 @@
     height: auto;
     gap: var(--space-xl);
     list-style: none;
-    border: 1px solid white;
 }
 
 .header__nav-item .header__nav-link {
@@ -81,14 +79,22 @@
 }
 
 .header__nav-item-bg {
-    padding: var(--space-md) var(--space-lg);
     background: var(--white-500);
+}
+
+.header__nav-item-bg:hover {
+    background: var(--blue-100);
 }
 
 .header__nav-link-signin {
     font-size: var(--font-size-body);
     font-weight: var(--font-weight-semi-bold);
-    color: var(--blue-500);
+    color: var(--blue-100);
+    transition: color 0.3s ease;
+}
+
+.header__nav-link-signin:hover {
+    color: var(--blue-700);
     transition: color 0.3s ease;
 }
 
