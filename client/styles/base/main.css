@@ -21,24 +21,21 @@ html:focus-within {
     scroll-behavior: smooth;
 }
 
-
-body, h1, h2, h3, h4, h5, h6, p, ul, ol, li {
+body {
     margin: 0;
     padding: 0;
+    background-color: var(--color-background);
 }
 
-body {
+p {
     font-family: var(--font-body), Arial, sans-serif;
     font-size: var(--font-size-body);
     color: var(--gray-900);
-    background-color: var(--color-background);
     line-height: 1.5;
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading), sans-serif;
-    font-weight: var(--font-weight-bold);
-    line-height: 1.2;
 }
 
 h1 {
@@ -65,7 +62,15 @@ img {
     font-family: var(--font-logo), Arial, sans-serif;
     font-weight: var(--font-weight-bold);
     font-size: var(--font-size-h2);
+    color: var(--white-500);
     letter-spacing: 0.05rem;
+    transition: color 0.3s ease;
+}
+
+.logo-link:hover,
+.logo-link:focus {
+    color: var(--blue-300);
+    text-decoration: underline;
 }
 
 /* ---------- Root Variables ---------- */
@@ -223,7 +228,7 @@ img {
     --space-md: 1rem;     /* 16px */
     --space-lg: 1.5rem;   /* 24px */
     --space-xl: 2rem;     /* 32px */
-    --space-xxl: 3rem;     /* 32px */
+    --space-xxl: 3rem;
 
     /* Radius */
     --radius-sm: 4px;
@@ -253,7 +258,7 @@ img {
 a {
     font-family: var(--font-body), Arial, sans-serif;
     text-decoration: none;
-    color: var(--color-primary);
+    /*color: var(--color-primary);*/
 }
 
 /* Visited link */
@@ -341,7 +346,7 @@ select:focus {
 
 /* Mobile Typography Scaling */
 @media (max-width: 768px) {
-    body {
+    p {
         font-size: var(--font-size-body); /* Adjust font size for smaller screens */
     }
     h1 {

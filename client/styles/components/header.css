@@ -34,10 +34,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: 120rem; /* 1200px */
+    max-width: 120rem;
+    width: 100%;
     margin: 0 auto;
     gap: var(--space-md);
-    width: 100%;
 }
 
 /* Top Row: Logo and Hamburger */
@@ -49,16 +49,10 @@
 
 /* Header Title */
 .header__title {
+    margin: 0;
+    font-family: var(--font-logo), Arial, sans-serif;
     font-size: var(--font-size-h2);
     font-weight: var(--font-weight-bold);
-    margin: 0;
-}
-
-/* Logo Link */
-.logo-link {
-    color: var(--white-100);
-    text-decoration: none;
-    font-family: var(--font-heading), serif;
 }
 
 .logo-link:hover,
@@ -71,34 +65,44 @@
 /* Navigation List */
 .header__nav-list {
     display: flex;
+    align-items: center;
+    height: auto;
     gap: var(--space-xl);
     list-style: none;
-    padding: 0;
-    margin: 0;
-    color: var(--white-100);
+    border: 1px solid white;
 }
 
-.header__nav-item {
-    color: var(--white-100);
-}
-
-/* Nav Items */
-.header__nav-item > a {
-    color: var(--white-100);
-}
-
-/* Nav Links */
-/* Navigation Links */
-.header__nav-link {
+.header__nav-item .header__nav-link {
     font-size: var(--font-size-body);
     font-weight: var(--font-weight-regular);
-    color: var(--white-100);
+    color: var(--white-500);
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
-.header__nav-link:hover,
-.header__nav-link:focus {
+.header__nav-item-bg {
+    padding: var(--space-md) var(--space-lg);
+    background: var(--white-500);
+}
+
+.header__nav-link-signin {
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-semi-bold);
+    color: var(--blue-500);
+    transition: color 0.3s ease;
+}
+
+/*.header__nav-link > a {*/
+/*    font-size: var(--font-size-body);*/
+/*    font-weight: var(--font-weight-regular);*/
+/*    color: var(--white-500);*/
+/*    text-decoration: none;*/
+/*    transition: color 0.3s ease;*/
+/*}*/
+
+/*.header__nav-link:hover,*/
+.header__nav-item .header__nav-link:hover,
+.header__nav-item .header__nav-link:focus {
     color: var(--blue-300);
     text-decoration: underline;
 }
