@@ -5,8 +5,9 @@
    ============================= */
 .footer__section {
     background-color: var(--blue-900);
-    color: #333333;
+    width: 100%;
     /*padding: 4rem 2rem;*/
+    height: auto;
 }
 
 .footer__container {
@@ -15,7 +16,7 @@
     display: grid;
     gap: 4rem;
     padding: var(--space-xl) var(--space-xxl);
-    border: 1px solid black;
+    height: 50%;
 }
 
 /* ----- Top Section Layout ----- */
