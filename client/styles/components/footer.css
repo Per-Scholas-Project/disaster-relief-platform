@@ -1,0 +1,127 @@
+@import "../base/main.css";
+
+/* =============================
+   Footer Section
+   ============================= */
+.footer__section {
+    background-color: var(--blue-900);
+    color: #333333;
+    /*padding: 4rem 2rem;*/
+}
+
+.footer__container {
+    max-width: 120rem;
+    margin: 0 auto;
+    display: grid;
+    gap: 4rem;
+    padding: var(--space-xl) var(--space-xxl);
+    border: 1px solid black;
+}
+
+/* ----- Top Section Layout ----- */
+.footer__top {
+    display: grid;
+    padding: 2rem 0;
+    gap: 2rem 0;
+}
+
+.footer__brand {
+    justify-self: start;
+}
+
+.footer__logo {
+    margin: 0;
+}
+
+.footer__logo .footer__logo-link {
+    font-family: var(--font-logo), Arial, sans-serif;
+    color: var(--white-500);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* ----- Footer Links: Responsive Grid ----- */
+.footer__links {
+    color: var(--white-500);
+    display: grid;
+    gap: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+}
+
+.footer__column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.footer__heading {
+    font-size: clamp(1.2rem, 2vw, 1.4rem);
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--white-500);
+}
+
+.footer__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.footer__link {
+    text-decoration: none;
+    color: var(--white-500);
+    font-size: clamp(1.2rem, 1.8vw, 1.4rem);
+}
+
+.footer__link:hover {
+    text-decoration: underline;
+    color: #000000;
+}
+
+.footer__social {
+    display: flex;
+    gap: 1.6rem;
+    justify-content: flex-start;
+}
+
+.footer__social-link {
+    color: var(--white-500);
+    font-size: 1.6rem;
+    display: inline-flex;
+    align-items: center;
+}
+
+.footer__social-link:hover {
+    color: #000000;
+}
+
+/* ----- Divider ----- */
+.footer__divider {
+    border: none;
+    border-top: 1px solid #dddddd;
+    margin: 0;
+}
+
+/* ----- Bottom Section Layout ----- */
+.footer__bottom {
+    display: grid;
+    gap: 2rem;
+    align-items: center;
+    justify-content: space-between;
+    grid-template-columns: 1fr;
+}
+
+.footer__copyright {
+    text-align: center;
+    font-size: clamp(1.1rem, 1.6vw, 1.3rem);
+    color: var(--white-500);
+}
+
+/*@media (min-width: 640px) {*/
+/*    .footer__bottom {*/
+/*        grid-template-columns: 1fr auto;*/
+/*    }*/
+/*}*/
