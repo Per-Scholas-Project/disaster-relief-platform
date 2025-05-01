@@ -2,18 +2,8 @@
    Base Imports
    ========================= */
 @import '../base/main.css';
-@import '../components/header.css';
-@import '../components/footer.css';
-
-/* =========================
-   Skip Link Scroll Adjustment
-   ========================= */
-body {
-    display: grid;
-    grid-template-rows: auto auto 1fr auto;
-    grid-template-columns: 1fr;
-    min-height: 100vh;
-}
+/*@import '../components/header.css';*/
+/*@import '../components/footer.css';*/
 
 /* =========================
    Hero Section
@@ -79,16 +69,17 @@ body {
 .hero__title {
     font-size: var(--font-size-h1);
     font-weight: var(--font-weight-black);
-    font-family: var(--font-heading), serif;
+    font-family: var(--font-heading), Arial, sans-serif;
     letter-spacing: 0.05rem;
     color: var(--white-500);
-    line-height: 1.1; /* FIX line-height for better spacing */
-    margin: 0; /* Remove default margin */
+    line-height: 1.5;
+    margin: 0;
 }
 
 .hero__title span {
     display: block; /* Force span to act like a line-break */
     font-size: var(--font-size-h3);
+    font-family: var(--font-heading), Arial, sans-serif;
     color: var(--white-500);
     margin-top: var(--space-sm); /* Optional: small gap between title and subtitle */
 }
@@ -96,6 +87,7 @@ body {
 .hero__description {
     font-size: var(--font-size-body);
     font-weight: var(--font-weight-regular);
+    font-family: var(--font-body), Arial, sans-serif;
     letter-spacing: 0.05rem;
     line-height: 1.5;
     color: var(--gray-100);
@@ -137,6 +129,7 @@ body {
 .about__header {
     font-size: var(--font-size-h2);
     font-weight: var(--font-weight-bold);
+    font-family: var(--font-heading), Arial, sans-serif;
     color: var(--color-primary);
     text-align: center;
     margin-bottom: var(--space-xl);
@@ -145,6 +138,7 @@ body {
 /* About Section Description */
 .about__description {
     font-size: var(--font-size-body);
+    font-family: var(--font-body), Arial, sans-serif;
     line-height: 1.6;
     max-width: 80ch;
     margin: 0 auto;
@@ -156,6 +150,7 @@ body {
 .about__subheading {
     font-size: var(--font-size-h3);
     font-weight: var(--font-weight-bold);
+    font-family: var(--font-heading), Arial, sans-serif;
     text-align: center;
     color: var(--color-primary);
     margin-top: var(--space-xl);
@@ -165,6 +160,7 @@ body {
 /* About Section Paragraph */
 .about__paragraph {
     font-size: var(--font-size-body);
+    font-family: var(--font-body), Arial, sans-serif;
     line-height: 1.5;
     max-width: 75ch;
     margin: 0 auto var(--space-lg) auto;
@@ -187,6 +183,7 @@ body {
 /* About List Item */
 .about__list-item {
     font-size: var(--font-size-body);
+    font-family: var(--font-body), Arial, sans-serif;
     line-height: 1.6;
     text-align: left;
 }
@@ -201,6 +198,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    padding: var(--space-lg) var(--space-xl);
     height: auto;
     overflow: hidden;
 }
@@ -234,13 +233,13 @@ body {
 
 /* Volunteer Content Container */
 .volunteer__container {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    display: grid;
+    grid-template-rows: auto auto auto;
+    width: 100%;
     max-width: 120rem;
     height: auto;
     padding: var(--space-xxl);
-    gap: var(--space-lg);
+    gap: var(--space-xl);
     margin: 0 auto;
 }
 
@@ -248,53 +247,57 @@ body {
 .volunteer__title {
     font-size: var(--font-size-h2);
     font-weight: var(--font-weight-bold);
+    font-family: var(--font-heading), Arial, sans-serif;
     color: var(--white-500);
     text-align: center;
-    margin-bottom: var(--space-xl);
+    margin-bottom: var(--space-sm);
     text-shadow: -0.25rem 0.25rem 5rem var(--black-500);
 }
 
 /* Volunteer Intro Paragraph */
 .volunteer__intro {
     font-size: var(--font-size-body);
-    line-height: 1.6;
-    max-width: 80ch;
+    font-family: var(--font-body), Arial, sans-serif;
+    max-width: clamp(80ch, 3.5vw, 80ch);
     margin: 0 auto;
     text-align: center;
+    letter-spacing: 0.05rem;
+    line-height: 1.5;
     color: var(--gray-100);
     text-shadow: -0.25rem 0.25rem 5rem var(--black-500);
 }
 
-/* Volunteer Inner Flex Layout */
+/* Volunteer Inner Grid Layout */
 .volunteer__content {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    gap: var(--space-xxl);
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: var(--space-xxl); /* spacing between columns and rows */
+    max-width: 120rem;
+    margin: 0 auto;
 }
 
-/* Volunteer Column (Left and Right) */
+/* Volunteer Column */
 .volunteer__column {
-    flex: 1 1 45rem;
     display: flex;
     flex-direction: column;
-    column-gap: var(--space-xxl);
+    gap: var(--space-md); /* control spacing just like your working version */
     padding: var(--space-xxl);
     background: rgba(255, 255, 255, 0.2);
     border: 1px solid var(--gray-200);
-    border-radius: 16px;
+    border-radius: var(--space-md);
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(5px);
+    max-width: clamp(100ch, 50vw, 80ch);
 }
 
 /* Volunteer Subheading (h3) */
 .volunteer__subheading {
     font-size: var(--font-size-h3);
+    font-family: var(--font-heading), Arial, sans-serif;
     text-align: center;
     font-weight: var(--font-weight-bold);
-    margin: var(--space-xxl);
+    margin-bottom: var(--space-sm);
     color: var(--white-500);
     text-shadow: -0.25rem 0.25rem 5rem var(--black-500);
 }
@@ -302,9 +305,11 @@ body {
 /* Volunteer Text Paragraph */
 .volunteer__text {
     font-size: var(--font-size-body);
-    margin-bottom: var(--space-lg);
-    line-height: 1.6;
-    max-width: 75ch;
+    font-family: var(--font-body), Arial, sans-serif;
+    margin-top: 0;
+    margin-bottom: var(--space-md);
+    line-height: 1.5;
+    letter-spacing: 0.05rem;
     text-align: left;
     color: var(--gray-100);
     text-shadow: -0.25rem 0.25rem 5rem var(--black-500);
@@ -315,19 +320,19 @@ body {
     display: flex;
     flex-direction: column;
     gap: var(--space-md);
-    max-width: 75ch;
-    margin: 0 auto;
     padding-left: 2rem;
-    list-style-type: disc;
-    color: var(--gray-100);
-    text-shadow: -0.25rem 0.25rem 5rem var(--black-500);
 }
 
 /* Volunteer List Item */
 .volunteer__list-item {
     font-size: var(--font-size-body);
-    line-height: 1.6;
+    font-family: var(--font-body), Arial, sans-serif;
+    line-height: 1.5;
+    letter-spacing: 0.05rem;
+    list-style-type: disc;
     text-align: left;
+    text-shadow: -0.25rem 0.25rem 5rem var(--black-500);
+    color: var(--gray-100);
 }
 
 /* Volunteer Steps (How to Get Started) */
@@ -335,32 +340,33 @@ body {
     display: flex;
     flex-direction: column;
     gap: var(--space-md);
-    max-width: 75ch;
-    margin: 0 auto;
     padding-left: 2rem;
-    list-style-type: decimal;
-    color: var(--gray-100);
-    text-shadow: -0.25rem 0.25rem 5rem var(--black-500);
 }
 
 /* Volunteer Step Item */
-.volunteer__step {
+.volunteer__steps-item {
     font-size: var(--font-size-body);
-    line-height: 1.6;
+    font-family: var(--font-body), Arial, sans-serif;
+    line-height: 1.5;
+    letter-spacing: 0.05rem;
+    list-style-type: decimal;
     text-align: left;
+    text-shadow: -0.25rem 0.25rem 5rem var(--black-500);
+    color: var(--gray-100);
 }
 
 /* Volunteer CTA Buttons */
 .volunteer__cta-buttons {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     gap: var(--space-lg);
     margin-top: var(--space-xl);
 }
 
 /* Volunteer CTA Link */
 .volunteer__cta-link {
+    font-family: var(--font-body), Arial, sans-serif;
     text-decoration: none;
 }
 
@@ -417,64 +423,51 @@ body {
     margin: 0 auto;
     height: 100%;
     padding: var(--space-xxl);
-    gap: var(--space-xl);
+    /*gap: var(--space-xxl);*/
 }
 
 /* Partners Section Title (h2) */
 .partners__title {
+    font-family: var(--font-heading), Arial, sans-serif;
     font-size: var(--font-size-h2);
     font-weight: var(--font-weight-bold);
     color: var(--color-primary);
     text-align: center;
+    margin-bottom: 1rem;
 }
 
 /* Partners Intro Paragraph */
 .partners__intro {
+    font-family: var(--font-body), Arial, sans-serif;
     font-size: var(--font-size-body);
     line-height: 1.6;
-    max-width: 80ch;
-    margin: 0 auto;
+    margin-top: 0;
     text-align: center;
     color: var(--gray-700);
+    margin-bottom: 4rem;
+    max-width: clamp(80ch, 3.5vw, 80ch);
 }
 
 /* Partners Subheading (h3) */
 .partners__subheading {
+    font-family: var(--font-heading), Arial, sans-serif;
     font-size: var(--font-size-h3);
     font-weight: var(--font-weight-bold);
     text-align: center;
     color: var(--color-primary);
-    margin-top: var(--space-xl);
+    margin-bottom: 1rem;
+
 }
 
 /* Partners Description Paragraph */
 .partners__description {
+    font-family: var(--font-body), Arial, sans-serif;
     font-size: var(--font-size-body);
     line-height: 1.5;
-    max-width: 75ch;
-    margin: 0 auto;
-    padding-bottom: var(--space-lg);
+    padding-bottom: var(--space-md);
     text-align: center;
     color: var(--gray-700);
-}
-
-/* Partners List (Unordered) */
-.partners__list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-md);
-    max-width: 75ch;
-    margin: 0 auto;
-    padding-left: 2rem;
-    list-style-type: disc;
-    color: var(--gray-700);
-}
-
-/* Partners List Item */
-.partners__list-item {
-    font-size: var(--font-size-body);
-    line-height: 1.6;
-    text-align: left;
+    margin-bottom: 2rem;
 }
 
 /* =========================
@@ -559,8 +552,8 @@ body {
 .impact__container {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    align-items: start;
+    /*justify-content: flex-end;*/
+    /*align-items: start;*/
     max-width: 120rem;
     margin: 0 auto;
     height: 100%;
@@ -572,25 +565,31 @@ body {
 /* Impact Title (h2) */
 .impact__title {
     font-size: var(--font-size-h2);
+    font-family: var(--font-heading), Arial, sans-serif;
     font-weight: var(--font-weight-bold);
     color: var(--white-500);
+    text-align: center;
 }
 
 /* Impact Description Paragraph */
 .impact__description {
     font-size: var(--font-size-body);
-    line-height: 1.6;
-    max-width: 80ch;
-    margin: 0 auto;
+    font-family: var(--font-body), Arial, sans-serif;
+    line-height: 1.5;
+    letter-spacing: 0.05rem;
+    max-width: clamp(80ch, 3.5vw, 60ch);
     color: var(--white-500);
+    margin: 0 auto;
 }
 
 /* Impact Subheading (h3) */
 .impact__subheading {
     font-size: var(--font-size-h3);
     font-weight: var(--font-weight-bold);
+    font-family: var(--font-heading), Arial, sans-serif;
     color: var(--white-500);
     margin-top: var(--space-xl);
+    text-align: center;
 }
 
 /* Impact List (Key Achievements) */
@@ -598,17 +597,18 @@ body {
     display: flex;
     flex-direction: column;
     gap: var(--space-md);
-    max-width: 75ch;
-    margin: 0 auto;
-    padding-left: 2rem;
     list-style-type: disc;
     color: var(--white-500);
+    max-width: clamp(80ch, 3.5vw, 60ch);
+    margin: 0 auto;
 }
 
 /* Impact List Item */
 .impact__list-item {
     font-size: var(--font-size-body);
-    line-height: 1.6;
+    font-family: var(--font-body), Arial, sans-serif;
+    line-height: 1.5;
+    letter-spacing: 0.05rem;
     text-align: left;
 }
 
@@ -644,6 +644,7 @@ body {
 .testimonials__title {
     font-size: var(--font-size-h2);
     font-weight: var(--font-weight-bold);
+    font-family: var(--font-heading), Arial, sans-serif;
     color: var(--color-primary);
     text-align: center;
 }
@@ -651,8 +652,10 @@ body {
 /* Testimonials Section Description */
 .testimonials__description {
     font-size: var(--font-size-body);
-    line-height: 1.6;
-    max-width: 80ch;
+    font-family: var(--font-body), Arial, sans-serif;
+    line-height: 1.5;
+    letter-spacing: 0.05rem;
+    max-width: clamp(80ch, 3.5vw, 80ch);
     margin: 0 auto;
     text-align: center;
     color: var(--gray-700);
@@ -661,6 +664,7 @@ body {
 /* Testimonials Subheading (h3) */
 .testimonials__subheading {
     font-size: var(--font-size-h3);
+    font-family: var(--font-heading), Arial, sans-serif;
     font-weight: var(--font-weight-bold);
     text-align: center;
     color: var(--color-primary);
@@ -685,31 +689,28 @@ body {
 /* Testimonial Quote */
 .testimonials__quote p {
     font-size: var(--font-size-body);
+    font-family: var(--font-body), Arial, sans-serif;
     font-style: italic;
     color: var(--gray-800);
-    line-height: 1.6;
+    line-height: 1.5;
+    letter-spacing: 0.05rem;
 }
 
 /* Testimonial Author */
 .testimonials__author {
     font-size: var(--font-size-small);
     font-weight: var(--font-weight-bold);
+    font-family: var(--font-body), Arial, sans-serif;
     text-align: right;
     color: var(--gray-600);
+    letter-spacing: 0.05rem;
 }
-
-
-/* =========================
-   Media Queries (Future)
-   ========================= */
-/*@media (max-width: 768px) {
-    .hero_section {
-        background-position: top;
-        padding: var(--space-lg);
+@media (max-width: 1200px) {
+    .volunteer__content {
+        grid-template-columns: 1fr;
     }
 
-    .hero__content {
-        text-align: center;
-        align-items: center;
+    .partners__two-column {
+        grid-template-columns: 1fr;
     }
-}*/
+}

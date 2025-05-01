@@ -8,7 +8,7 @@
 		/>
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-		<link rel="stylesheet" href="../../styles/forms/volunteer.css" />
+		<link rel="stylesheet" href="../../styles/forms/signin.css" />
 
 		<title>CSS Grid Layout</title>
 	</head>
@@ -60,111 +60,94 @@
 			</header>
 			<!-- Main Section -->
 			<main class="main__section">
-				<section class="volunteer__section">
-					<div class="volunteer__container">
-						<div class="volunteer__heading">
-							<h2 class="volunteer__title">Volunteer with UnitedRelief</h2>
-							<p class="volunteer__description">
-								Thank you for your interest in helping communities affected by disaster.
-								Please fill out the form below.
+				<section class="main__section-content">
+					<div class="main__section__form-container">
+						<!-- Typography & Messaging -->
+						<div class="login__heading">
+							<h2 class="login__title">
+								YOUR PATH TO SUPPORT
+								<br />
+								&
+								<br />
+								RECOVERY
+							</h2>
+							<p class="login__description">
+								In times of crisis, every second counts. Log in to connect with
+								volunteers, resources, and the support you need—fast, safe, and
+								reliable.
 							</p>
 						</div>
 
-						<form class="volunteer__form">
-							<!-- First Name -->
-							<div class="volunteer__field">
-								<input
-									type="text"
-									id="volunteer_firstname"
-									class="volunteer__input"
-									placeholder=" "
-									required
-								/>
-								<label for="volunteer_firstname" class="volunteer__label"
-									>First Name</label
-								>
-							</div>
-
-							<!-- Last Name -->
-							<div class="volunteer__field">
-								<input
-									type="text"
-									id="volunteer_lastname"
-									class="volunteer__input"
-									placeholder=" "
-									required
-								/>
-								<label for="volunteer_lastname" class="volunteer__label"
-									>Last Name</label
-								>
-							</div>
-
-							<!-- Email -->
-							<div class="volunteer__field">
+						<!-- Login Form -->
+						<form class="login__form">
+							<!-- Email Field -->
+							<div class="login__field">
 								<input
 									type="email"
-									id="volunteer_email"
-									class="volunteer__input"
+									id="login_email"
+									class="login__input"
+									autocomplete="email"
 									placeholder=" "
 									required
 								/>
-								<label for="volunteer_email" class="volunteer__label"
-									>Email Address</label
-								>
+								<label for="login_email" class="login__label">Email</label>
 							</div>
 
-							<!-- City -->
-							<div class="volunteer__field">
-								<input
-									type="text"
-									id="volunteer_city"
-									class="volunteer__input"
-									placeholder=" "
-									required
+							<!-- Password Field -->
+							<div class="login__field">
+								<div class="login__password-wrapper">
+									<input
+										type="password"
+										id="login_password"
+										class="login__input"
+										placeholder=" "
+										required
+									/>
+									<label for="login_password" class="login__label">Password</label>
+									<button
+										type="button"
+										class="login__toggle-password"
+										aria-label="Toggle password visibility"
+									>
+										👁️
+									</button>
+								</div>
+							</div>
+
+							<!-- Account Options -->
+							<div class="login__options">
+								<div class="login__remember">
+									<input type="checkbox" id="remember_me" class="login__checkbox" />
+									<label for="remember_me" class="login__checkbox-label"
+										>Remember me</label
+									>
+								</div>
+								<a href="#" class="login__forgot">Forgot your password?</a>
+							</div>
+
+							<p class="login__signup">
+								New to UnitedRelief?
+								<a href="signup.html" class="login__signup-link">Create an Account</a>
+							</p>
+
+							<!-- Submit Button -->
+							<button type="submit" class="login__submit">
+								Login – Access Aid and Resources
+							</button>
+
+							<!-- Divider -->
+							<div class="login__divider">
+								<span class="login__divider-text">Or</span>
+							</div>
+
+							<!-- Google Sign In -->
+							<button type="button" class="login__google-button">
+								<img
+									src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+									alt="Google logo"
+									class="login__google-logo"
 								/>
-								<label for="volunteer_city" class="volunteer__label">City</label>
-							</div>
-
-							<!-- State -->
-							<div class="volunteer__field">
-								<input
-									type="text"
-									id="volunteer_state"
-									class="volunteer__input"
-									placeholder=" "
-									required
-								/>
-								<label for="volunteer_state" class="volunteer__label">State</label>
-							</div>
-
-							<!-- Willing to Travel -->
-							<div class="volunteer__field volunteer__checkbox-field">
-								<input
-									type="checkbox"
-									id="volunteer_travel"
-									class="volunteer__checkbox"
-								/>
-								<label for="volunteer_travel" class="volunteer__checkbox-label"
-									>I am willing to travel across the United States</label
-								>
-							</div>
-
-							<!-- Why Do You Want to Volunteer -->
-							<div class="volunteer__field">
-								<textarea
-									id="volunteer_message"
-									class="volunteer__input volunteer__textarea"
-									rows="4"
-									placeholder=" "
-								></textarea>
-								<label for="volunteer_message" class="volunteer__label"
-									>Why do you want to volunteer?</label
-								>
-							</div>
-
-							<!-- Submit -->
-							<button type="submit" class="volunteer__submit">
-								Submit Volunteer Application
+								<span>Sign in with Google</span>
 							</button>
 						</form>
 					</div>

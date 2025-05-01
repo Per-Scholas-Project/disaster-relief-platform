@@ -27,10 +27,13 @@
 .header {
     position: sticky;
     top: 0;
+    width: 100%;
+    height: auto;
     z-index: 1000;
     background-color: var(--blue-900);
     padding: var(--space-xl) var(--space-xxl);
     transition: transform 0.3s ease-in-out;
+    border: 1px solid black;
 }
 
 /* Header Navigation Layout */
@@ -40,8 +43,10 @@
     justify-content: space-between;
     max-width: 120rem;
     width: 100%;
+    height: auto;
+    /*padding: 1.2rem 1.6rem;*/
     margin: 0 auto;
-    gap: var(--space-md);
+    /*gap: var(--space-md);*/
 }
 
 /* Top Row: Logo and Hamburger */
@@ -57,7 +62,6 @@
     font-family: var(--font-logo), Arial, sans-serif;
     font-size: var(--font-size-h2);
     font-weight: var(--font-weight-bold);
-    color: var(--white-500);
 }
 
 .header__title .logo-link {
@@ -129,16 +133,17 @@
 .header__toggle {
     display: none;
     background: none;
-    border: none;
     cursor: pointer;
+    /*border: 1px solid var(--white-500);*/
 }
 
 /* Hamburger Icon */
 .header__hamburger-menu {
-    width: 2.4rem;
-    height: 2.4rem;
+    border: 1px solid var(--white-500);
+    width: 4rem;
+    height: 4rem;
     display: block;
-    filter: brightness(0) invert(1);
+    filter: brightness(1) invert(1);
 }
 
 /* =============================
@@ -162,7 +167,7 @@
         display: block;
         margin-left: auto;
         background: none;
-        border: none;
+        /*border: 1px solid var(--white-500);*/
     }
 
     .header__nav-list {

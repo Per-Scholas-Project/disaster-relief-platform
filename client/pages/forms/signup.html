@@ -8,7 +8,7 @@
 		/>
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-		<link rel="stylesheet" href="../../styles/forms/volunteer.css" />
+		<link rel="stylesheet" href="../../styles/forms/signup.css" />
 
 		<title>CSS Grid Layout</title>
 	</head>
@@ -60,111 +60,132 @@
 			</header>
 			<!-- Main Section -->
 			<main class="main__section">
-				<section class="volunteer__section">
-					<div class="volunteer__container">
-						<div class="volunteer__heading">
-							<h2 class="volunteer__title">Volunteer with UnitedRelief</h2>
-							<p class="volunteer__description">
-								Thank you for your interest in helping communities affected by disaster.
-								Please fill out the form below.
+				<section class="main__section-content">
+					<div class="main__section__form-container">
+						<!-- Typography & Messaging -->
+						<div class="signup__heading">
+							<h2 class="signup__title">
+								JOIN UNITEDRELIEF
+								<br />
+								&
+								<br />
+								BE PART OF THE SOLUTION
+							</h2>
+							<p class="signup__description">
+								Create your free account today and help deliver aid where it’s needed
+								most. Whether you’re seeking assistance or ready to volunteer,
+								UnitedRelief connects communities in times of crisis.
 							</p>
 						</div>
 
-						<form class="volunteer__form">
-							<!-- First Name -->
-							<div class="volunteer__field">
-								<input
-									type="text"
-									id="volunteer_firstname"
-									class="volunteer__input"
-									placeholder=" "
-									required
-								/>
-								<label for="volunteer_firstname" class="volunteer__label"
-									>First Name</label
-								>
-							</div>
+						<!-- Signup Form -->
+						<form class="signup__form">
+							<!-- First and Last Name -->
+							<div class="signup__grid">
+								<div class="signup__field">
+									<input
+										type="text"
+										id="signup_firstname"
+										class="signup__input"
+										placeholder=" "
+										required
+									/>
+									<label for="signup_firstname" class="signup__label">First Name</label>
+								</div>
 
-							<!-- Last Name -->
-							<div class="volunteer__field">
-								<input
-									type="text"
-									id="volunteer_lastname"
-									class="volunteer__input"
-									placeholder=" "
-									required
-								/>
-								<label for="volunteer_lastname" class="volunteer__label"
-									>Last Name</label
-								>
+								<div class="signup__field">
+									<input
+										type="text"
+										id="signup_lastname"
+										class="signup__input"
+										placeholder=" "
+										required
+									/>
+									<label for="signup_lastname" class="signup__label">Last Name</label>
+								</div>
 							</div>
 
 							<!-- Email -->
-							<div class="volunteer__field">
+							<div class="signup__field">
 								<input
 									type="email"
-									id="volunteer_email"
-									class="volunteer__input"
+									id="signup_email"
+									class="signup__input"
 									placeholder=" "
 									required
 								/>
-								<label for="volunteer_email" class="volunteer__label"
-									>Email Address</label
-								>
+								<label for="signup_email" class="signup__label">Email</label>
 							</div>
 
-							<!-- City -->
-							<div class="volunteer__field">
+							<!-- Password -->
+							<div class="signup__field">
+								<div class="signup__password-wrapper">
+									<input
+										type="password"
+										id="signup_password"
+										class="signup__input"
+										placeholder=" "
+										required
+									/>
+									<label for="signup_password" class="signup__label">Password</label>
+									<button
+										type="button"
+										class="signup__toggle-password"
+										aria-label="Toggle password visibility"
+									>
+										👁️
+									</button>
+								</div>
+							</div>
+
+							<!-- Confirm Password -->
+							<div class="signup__field">
 								<input
-									type="text"
-									id="volunteer_city"
-									class="volunteer__input"
+									type="password"
+									id="signup_confirm_password"
+									class="signup__input"
 									placeholder=" "
 									required
 								/>
-								<label for="volunteer_city" class="volunteer__label">City</label>
-							</div>
-
-							<!-- State -->
-							<div class="volunteer__field">
-								<input
-									type="text"
-									id="volunteer_state"
-									class="volunteer__input"
-									placeholder=" "
-									required
-								/>
-								<label for="volunteer_state" class="volunteer__label">State</label>
-							</div>
-
-							<!-- Willing to Travel -->
-							<div class="volunteer__field volunteer__checkbox-field">
-								<input
-									type="checkbox"
-									id="volunteer_travel"
-									class="volunteer__checkbox"
-								/>
-								<label for="volunteer_travel" class="volunteer__checkbox-label"
-									>I am willing to travel across the United States</label
+								<label for="signup_confirm_password" class="signup__label"
+									>Confirm Password</label
 								>
 							</div>
 
-							<!-- Why Do You Want to Volunteer -->
-							<div class="volunteer__field">
-								<textarea
-									id="volunteer_message"
-									class="volunteer__input volunteer__textarea"
-									rows="4"
-									placeholder=" "
-								></textarea>
-								<label for="volunteer_message" class="volunteer__label"
-									>Why do you want to volunteer?</label
-								>
+							<!--                    &lt;!&ndash; Phone Number &ndash;&gt;-->
+							<!--                    <div class="signup__field">-->
+							<!--                        <input type="tel" id="signup_phone" class="signup__input" placeholder=" " required>-->
+							<!--                        <label for="signup_phone" class="signup__label">Phone Number</label>-->
+							<!--                    </div>-->
+
+							<!--                    &lt;!&ndash; Company (Optional) &ndash;&gt;-->
+							<!--                    <div class="signup__field">-->
+							<!--                        <input type="text" id="signup_company" class="signup__input" placeholder=" ">-->
+							<!--                        <label for="signup_company" class="signup__label">Company (Optional)</label>-->
+							<!--                    </div>-->
+
+							<!-- Already have an account -->
+							<p class="signup__signin">
+								Already have an account?
+								<a href="signin.html" class="signup__signin-link">Sign In</a>
+							</p>
+
+							<!-- Submit Button -->
+							<button type="submit" class="signup__submit">Create Account</button>
+
+							<!-- Divider -->
+							<div class="signup__divider">
+								<span class="signup__divider-text">Or</span>
 							</div>
 
-							<!-- Submit -->
-							<button type="submit" class="volunteer__submit">
-								Submit Volunteer Application
+							<!-- Google Sign-Up -->
+							<button type="button" class="signup__google-button">
+								<img
+									src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+									alt="Google logo"
+									class="signup__google-logo"
+								/>
+								<span>Sign up with Google</span>
 							</button>
 						</form>
 					</div>

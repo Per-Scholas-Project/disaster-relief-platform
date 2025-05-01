@@ -8,7 +8,7 @@
 		/>
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-		<link rel="stylesheet" href="../../styles/forms/volunteer.css" />
+		<link rel="stylesheet" href="../../styles/forms/donate.css" />
 
 		<title>CSS Grid Layout</title>
 	</head>
@@ -60,112 +60,117 @@
 			</header>
 			<!-- Main Section -->
 			<main class="main__section">
-				<section class="volunteer__section">
-					<div class="volunteer__container">
-						<div class="volunteer__heading">
-							<h2 class="volunteer__title">Volunteer with UnitedRelief</h2>
-							<p class="volunteer__description">
-								Thank you for your interest in helping communities affected by disaster.
-								Please fill out the form below.
+				<section class="donate__section">
+					<div class="donate__container">
+						<!-- Heading -->
+						<div class="donate__heading">
+							<h2 class="donate__title">Support UnitedRelief</h2>
+							<p class="donate__description">
+								Your contribution helps us deliver aid faster. Please fill out the form
+								below to make a donation.
 							</p>
 						</div>
 
-						<form class="volunteer__form">
-							<!-- First Name -->
-							<div class="volunteer__field">
+						<!-- Donation Form -->
+						<form class="donate__form">
+							<!-- Source -->
+							<div class="donate__field">
+								<select id="donate_source" class="donate__input" required>
+									<option value="select">select</option>
+									<option value="checking">Checking Account</option>
+									<option value="card">Credit/Debit Card</option>
+								</select>
+								<label for="donate_source" class="donate__label">Source</label>
+							</div>
+
+							<!-- Name on Card -->
+							<div class="donate__field">
 								<input
 									type="text"
-									id="volunteer_firstname"
-									class="volunteer__input"
+									id="donate_name"
+									class="donate__input"
 									placeholder=" "
 									required
 								/>
-								<label for="volunteer_firstname" class="volunteer__label"
-									>First Name</label
+								<label for="donate_name" class="donate__label"
+									>Full Name (as on card)</label
 								>
 							</div>
 
-							<!-- Last Name -->
-							<div class="volunteer__field">
+							<!-- Expiration + CVV -->
+							<div class="donate__grid">
+								<div class="donate__field">
+									<input
+										type="text"
+										id="donate_expiration"
+										class="donate__input"
+										placeholder=" "
+										required
+									/>
+									<label for="donate_expiration" class="donate__label"
+										>Expiration Date (MM/YY)</label
+									>
+								</div>
+
+								<div class="donate__field">
+									<input
+										type="text"
+										id="donate_cvv"
+										class="donate__input"
+										placeholder=" "
+										required
+									/>
+									<label for="donate_cvv" class="donate__label">CVV</label>
+								</div>
+							</div>
+
+							<!-- Zip Code -->
+							<div class="donate__field">
 								<input
 									type="text"
-									id="volunteer_lastname"
-									class="volunteer__input"
+									id="donate_zip"
+									class="donate__input"
 									placeholder=" "
 									required
 								/>
-								<label for="volunteer_lastname" class="volunteer__label"
-									>Last Name</label
+								<label for="donate_zip" class="donate__label">ZIP Code</label>
+							</div>
+
+							<!-- Amount -->
+							<div class="donate__field">
+								<input
+									type="number"
+									id="donate_amount"
+									class="donate__input"
+									placeholder=" "
+									required
+								/>
+								<label for="donate_amount" class="donate__label"
+									>Donation Amount ($)</label
 								>
 							</div>
 
-							<!-- Email -->
-							<div class="volunteer__field">
-								<input
-									type="email"
-									id="volunteer_email"
-									class="volunteer__input"
-									placeholder=" "
-									required
-								/>
-								<label for="volunteer_email" class="volunteer__label"
-									>Email Address</label
-								>
-							</div>
-
-							<!-- City -->
-							<div class="volunteer__field">
-								<input
-									type="text"
-									id="volunteer_city"
-									class="volunteer__input"
-									placeholder=" "
-									required
-								/>
-								<label for="volunteer_city" class="volunteer__label">City</label>
-							</div>
-
-							<!-- State -->
-							<div class="volunteer__field">
-								<input
-									type="text"
-									id="volunteer_state"
-									class="volunteer__input"
-									placeholder=" "
-									required
-								/>
-								<label for="volunteer_state" class="volunteer__label">State</label>
-							</div>
-
-							<!-- Willing to Travel -->
-							<div class="volunteer__field volunteer__checkbox-field">
-								<input
-									type="checkbox"
-									id="volunteer_travel"
-									class="volunteer__checkbox"
-								/>
-								<label for="volunteer_travel" class="volunteer__checkbox-label"
-									>I am willing to travel across the United States</label
-								>
-							</div>
-
-							<!-- Why Do You Want to Volunteer -->
-							<div class="volunteer__field">
+							<!-- Notes -->
+							<div class="donate__field">
 								<textarea
-									id="volunteer_message"
-									class="volunteer__input volunteer__textarea"
-									rows="4"
+									id="donate_note"
+									class="donate__input donate__textarea"
 									placeholder=" "
 								></textarea>
-								<label for="volunteer_message" class="volunteer__label"
-									>Why do you want to volunteer?</label
+								<label for="donate_note" class="donate__label"
+									>Additional Notes (optional)</label
 								>
 							</div>
 
 							<!-- Submit -->
-							<button type="submit" class="volunteer__submit">
-								Submit Volunteer Application
-							</button>
+							<button type="submit" class="donate__submit">Donate Now</button>
+
+							<!-- Extra Link -->
+							<p class="donate__link-note">
+								<a href="#" class="donate__alt-link"
+									>Want to donate food or clothing instead?</a
+								>
+							</p>
 						</form>
 					</div>
 				</section>
