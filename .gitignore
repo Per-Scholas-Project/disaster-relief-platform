@@ -9,7 +9,8 @@ __pycache__/
 server/venv/
 
 # Environment variables
-.env
+server/.env
+client/.env
 .env.*
 
 # Log files

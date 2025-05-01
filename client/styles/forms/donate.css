@@ -1,0 +1,131 @@
+@import "../../styles/base/main.css";
+
+/* =============================
+   Main Section (Donate Form)
+   ============================= */
+
+.donate__section {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 4rem 2rem;
+}
+
+.donate__container {
+	background-color: #ffffff;
+	padding: 4rem 3rem;
+	border-radius: 0.8rem;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	max-width: 50rem;
+	width: 100%;
+	margin: 0 auto;
+}
+
+.donate__heading {
+	text-align: center;
+	margin-bottom: 3rem;
+}
+
+.donate__title {
+	font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+	font-weight: 800;
+	text-transform: uppercase;
+	color: #000;
+}
+
+.donate__description {
+	font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+	color: #666;
+	margin-top: 1.2rem;
+}
+
+/* Form */
+.donate__form {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.donate__grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+	gap: 2rem;
+}
+
+.donate__field {
+	position: relative;
+}
+
+.donate__input {
+	width: 100%;
+	font-size: clamp(1.4rem, 2.5vw, 1.6rem);
+	padding: 1.2rem 0;
+	border: none;
+	border-bottom: 2px solid #ccc;
+	background: transparent;
+	outline: none;
+	color: #333;
+	resize: none;
+}
+
+.donate__input:focus {
+	border-bottom-color: #2563eb;
+}
+
+.donate__label {
+	position: absolute;
+	top: 1.2rem;
+	left: 0;
+	font-size: clamp(1.2rem, 2vw, 1.4rem);
+	color: #888;
+	transition: 0.3s ease all;
+	pointer-events: none;
+}
+
+.donate__input:focus + .donate__label,
+.donate__input:not(:placeholder-shown) + .donate__label {
+	top: -0.8rem;
+	font-size: clamp(1rem, 1.8vw, 1.2rem);
+	color: #2563eb;
+}
+
+.donate__textarea {
+	min-height: 10rem;
+	line-height: 1.5;
+	padding-top: 2rem;
+}
+
+/* Submit */
+.donate__submit {
+	padding: 1.2rem 2rem;
+	background-color: #0b1f0f;
+	color: #ffffff;
+	font-size: clamp(1.4rem, 2.5vw, 1.6rem);
+	font-weight: 600;
+	border: none;
+	border-radius: 0.6rem;
+	cursor: pointer;
+	transition: background 0.3s ease;
+	width: 100%;
+}
+
+.donate__submit:hover {
+	background-color: #06250d;
+}
+
+/* Link Note */
+.donate__link-note {
+	text-align: center;
+	margin-top: 2rem;
+	font-size: clamp(1.2rem, 2vw, 1.4rem);
+}
+
+.donate__alt-link {
+	color: #2563eb;
+	font-weight: 600;
+	text-decoration: none;
+}
+
+.donate__alt-link:hover {
+	text-decoration: underline;
+}

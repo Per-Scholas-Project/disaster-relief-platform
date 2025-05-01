@@ -1,0 +1,144 @@
+@import "../base/main.css";
+
+/* =============================
+   Main Section (Relief Request)
+   ============================= */
+
+.relief__section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 2rem;
+}
+
+.relief__container {
+    background-color: #ffffff;
+    padding: 4rem 3rem;
+    border-radius: 0.8rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 60rem;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Typography */
+.relief__heading {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.relief__title {
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #000000;
+    line-height: 1.2;
+}
+
+.relief__description {
+    font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+    color: #666666;
+    margin-top: 1.2rem;
+}
+
+/* Form Structure */
+.relief__form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.relief__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+    gap: 2rem;
+}
+
+.relief__field {
+    position: relative;
+}
+
+.relief__input,
+.relief__textarea {
+    width: 100%;
+    font-size: clamp(1.4rem, 2.5vw, 1.6rem);
+    padding: 1.2rem 0;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    background: transparent;
+    outline: none;
+    color: #333;
+    resize: none;
+}
+
+.relief__input:focus,
+.relief__textarea:focus {
+    border-bottom-color: #2563eb;
+}
+
+.relief__label {
+    position: absolute;
+    top: 1.2rem;
+    left: 0;
+    font-size: clamp(1.2rem, 2vw, 1.4rem);
+    color: #888;
+    transition: 0.3s ease all;
+    pointer-events: none;
+}
+
+.relief__input:focus + .relief__label,
+.relief__textarea:focus + .relief__label,
+.relief__input:not(:placeholder-shown) + .relief__label,
+.relief__textarea:not(:placeholder-shown) + .relief__label {
+    top: -0.8rem;
+    font-size: clamp(1rem, 1.8vw, 1.2rem);
+    color: #2563eb;
+}
+
+/* File Upload */
+.relief__file-label {
+    font-size: clamp(1.2rem, 2vw, 1.4rem);
+    color: #444;
+    margin-bottom: 0.8rem;
+    display: block;
+}
+
+.relief__file {
+    font-size: 1.4rem;
+}
+
+/* Checkbox */
+.relief__checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: clamp(1.2rem, 2vw, 1.4rem);
+}
+
+.relief__checkbox {
+    width: 1.6rem;
+    height: 1.6rem;
+}
+
+.relief__checkbox-label {
+    color: #333;
+    cursor: pointer;
+}
+
+/* Submit Button */
+.relief__submit {
+    padding: 1.2rem 2rem;
+    background-color: #0b1f0f;
+    color: #ffffff;
+    font-size: clamp(1.4rem, 2.5vw, 1.6rem);
+    font-weight: 600;
+    border: none;
+    border-radius: 0.6rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    width: 100%;
+}
+
+.relief__submit:hover {
+    background-color: #06250d;
+}
