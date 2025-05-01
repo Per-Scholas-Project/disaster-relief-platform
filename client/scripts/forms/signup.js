@@ -1,19 +1,24 @@
 // signup.js
 // Handles account creation via backend API
 
+import { SIGNUP_API_URL } from "../utils/config.js";
+
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector(".signup__form");
 
-    form?.addEventListener("submit", async (event) => {
+    if (!form) return;
+
+    form.addEventListener("submit", async (event) => {
         event.preventDefault();
 
-        const firstName = document.querySelector("#signup_firstname")?.value.trim();
-        const lastName = document.querySelector("#signup_lastname")?.value.trim();
-        const email = document.querySelector("#signup_email")?.value.trim();
+        const getValue = (selector) => document.querySelector(selector)?.value.trim();
+
+        const firstName = getValue("#signup_firstname");
+        const lastName = getValue("#signup_lastname");
+        const email = getValue("#signup_email");
         const password = document.querySelector("#signup_password")?.value;
         const confirmPassword = document.querySelector("#signup_confirm_password")?.value;
 
-        // Validation
         if (!firstName || !lastName || !email || !password || !confirmPassword) {
             alert("Please fill in all required fields.");
             return;
@@ -24,8 +29,12 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
+        const submitButton = form.querySelector("button[type='submit']");
+        submitButton.disabled = true;
+        submitButton.textContent = "Creating account...";
+
         try {
-            const response = await fetch("https://your-api-id.execute-api.us-east-1.amazonaws.com/prod/signup", {
+            const response = await fetch(SIGNUP_API_URL, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -48,6 +57,9 @@ document.addEventListener("DOMContentLoaded", () => {
         } catch (err) {
             console.error("Signup error:", err.message);
             alert("Signup failed: " + err.message);
+        } finally {
+            submitButton.disabled = false;
+            submitButton.textContent = "Sign Up";
         }
     });
 });

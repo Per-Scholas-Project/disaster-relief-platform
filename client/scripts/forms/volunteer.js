@@ -1,27 +1,45 @@
 // volunteer.js
-// Submits volunteer application to backend
+// Handles volunteer form submission to backend
+
+import { VOLUNTEER_API_URL } from "../utils/config.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector(".volunteer__form");
 
-    form?.addEventListener("submit", async (event) => {
+    if (!form) return;
+
+    form.addEventListener("submit", async (event) => {
         event.preventDefault();
 
-        const firstName = document.querySelector("#volunteer_firstname")?.value.trim();
-        const lastName = document.querySelector("#volunteer_lastname")?.value.trim();
-        const email = document.querySelector("#volunteer_email")?.value.trim();
-        const city = document.querySelector("#volunteer_city")?.value.trim();
-        const state = document.querySelector("#volunteer_state")?.value.trim();
-        const travel = document.querySelector("#volunteer_travel")?.checked;
-        const message = document.querySelector("#volunteer_message")?.value.trim();
+        const getValue = (selector) => document.querySelector(selector)?.value.trim();
+        const getChecked = (selector) => document.querySelector(selector)?.checked;
+
+        const firstName = getValue("#volunteer_firstname");
+        const lastName = getValue("#volunteer_lastname");
+        const email = getValue("#volunteer_email");
+        const city = getValue("#volunteer_city");
+        const state = getValue("#volunteer_state");
+        const willingToTravel = getChecked("#volunteer_travel");
+        const message = getValue("#volunteer_message");
+
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         if (!firstName || !lastName || !email || !city || !state) {
             alert("Please complete all required fields.");
             return;
         }
 
+        if (!emailPattern.test(email)) {
+            alert("Please enter a valid email address.");
+            return;
+        }
+
+        const submitButton = form.querySelector("button[type='submit']");
+        submitButton.disabled = true;
+        submitButton.textContent = "Submitting...";
+
         try {
-            const response = await fetch("https://your-api-id.execute-api.us-east-1.amazonaws.com/prod/volunteer", {
+            const response = await fetch(VOLUNTEER_API_URL, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -32,21 +50,25 @@ document.addEventListener("DOMContentLoaded", () => {
                     email,
                     city,
                     state,
-                    willingToTravel: travel,
+                    willingToTravel,
                     message
                 })
             });
 
             if (!response.ok) {
-                const error = await response.json();
-                throw new Error(error.message || "Submission failed");
+                const errorData = await response.json();
+                throw new Error(errorData.message || "Submission failed. Please try again.");
             }
 
             alert("Thank you for volunteering with UnitedRelief!");
             form.reset();
-        } catch (err) {
-            console.error("Submission error:", err.message);
-            alert("Could not submit your form: " + err.message);
+            window.location.href = "/index.html"; // ✅ Redirect after success
+        } catch (error) {
+            console.error("Submission error:", error);
+            alert(`Could not submit your form: ${error.message}`);
+        } finally {
+            submitButton.disabled = false;
+            submitButton.textContent = "Submit";
         }
     });
 });

@@ -1,27 +1,37 @@
 // donate.js
 // Sends donation form data to AWS backend
 
+import { DONATE_API_URL } from "../utils/config.js";
+
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector(".donate__form");
 
-    form?.addEventListener("submit", async (event) => {
+    if (!form) return;
+
+    form.addEventListener("submit", async (event) => {
         event.preventDefault();
 
+        const getValue = (selector) => document.querySelector(selector)?.value.trim();
+
         const source = document.querySelector("#donate_source")?.value;
-        const name = document.querySelector("#donate_name")?.value.trim();
-        const expiration = document.querySelector("#donate_expiration")?.value.trim();
-        const cvv = document.querySelector("#donate_cvv")?.value.trim();
-        const zip = document.querySelector("#donate_zip")?.value.trim();
-        const amount = document.querySelector("#donate_amount")?.value.trim();
-        const note = document.querySelector("#donate_note")?.value.trim();
+        const name = getValue("#donate_name");
+        const expiration = getValue("#donate_expiration");
+        const cvv = getValue("#donate_cvv");
+        const zip = getValue("#donate_zip");
+        const amount = getValue("#donate_amount");
+        const note = getValue("#donate_note");
 
         if (!source || source === "select" || !name || !expiration || !cvv || !zip || !amount) {
             alert("Please complete all required fields.");
             return;
         }
 
+        const submitButton = form.querySelector("button[type='submit']");
+        submitButton.disabled = true;
+        submitButton.textContent = "Processing...";
+
         try {
-            const response = await fetch("https://your-api-id.execute-api.us-east-1.amazonaws.com/prod/donate", {
+            const response = await fetch(DONATE_API_URL, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -47,9 +57,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
             alert("Thank you for your donation!");
             form.reset();
+            window.location.href = "/index.html"; // Redirect after alert
         } catch (err) {
             console.error("Donation error:", err.message);
             alert("Donation failed: " + err.message);
+        } finally {
+            submitButton.disabled = false;
+            submitButton.textContent = "Submit";
         }
     });
 });

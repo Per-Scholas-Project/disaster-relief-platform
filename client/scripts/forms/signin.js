@@ -1,10 +1,14 @@
 // signin.js
 // Triggered on form submission and sends credentials to your AWS backend
 
+import { SIGNIN_API_URL } from "../utils/config.js";
+
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector(".login__form");
 
-    form?.addEventListener("submit", async (event) => {
+    if (!form) return;
+
+    form.addEventListener("submit", async (event) => {
         event.preventDefault();
 
         const email = document.querySelector("#login_email")?.value.trim();
@@ -15,8 +19,12 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
+        const submitButton = form.querySelector("button[type='submit']");
+        submitButton.disabled = true;
+        submitButton.textContent = "Signing in...";
+
         try {
-            const response = await fetch("https://your-api-id.execute-api.us-east-1.amazonaws.com/prod/signin", {
+            const response = await fetch(SIGNIN_API_URL, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -36,10 +44,13 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem("accessToken", data.token);
 
             // Redirect to dashboard or homepage
-            window.location.href = "/dashboard.html";
+            window.location.href = "/";
         } catch (err) {
             console.error("Login error:", err.message);
             alert("Login failed: " + err.message);
+        } finally {
+            submitButton.disabled = false;
+            submitButton.textContent = "Sign In";
         }
     });
 });
