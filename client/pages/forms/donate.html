@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		/>
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+		<link rel="stylesheet" href="../../styles/forms/donate.css" />
+
+		<title>CSS Grid Layout</title>
+	</head>
+	<body>
+		<!-- Grid Container -->
+		<div class="grid__container">
+			<!-- Header -->
+			<header class="header" id="site-header">
+				<nav class="header__nav" role="navigation" aria-label="Main navigation">
+					<!-- Top row: logo and hamburger -->
+					<div class="header__top-row">
+						<h2 class="header__title">
+							<a class="logo-link" href="../../index.html" aria-current="page"
+							>UnitedRelief</a
+							>
+						</h2>
+
+						<!-- Hamburger Button -->
+						<button class="header__toggle" aria-label="Toggle navigation">
+							<img
+									src="../../assets/icons/hamburger-button-50.png"
+									alt="burger menu"
+									class="header__hamburger-menu"
+									aria-hidden="true"
+							/>
+						</button>
+					</div>
+					<!-- Nav Links -->
+					<ul class="header__nav-list" id="header-menu">
+						<!--    <li class="header__nav-item">-->
+						<!--      <a class="header__nav-link" href="../pages/forms/relief_request.html">Submit Help Request</a>-->
+						<!--    </li>-->
+						<li class="header__nav-item">
+							<a class="header__nav-link" href="#about">About Us</a>
+						</li>
+						<li class="header__nav-item">
+							<a class="header__nav-link" href="#contact">Contact Us</a>
+						</li>
+						<li class="header__nav-item-bg">
+							<a class="header__nav-link-signin" href="./pages/forms/signin.html"
+							>Sign In / Sign Up</a
+							>
+						</li>
+						<!--    <li class="header__nav-item">-->
+						<!--      <a class="header__nav-link" href="pages/sign-up.html">Sign Up</a>-->
+						<!--    </li>-->
+					</ul>
+				</nav>
+			</header>
+			<!-- Main Section -->
+			<main class="main__section">
+				<section class="donate__section">
+					<div class="donate__container">
+						<!-- Heading -->
+						<div class="donate__heading">
+							<h2 class="donate__title">Support UnitedRelief</h2>
+							<p class="donate__description">
+								Your contribution helps us deliver aid faster. Please fill out the form
+								below to make a donation.
+							</p>
+						</div>
+
+						<!-- Donation Form -->
+						<form class="donate__form">
+							<!-- Source -->
+							<div class="donate__field">
+								<select id="donate_source" class="donate__input" required>
+									<option value="select">select</option>
+									<option value="checking">Checking Account</option>
+									<option value="card">Credit/Debit Card</option>
+								</select>
+								<label for="donate_source" class="donate__label">Source</label>
+							</div>
+
+							<!-- Name on Card -->
+							<div class="donate__field">
+								<input
+									type="text"
+									id="donate_name"
+									class="donate__input"
+									placeholder=" "
+									required
+								/>
+								<label for="donate_name" class="donate__label"
+									>Full Name (as on card)</label
+								>
+							</div>
+
+							<!-- Expiration + CVV -->
+							<div class="donate__grid">
+								<div class="donate__field">
+									<input
+										type="text"
+										id="donate_expiration"
+										class="donate__input"
+										placeholder=" "
+										required
+									/>
+									<label for="donate_expiration" class="donate__label"
+										>Expiration Date (MM/YY)</label
+									>
+								</div>
+
+								<div class="donate__field">
+									<input
+										type="text"
+										id="donate_cvv"
+										class="donate__input"
+										placeholder=" "
+										required
+									/>
+									<label for="donate_cvv" class="donate__label">CVV</label>
+								</div>
+							</div>
+
+							<!-- Zip Code -->
+							<div class="donate__field">
+								<input
+									type="text"
+									id="donate_zip"
+									class="donate__input"
+									placeholder=" "
+									required
+								/>
+								<label for="donate_zip" class="donate__label">ZIP Code</label>
+							</div>
+
+							<!-- Amount -->
+							<div class="donate__field">
+								<input
+									type="number"
+									id="donate_amount"
+									class="donate__input"
+									placeholder=" "
+									required
+								/>
+								<label for="donate_amount" class="donate__label"
+									>Donation Amount ($)</label
+								>
+							</div>
+
+							<!-- Notes -->
+							<div class="donate__field">
+								<textarea
+									id="donate_note"
+									class="donate__input donate__textarea"
+									placeholder=" "
+								></textarea>
+								<label for="donate_note" class="donate__label"
+									>Additional Notes (optional)</label
+								>
+							</div>
+
+							<!-- Submit -->
+							<button type="submit" class="donate__submit">Donate Now</button>
+
+							<!-- Extra Link -->
+							<p class="donate__link-note">
+								<a href="#" class="donate__alt-link"
+									>Want to donate food or clothing instead?</a
+								>
+							</p>
+						</form>
+					</div>
+				</section>
+			</main>
+			<!-- Footer Section -->
+			<footer class="footer__section">
+				<div class="footer__container">
+					<div class="footer__top">
+						<div class="footer__brand">
+							<h2 class="footer__logo">
+								<a href="" class="footer__logo-link">Logo</a>
+							</h2>
+						</div>
+						<nav class="footer__links">
+							<div class="footer__column">
+								<h2 class="footer__heading">Resources</h2>
+								<ul class="footer__list">
+									<li class="footer__list-item">
+										<a
+											href="https://flowbite.com/"
+											class="footer__link"
+											target="_blank"
+											rel="noopener noreferrer"
+											>Flowbite</a
+										>
+									</li>
+									<li class="footer__list-item">
+										<a
+											href="https://tailwindcss.com/"
+											class="footer__link"
+											target="_blank"
+											rel="noopener noreferrer"
+											>Tailwind CSS</a
+										>
+									</li>
+								</ul>
+							</div>
+							<div class="footer__column">
+								<h2 class="footer__heading">Follow us</h2>
+								<ul class="footer__list">
+									<li class="footer__list-item">
+										<a
+											href="https://github.com/themesberg/flowbite"
+											class="footer__link"
+											target="_blank"
+											rel="noopener noreferrer"
+											>Github</a
+										>
+									</li>
+									<li class="footer__list-item">
+										<a
+											href="https://discord.gg/4eeurUVvTy"
+											class="footer__link"
+											target="_blank"
+											rel="noopener noreferrer"
+											>Discord</a
+										>
+									</li>
+								</ul>
+							</div>
+							<div class="footer__column">
+								<h2 class="footer__heading">Legal</h2>
+								<ul class="footer__list">
+									<li class="footer__list-item">
+										<a href="#" class="footer__link">Privacy Policy</a>
+									</li>
+									<li class="footer__list-item">
+										<a href="#" class="footer__link">Terms & Conditions</a>
+									</li>
+								</ul>
+							</div>
+						</nav>
+					</div>
+
+					<hr class="footer__divider" />
+
+					<div class="footer__bottom">
+						<span class="footer__copyright">
+							© 2023
+							<a
+								href="#"
+								class="footer__link"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								™</a
+							>. All Rights Reserved.
+						</span>
+						<div class="footer__social">
+							<a href="#" class="footer__social-link" aria-label="Facebook">
+								<!-- Facebook Icon -->
+							</a>
+							<a href="#" class="footer__social-link" aria-label="Discord">
+								<!-- Discord Icon -->
+							</a>
+							<a href="#" class="footer__social-link" aria-label="Twitter">
+								<!-- Twitter Icon -->
+							</a>
+							<a href="#" class="footer__social-link" aria-label="GitHub">
+								<!-- GitHub Icon -->
+							</a>
+							<a href="#" class="footer__social-link" aria-label="Dribbble">
+								<!-- Dribbble Icon -->
+							</a>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</body>
+</html>
