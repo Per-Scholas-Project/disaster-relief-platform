@@ -1,4 +1,6 @@
 @import "fonts.css";
+@import "../components/header.css";
+@import "../components/footer.css";
 
 /* =============================
    Disaster Relief Coordinating Platform
@@ -9,239 +11,262 @@
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
 }
 
 html {
-    font-size: 62.5%; /* 10px based on the default 16px */
+	scroll-behavior: smooth;
+	font-size: 62.5%; /* 10px based on the default 16px */
 }
 
 /* ---------- Accessibility Enhancements ---------- */
 html:focus-within {
-    scroll-behavior: smooth;
-}
-
-
-body, h1, h2, h3, h4, h5, h6, p, ul, ol, li {
-    margin: 0;
-    padding: 0;
+	scroll-behavior: smooth;
 }
 
 body {
-    font-family: var(--font-body), Arial, sans-serif;
-    font-size: var(--font-size-body);
-    color: var(--gray-900);
-    background-color: var(--color-background);
-    line-height: 1.5;
+	background-color: var(--color-background);
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading), sans-serif;
-    font-weight: var(--font-weight-bold);
-    line-height: 1.2;
+.grid__container {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: auto 1fr auto;
+	min-height: 100vh;
+}
+
+p {
+	font-family: var(--font-body), Arial, sans-serif;
+	font-size: var(--font-size-body);
+	color: var(--gray-900);
+	line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--font-heading), Arial, sans-serif;
 }
 
 h1 {
-    line-height: 1.3;
+	line-height: 1.3;
 }
 h2 {
-    line-height: 1.35;
+	line-height: 1.35;
 }
 h3 {
-    line-height: 1.4;
+	line-height: 1.4;
 }
 
-ul, ol {
-    list-style: none;
+ul,
+ol {
+	list-style: none;
 }
 
 img {
-    max-width: 100%;
-    display: block;
+	max-width: 100%;
+	display: block;
 }
 
 /* ---------- Logo Typography ---------- */
 .logo-link {
-    font-family: var(--font-logo), Arial, sans-serif;
-    font-weight: var(--font-weight-bold);
-    font-size: var(--font-size-h2);
-    letter-spacing: 0.05rem;
+	font-family: var(--font-logo), Arial, sans-serif;
+	font-weight: var(--font-weight-bold);
+	font-size: var(--font-size-h2);
+	color: var(--white-500);
+	letter-spacing: 0.05rem;
+	transition: color 0.3s ease;
+}
+
+.logo-link:hover,
+.logo-link:focus {
+	color: var(--blue-300);
+	text-decoration: underline;
 }
 
 /* ---------- Root Variables ---------- */
 :root {
-    /* ---------- Colors ---------- */
+	/* ---------- Colors ---------- */
 
-    /* Blue */
-    --blue-50: #E5E5FF;
-    --blue-100: #CCCCFF;
-    --blue-200: #9999FF;
-    --blue-300: #6666FF;
-    --blue-400: #3333FF;
-    --blue-500: #0000FF;
-    --blue-600: #0000CC;
-    --blue-700: #000099;
-    --blue-800: #000066;
-    --blue-900: #000033;
-    --blue-950: #000019;
+	/* Blue */
+	--blue-50: #e5e5ff;
+	--blue-100: #ccccff;
+	--blue-200: #9999ff;
+	--blue-300: #6666ff;
+	--blue-400: #3333ff;
+	--blue-500: #0000ff;
+	--blue-600: #0000cc;
+	--blue-700: #000099;
+	--blue-800: #000066;
+	--blue-900: #000033;
+	--blue-950: #000019;
 
-    /* Red */
-    --red-50: #FFE5E5;
-    --red-100: #FFC7C7;
-    --red-200: #FF9494;
-    --red-300: #FF5C5C;
-    --red-400: #FF2424;
-    --red-500: #EE0000;
-    --red-600: #BD0000;
-    --red-700: #8F0000;
-    --red-800: #610000;
-    --red-900: #2E0000;
-    --red-950: #190000;
+	/* Red */
+	--red-50: #ffe5e5;
+	--red-100: #ffc7c7;
+	--red-200: #ff9494;
+	--red-300: #ff5c5c;
+	--red-400: #ff2424;
+	--red-500: #ee0000;
+	--red-600: #bd0000;
+	--red-700: #8f0000;
+	--red-800: #610000;
+	--red-900: #2e0000;
+	--red-950: #190000;
 
-    /* Yellow */
-    --yellow-50: #FFFFE5;
-    --yellow-100: #FFFFCC;
-    --yellow-200: #FFFF99;
-    --yellow-300: #FFFF66;
-    --yellow-400: #FFFF33;
-    --yellow-500: #FFFF00;
-    --yellow-600: #CCCC00;
-    --yellow-700: #999900;
-    --yellow-800: #666600;
-    --yellow-900: #333300;
-    --yellow-950: #191900;
+	/* Yellow */
+	--yellow-50: #ffffe5;
+	--yellow-100: #ffffcc;
+	--yellow-200: #ffff99;
+	--yellow-300: #ffff66;
+	--yellow-400: #ffff33;
+	--yellow-500: #ffff00;
+	--yellow-600: #cccc00;
+	--yellow-700: #999900;
+	--yellow-800: #666600;
+	--yellow-900: #333300;
+	--yellow-950: #191900;
 
-    /* Green */
-    --green-50: #DBFFDB;
-    --green-100: #B3FFB3;
-    --green-200: #6BFF6B;
-    --green-300: #1FFF1F;
-    --green-400: #00D600;
-    --green-500: #008B00;
-    --green-600: #007000;
-    --green-700: #005200;
-    --green-800: #003800;
-    --green-900: #001900;
-    --green-950: #000F00;
+	/* Green */
+	--green-50: #dbffdb;
+	--green-100: #b3ffb3;
+	--green-200: #6bff6b;
+	--green-300: #1fff1f;
+	--green-400: #00d600;
+	--green-500: #008b00;
+	--green-600: #007000;
+	--green-700: #005200;
+	--green-800: #003800;
+	--green-900: #001900;
+	--green-950: #000f00;
 
-    /* Gray */
-    --gray-50: #F0F0F0;
-    --gray-100: #E0E0E0;
-    --gray-200: #C2C2C2;
-    --gray-300: #A1A1A1;
-    --gray-400: #828282;
-    --gray-500: #636363;
-    --gray-600: #4F4F4F;
-    --gray-700: #3B3B3B;
-    --gray-800: #292929;
-    --gray-900: #141414;
-    --gray-950: #0A0A0A;
+	/* Gray */
+	--gray-50: #f0f0f0;
+	--gray-100: #e0e0e0;
+	--gray-200: #c2c2c2;
+	--gray-300: #a1a1a1;
+	--gray-400: #828282;
+	--gray-500: #636363;
+	--gray-600: #4f4f4f;
+	--gray-700: #3b3b3b;
+	--gray-800: #292929;
+	--gray-900: #141414;
+	--gray-950: #0a0a0a;
 
-    /* White */
-    --white-50: #FFFFFF;
-    --white-100: #FCFCFC;
-    --white-200: #FAFAFA;
-    --white-300: #FAFAFA;
-    --white-400: #F7F7F7;
-    --white-500: #F5F5F5;
-    --white-600: #C4C4C4;
-    --white-700: #949494;
-    --white-800: #616161;
-    --white-900: #303030;
-    --white-950: #1A1A1A;
+	/* White */
+	--white-50: #ffffff;
+	--white-100: #fcfcfc;
+	--white-200: #fafafa;
+	--white-300: #fafafa;
+	--white-400: #f7f7f7;
+	--white-500: #f5f5f5;
+	--white-600: #c4c4c4;
+	--white-700: #949494;
+	--white-800: #616161;
+	--white-900: #303030;
+	--white-950: #1a1a1a;
 
-    /* Black */
-    --black-50: #E6E6E6;
-    --black-100: #CCCCCC;
-    --black-200: #999999;
-    --black-300: #666666;
-    --black-400: #333333;
-    --black-500: #000000;
-    --black-600: #000000;
-    --black-700: #000000;
-    --black-800: #000000;
-    --black-900: #000000;
-    --black-950: #000000;
+	/* Black */
+	--black-50: #e6e6e6;
+	--black-100: #cccccc;
+	--black-200: #999999;
+	--black-300: #666666;
+	--black-400: #333333;
+	--black-500: #000000;
+	--black-600: #000000;
+	--black-700: #000000;
+	--black-800: #000000;
+	--black-900: #000000;
+	--black-950: #000000;
 
-    /* ---------- Semantic Color Roles ---------- */
+	/* ---------- Semantic Color Roles ---------- */
 
-    /* Brand System */
-    --color-primary: var(--blue-500);
-    --color-secondary: var(--gray-700);
-    --color-tertiary: var(--gray-300);
+	/* Brand System */
+	--color-primary: var(--blue-500);
+	--color-secondary: var(--gray-700);
+	--color-tertiary: var(--gray-300);
 
-    /* Status Indicators */
-    --color-success: var(--green-500);
-    --color-danger: var(--red-500);
-    --color-info: var(--blue-300);
-    --color-warning: var(--yellow-500);
+	/* Status Indicators */
+	--color-success: var(--green-500);
+	--color-danger: var(--red-500);
+	--color-info: var(--blue-300);
+	--color-warning: var(--yellow-500);
 
-    /* Neutrals */
-    --color-white: var(--white-50);
-    --color-black: var(--black-500);
-    --color-muted: var(--gray-500);
-    --color-border: var(--gray-200);
-    --color-background: var(--white-100);
+	/* Neutrals */
+	--color-white: var(--white-50);
+	--color-black: var(--black-500);
+	--color-muted: var(--gray-500);
+	--color-border: var(--gray-200);
+	--color-background: var(--white-500);
 
-    /* ---------- Typography ---------- */
+	/* ---------- Typography ---------- */
 
-    /* Load these fonts in HTML <head> or via @import:
+	/* Load these fonts in HTML <head> or via @import:
        - Merriweather Sans (Logo)
        - Source Sans 3 (Headings)
        - Montserrat Pro (Body)
     */
 
-    /* Font Family */
-    --font-logo: 'Merriweather Sans', sans-serif;
-    --font-heading: 'Source Sans 3', sans-serif;
-    --font-body: 'Montserrat Pro', sans-serif;
+	/* Font Family */
+	--font-logo: "Merriweather Sans", sans-serif;
+	--font-heading: "Source Sans 3", sans-serif;
+	--font-body: "Montserrat Pro", sans-serif;
 
-    /* Font Size */
-    --font-size-h1: clamp(2.4rem, 1.5rem + 2vw, 3.6rem);  /* 24px → ~30px → 36px */
-    --font-size-h2: clamp(2rem, 1.2rem + 1.5vw, 3rem);    /* 20px → ~24px → 30px */
-    --font-size-h3: clamp(1.6rem, 1rem + 1vw, 2.4rem);    /* 16px → ~18px → 24px */
-    --font-size-body: clamp(1.4rem, 0.9rem + 0.5vw, 1.8rem); /* 14px → ~16px → 18px */
-    --font-size-small: clamp(1rem, 0.8rem + 0.3vw, 1.2rem);  /* 10px → ~11.5px → 12px */
+	/* Font Size */
+	--font-size-h1: clamp(2.4rem, 5vw, 3.6rem);
+	--font-size-h2: clamp(1.8rem, 3.5vw, 2.4rem);
+	--font-size-h3: clamp(1.6rem, 3vw, 2rem);
+	--font-size-body: clamp(1.4rem, 2.5vw, 1.6rem);
+	--font-size-small: clamp(
+		1rem,
+		0.8rem + 0.3vw,
+		1.2rem
+	);
 
-    /* Font Weight */
-    --font-weight-thin: 100;
-    --font-weight-extra-light: 200;
-    --font-weight-light: 300;
-    --font-weight-regular: 400;
-    --font-weight-medium: 500;
-    --font-weight-semi-bold: 600;
-    --font-weight-bold: 700;
-    --font-weight-extra-bold: 800;
-    --font-weight-black: 900;
+	/* Font Weight */
+	--font-weight-thin: 100;
+	--font-weight-extra-light: 200;
+	--font-weight-light: 300;
+	--font-weight-regular: 400;
+	--font-weight-medium: 500;
+	--font-weight-semi-bold: 600;
+	--font-weight-bold: 700;
+	--font-weight-extra-bold: 800;
+	--font-weight-black: 900;
 
-    /* Italic Typography */
-    --font-style-italic: italic;
+	/* Italic Typography */
+	--font-style-italic: italic;
 
-    /* Spacing */
-    --space-xs: 0.25rem;  /* 4px */
-    --space-sm: 0.5rem;   /* 8px */
-    --space-md: 1rem;     /* 16px */
-    --space-lg: 1.5rem;   /* 24px */
-    --space-xl: 2rem;     /* 32px */
+	/* Spacing */
+	--space-xs: 0.25rem;
+	--space-sm: 0.5rem;
+	--space-md: 1rem;
+	--space-lg: 1.5rem;
+	--space-xl: 2rem;
+	--space-xxl: 3rem;
 
-    /* Radius */
-    --radius-sm: 4px;
-    --radius-md: 6px;
-    --radius-lg: 8px;
-    --radius-xl: 12px;
-    --radius-2xl: 16px;
-    --radius-full: 9999px;
+	/* Radius */
+	--radius-sm: 4px;
+	--radius-md: 6px;
+	--radius-lg: 8px;
+	--radius-xl: 12px;
+	--radius-2xl: 16px;
+	--radius-full: 9999px;
 
-    /* Shadows */
-    /* box-shadow:
+	/* Shadows */
+	/* box-shadow:
         offset-x (right if positive, left if negative)
         offset-y (Vertical offset (down if positive, up if negative)
         blur-radius color
     */
-    --shadow-sm: -2px 4px 4px var(--gray-600);
-    --shadow-md: -3px 8px 8px var(--gray-600);
-    --shadow-lg: -4px 16px 16px var(--gray-600);
-
+	--shadow-sm: -2px 4px 5px var(--gray-800);
+	--shadow-md: -2px 4px 10px var(--black-500);
+	--shadow-lg: -4px 16px 16px var(--gray-600);
 }
 
 /* ---------- Adjustments for Accessibility and Responsiveness ---------- */
@@ -250,68 +275,69 @@ img {
 
 /* Base link styles */
 a {
-    font-family: var(--font-body), Arial, sans-serif;
-    text-decoration: none;
-    color: var(--color-primary);
+	font-family: var(--font-body), Arial, sans-serif;
+	text-decoration: none;
+	/*color: var(--color-primary);*/
 }
 
 /* Visited link */
 a:visited {
-    color: var(--blue-600);
+	color: var(--blue-600);
 }
 
 /* Active (clicked) link */
 a:active {
-    color: var(--blue-800);
-    /*text-decoration: underline;*/
+	color: var(--blue-800);
+	/*text-decoration: underline;*/
 }
 
 /* Hover and focus states */
 a:hover,
 a:focus {
-    color: var(--blue-700);
-    font-weight: var(--font-weight-semi-bold);
-    text-decoration: underline;
+	color: var(--blue-700);
+	font-weight: var(--font-weight-semi-bold);
+	text-decoration: underline;
 }
 
 /* ========== Buttons ========== */
 
 /* --- Base button styles --- */
 button {
-    font-size: var(--font-size-body);
-    background-color: var(--color-primary);
-    color: var(--color-white);
-    padding: var(--space-md) var(--space-lg);
-    border-radius: var(--radius-md);
-    border: 1px solid var(--color-primary);
-    box-shadow: var(--shadow-md);
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+	padding: var(--space-md) var(--space-lg);
+	font-size: var(--font-size-body);
+	font-weight: var(--font-weight-semi-bold);
+	color: var(--white-500);
+	/*text-shadow: -0.05rem 0.10rem 0.25rem var(--black-500);*/
+	background-color: var(--blue-500);
+	border-radius: var(--radius-md);
+	border: 1px solid var(--color-primary);
+	box-shadow: var(--shadow-md);
+	cursor: pointer;
+	transition: background-color 0.3s ease;
 }
 
 /* --- Hover and Focus states --- */
-button:hover,
-button:focus {
-    background-color: var(--blue-700);
-    border-color: var(--blue-700);
-    /*box-shadow: var(--shadow-sm);*/
+button:hover {
+	background-color: var(--blue-700);
+	border-color: var(--blue-700);
+	/*box-shadow: var(--shadow-sm);*/
 }
 
 /* --- Active (pressed) state --- */
-button:active {
-    background-color: var(--blue-800);
-    border-color: var(--blue-800);
-    /*box-shadow: var(--shadow-sm);*/
-}
+/*button:active {*/
+/*    background-color: var(--blue-800);*/
+/*    border-color: var(--blue-800);*/
+/*    !*box-shadow: var(--shadow-sm);*!*/
+/*}*/
 
 /* --- Disabled state --- */
-button:disabled {
-    background-color: var(--gray-400);
-    border-color: var(--gray-400);
-    color: var(--gray-700);
-    cursor: not-allowed;
-    box-shadow: none;
-}
+/*button:disabled {*/
+/*    background-color: var(--gray-400);*/
+/*    border-color: var(--gray-400);*/
+/*    color: var(--gray-700);*/
+/*    cursor: not-allowed;*/
+/*    box-shadow: none;*/
+/*}*/
 
 /* ---------- Form Elements ---------- */
 
@@ -319,67 +345,67 @@ button:disabled {
 input,
 textarea,
 select {
-    padding: var(--space-sm);
-    font-size: var(--font-size-body);
-    border: 1px solid var(--gray-300);
-    border-radius: var(--radius-md);
-    width: 100%;
+	padding: var(--space-sm);
+	font-size: var(--font-size-body);
+	border: 1px solid var(--gray-300);
+	border-radius: var(--radius-md);
+	width: 100%;
 }
 
 /* Focus state styles for inputs */
 input:focus,
 textarea:focus,
 select:focus {
-    border-color: var(--blue-500);
-    /*outline: 0.2rem solid var(--blue-500); !* Scalable outline using spacing unit *!*/
+	border-color: var(--blue-500);
+	/*outline: 0.2rem solid var(--blue-500); !* Scalable outline using spacing unit *!*/
 }
 
 /* ---------- Responsive Typography (Media Queries) ---------- */
 
 /* Mobile Typography Scaling */
 @media (max-width: 768px) {
-    body {
-        font-size: var(--font-size-body); /* Adjust font size for smaller screens */
-    }
-    h1 {
-        font-size: var(--font-size-h1);
-    }
-    h2 {
-        font-size: var(--font-size-h2);
-    }
-    h3 {
-        font-size: var(--font-size-h3);
-    }
+	p {
+		font-size: var(--font-size-body); /* Adjust font size for smaller screens */
+	}
+	h1 {
+		font-size: var(--font-size-h1);
+	}
+	h2 {
+		font-size: var(--font-size-h2);
+	}
+	h3 {
+		font-size: var(--font-size-h3);
+	}
 }
 
 /* Tablet (768px and up) Typography Scaling */
 @media (min-width: 768px) and (max-width: 1023px) {
-    body {
-        font-size: var(--font-size-body); /* Adjust font size for tablets */
-    }
-    h1 {
-        font-size: var(--font-size-h1);
-    }
-    h2 {
-        font-size: var(--font-size-h2);
-    }
-    h3 {
-        font-size: var(--font-size-h2);
-    }
+	body {
+		font-size: var(--font-size-body); /* Adjust font size for tablets */
+	}
+	h1 {
+		font-size: var(--font-size-h1);
+	}
+	h2 {
+		font-size: var(--font-size-h2);
+	}
+	h3 {
+		font-size: var(--font-size-h2);
+	}
 }
 
 /* Desktop (1024px and up) Typography Scaling */
 @media (min-width: 1024px) {
-    body {
-        font-size: var(--font-size-body); /* Adjust font size for larger screens */
-    }
-    h1 {
-        font-size: var(--font-size-h1);
-    }
-    h2 {
-        font-size: var(--font-size-h2);
-    }
-    h3 {
-        font-size: var(--font-size-h3);
-    }
+	body {
+		font-size: var(--font-size-body); /* Adjust font size for larger screens */
+	}
+	h1 {
+		font-size: var(--font-size-h1);
+	}
+	h2 {
+		font-size: var(--font-size-h2);
+	}
+	h3 {
+		font-size: var(--font-size-h3);
+	}
 }

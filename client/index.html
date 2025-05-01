@@ -1,300 +1,611 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Basic SEO -->
-    <meta name="title" content="Disaster Relief Coordinating Platform">
-    <meta name="description" content="A platform that helps connect disaster victims with volunteers and resources. Built using AWS services.">
-    <meta name="keywords" content="disaster relief, emergency aid, volunteer help, AWS, S3, Lambda, DynamoDB">
-    <meta name="author" content="Sauel Almonte">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"
+		/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<!-- Basic SEO -->
+		<meta name="title" content="Disaster Relief Coordinating Platform" />
+		<meta
+			name="description"
+			content="A platform that helps connect disaster victims with volunteers and resources. Built using AWS services."
+		/>
+		<meta
+			name="keywords"
+			content="disaster relief, emergency aid, volunteer help, AWS, S3, Lambda, DynamoDB"
+		/>
+		<meta name="author" content="Sauel Almonte" />
 
-    <!-- Open Graph / Facebook / LinkedIn -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://yourdomain.com/">
-    <meta property="og:title" content="Disaster Relief Coordinating Platform">
-    <meta property="og:description" content="Connect disaster victims with help. Built on AWS.">
-    <meta property="og:image" content="https://yourdomain.com/preview.png">
+		<!-- Open Graph / Facebook / LinkedIn -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://yourdomain.com/" />
+		<meta property="og:title" content="Disaster Relief Coordinating Platform" />
+		<meta
+			property="og:description"
+			content="Connect disaster victims with help. Built on AWS."
+		/>
+		<meta property="og:image" content="https://yourdomain.com/preview.png" />
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://yourdomain.com/">
-    <meta name="twitter:title" content="Disaster Relief Coordinating Platform">
-    <meta name="twitter:description" content="Connect disaster victims with help. Built on AWS.">
-    <meta name="twitter:image" content="https://yourdomain.com/preview.png">
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:url" content="https://yourdomain.com/" />
+		<meta name="twitter:title" content="Disaster Relief Coordinating Platform" />
+		<meta
+			name="twitter:description"
+			content="Connect disaster victims with help. Built on AWS."
+		/>
+		<meta name="twitter:image" content="https://yourdomain.com/preview.png" />
 
-    <!-- Structured Data for SEO: Organization -->
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            "name": "Disaster Relief Coordinating Platform",
-            "url": "https://yourdomain.com",
-            "logo": "https://yourdomain.com/logo.png",
-            "contactPoint": {
-                "@type": "ContactPoint",
-                "telephone": "+1-800-555-5555",
-                "contactType": "Customer Service"
-            },
-            "sameAs": [
-                "https://www.facebook.com/YourPage",
-                "https://twitter.com/YourProfile",
-                "https://www.linkedin.com/company/yourcompany"
-            ]
-        }
-    </script>
+		<!-- Structured Data for SEO: Organization -->
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "Organization",
+				"name": "Disaster Relief Coordinating Platform",
+				"url": "https://yourdomain.com",
+				"logo": "https://yourdomain.com/logo.png",
+				"contactPoint": {
+					"@type": "ContactPoint",
+					"telephone": "+1-800-555-5555",
+					"contactType": "Customer Service"
+				},
+				"sameAs": [
+					"https://www.facebook.com/YourPage",
+					"https://twitter.com/YourProfile",
+					"https://www.linkedin.com/company/yourcompany"
+				]
+			}
+		</script>
 
-    <!-- Structured Data for SEO: Event (Optional) -->
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "Event",
-            "name": "Disaster Relief Fundraising Event",
-            "startDate": "2025-05-01T19:00:00Z",
-            "endDate": "2025-05-01T22:00:00Z",
-            "location": {
-                "@type": "Place",
-                "name": "Community Center",
-                "address": {
-                    "@type": "PostalAddress",
-                    "streetAddress": "123 Relief St.",
-                    "addressLocality": "Boston",
-                    "addressRegion": "MA",
-                    "postalCode": "02115",
-                    "addressCountry": "US"
-                }
-            },
-            "image": "https://yourdomain.com/images/event-image.jpg",
-            "description": "Join us for a fundraising event to support disaster relief efforts."
-        }
-    </script>
+		<!-- Structured Data for SEO: Event (Optional) -->
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "Event",
+				"name": "Disaster Relief Fundraising Event",
+				"startDate": "2025-05-01T19:00:00Z",
+				"endDate": "2025-05-01T22:00:00Z",
+				"location": {
+					"@type": "Place",
+					"name": "Community Center",
+					"address": {
+						"@type": "PostalAddress",
+						"streetAddress": "123 Relief St.",
+						"addressLocality": "Boston",
+						"addressRegion": "MA",
+						"postalCode": "02115",
+						"addressCountry": "US"
+					}
+				},
+				"image": "https://yourdomain.com/images/event-image.jpg",
+				"description": "Join us for a fundraising event to support disaster relief efforts."
+			}
+		</script>
 
-    <!-- Performance & Font Optimization -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+		<!-- Performance & Font Optimization -->
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+			rel="stylesheet"
+		/>
 
-    <!-- Favicon (optional) -->
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+		<!-- Favicon (optional) -->
+		<link rel="icon" href="favicon.ico" type="image/x-icon" />
 
-    <!-- Link to external CSS -->
-    <link rel="stylesheet" href="styles/layouts/index.css">
+		<!-- Link to external CSS -->
+		<link rel="stylesheet" href="./styles/base/main.css" />
+		<link rel="stylesheet" href="./styles/layouts/index.css" />
+<!--		<link rel="stylesheet" href="./styles/components/header.css" />-->
+<!--		<link rel="stylesheet" href="./styles/components/footer.css" />-->
 
-    <!-- Title -->
-    <title>United Relief</title>
-</head>
+		<!-- Title -->
+		<title>United Relief</title>
+	</head>
 
-<body>
+	<body>
+	<!-- Grid Container -->
+		<div class="grid__container">
+			<a href="#main-content" class="skip-link">Skip to main content</a>
 
-<a href="#main-content" class="skip-link">Skip to main content</a>
+			<!-- Header -->
+			<header class="header" id="site-header">
+				<nav class="header__nav" role="navigation" aria-label="Main navigation">
+					<!-- Top row: logo and hamburger -->
+					<div class="header__top-row">
+						<h2 class="header__title">
+							<a class="logo-link" href="index.html" aria-current="page"
+								>UnitedRelief</a
+							>
+						</h2>
 
-<!-- Header -->
-<header class="header" id="site-header"></header>
+						<!-- Hamburger Button -->
+						<div class="header__toggle" aria-label="Toggle navigation">
+							<img
+								src="./assets/icons/hamburger-button-50.png"
+								alt="burger menu"
+								class="header__hamburger-menu"
+								aria-hidden="true"
+							/>
+						</div>
+					</div>
+					<!-- Nav Links -->
+					<ul class="header__nav-list" id="header-menu">
+						<!--    <li class="header__nav-item">-->
+						<!--      <a class="header__nav-link" href="../pages/forms/relief_request.html">Submit Help Request</a>-->
+						<!--    </li>-->
+						<li class="header__nav-item">
+							<a class="header__nav-link" href="#about">About Us</a>
+						</li>
+						<li class="header__nav-item">
+							<a class="header__nav-link" href="#contact">Contact Us</a>
+						</li>
+						<li class="header__nav-item-bg">
+							<a class="header__nav-link-signin" href="./pages/forms/signin.html"
+								>Sign In / Sign Up</a
+							>
+						</li>
+						<!--    <li class="header__nav-item">-->
+						<!--      <a class="header__nav-link" href="pages/sign-up.html">Sign Up</a>-->
+						<!--    </li>-->
+					</ul>
+				</nav>
+			</header>
 
-<!-- Main Content -->
-<main id="main-content">
-    <!-- Hero Section -->
-    <section id="hero" class="hero_section">
-        <div class="hero__container">
-            <div class="hero__content">
-                <h1 class="hero__title" id="hero-header">United for Relief. Built for Response.</h1>
-                <p class="hero__description">
-                    When disaster strikes, we help connect people in need with real-time support, verified resources, and compassionate volunteers ready to take action.
-                </p>
-                <a class="hero__cta-link" href="pages/form.html">
-                    <button class="hero__cta-button" aria-label="Go to help request form">Submit a Help Request</button>
-                </a>
-            </div>
-        </div>
-    </section>
+			<!-- Main Content -->
+			<main id="main-content">
+				<!-- Hero Section -->
+				<section id="hero" class="hero_section">
+					<img
+						src="./assets/images/businessman.jpeg"
+						alt="Businessman"
+						class="hero__image"
+					/>
+					<div class="hero__overlay"></div>
 
-    <!-- About Us Section -->
-    <section id="about" class="about_section" role="contentinfo" aria-labelledby="about__header">
-        <div class="about__container">
-            <h2 class="about__header" id="about__header">About UnitedRelief</h2>
-            <p class="about__description">
-                United Relief exists to empower communities in times of crisis. Our platform connects disaster victims with volunteers, resources, and relief organizations—helping deliver real-time aid when it's needed most.
-            </p>
+					<div class="hero__container">
+						<div class="hero__content">
+							<h1 class="hero__title" id="hero-header">
+								UnitedRelief <br />
+								<span> Built for Response</span>
+							</h1>
+							<p class="hero__description">
+								When disaster strikes, we help connect people in need with real-time
+								support, verified resources, and compassionate volunteers ready to take
+								action.
+							</p>
+						</div>
+						<a class="hero__cta-link" href="./pages/forms/relief-request.html">
+							<button class="hero__cta-button" aria-label="Submit relief request">
+								Relief Request
+							</button>
+						</a>
+					</div>
+				</section>
 
-            <h3 class="about__subheading" id="about__mission-header">Our Mission</h3>
-            <p class="about__paragraph">
-                We aim to make disaster response seamless and accessible. Whether you're a volunteer, a person in need, or an organization offering help, United Relief ensures you’re connected to the right support when every second counts.
-            </p>
+				<!-- About Us Section -->
+				<section
+					id="about"
+					class="about_section"
+					role="contentinfo"
+					aria-labelledby="about__header"
+				>
+					<div class="about__container">
+						<h2 class="about__header" id="about__header">About UnitedRelief</h2>
+						<p class="about__description">
+							United Relief exists to empower communities in times of crisis. Our
+							platform connects disaster victims with volunteers, resources, and relief
+							organizations—helping deliver real-time aid when it's needed most.
+						</p>
 
-            <h3 class="about__subheading" id="about__security-header">Security & Privacy First</h3>
-            <p class="about__paragraph">
-                Your privacy and safety matter. We use industry-standard encryption and data protection practices to keep your personal information secure throughout your experience on our platform.
-            </p>
+						<h3 class="about__subheading" id="about__mission-header">Our Mission</h3>
+						<p class="about__paragraph">
+							We aim to make disaster response seamless and accessible. Whether you're a
+							volunteer, a person in need, or an organization offering help, United
+							Relief ensures you’re connected to the right support when every second
+							counts.
+						</p>
 
-            <h3 class="about__subheading" id="about__why-choose-header">Why Choose United Relief?</h3>
-            <ul class="about__list" aria-labelledby="about__why-choose-header">
-                <li class="about__list-item"><strong>Fast Response:</strong> Access critical resources and volunteer support instantly during emergencies.</li>
-                <li class="about__list-item"><strong>Secure & Scalable:</strong> Built for both local incidents and global crises, with secure data handling you can trust.</li>
-                <li class="about__list-item"><strong>Global Reach:</strong> Bridging communities and responders across borders to amplify relief efforts.</li>
-                <li class="about__list-item"><strong>Community-Powered:</strong> Driven by a passionate network of volunteers and partners working together to create meaningful impact.</li>
-            </ul>
-        </div>
-    </section>
+						<h3 class="about__subheading" id="about__security-header">
+							Security & Privacy First
+						</h3>
+						<p class="about__paragraph">
+							Your privacy and safety matter. We use industry-standard encryption and
+							data protection practices to keep your personal information secure
+							throughout your experience on our platform.
+						</p>
+					</div>
+				</section>
 
-    <!-- Volunteer / Get Involved Section -->
-    <section id="volunteer" class="volunteer_section" role="region" aria-labelledby="volunteer__header">
-        <div class="volunteer__container">
-            <h2 id="volunteer__header" class="volunteer__title">Get Involved with United Relief</h2>
-            <p class="volunteer__intro">
-                Every helping hand counts. At United Relief, we are powered by a community of compassionate individuals who dedicate their time and resources to make a difference in times of crisis. By volunteering with us, you can be part of something bigger, help those in need, and bring hope where it's needed most.
-            </p>
+				<!-- Volunteer / Get Involved Section -->
+				<section
+					id="volunteer"
+					class="volunteer_section"
+					role="region"
+					aria-labelledby="volunteer__header"
+				>
+					<!-- Add background image -->
+					<img
+						src="./assets/images/food-drive-3.jpg"
+						alt="Volunteering Hands"
+						class="volunteer__image"
+					/>
 
-            <h3 id="volunteer__ways-header" class="volunteer__subheading">Ways You Can Help</h3>
-            <p class="volunteer__text">
-                There are many ways to get involved and make a real impact. Whether you're interested in volunteering your time, donating resources, or helping us spread the word, your contribution is invaluable. Here are some ways you can help:
-            </p>
+					<!-- Add overlay -->
+					<div class="volunteer__overlay"></div>
 
-            <ul class="volunteer__list">
-                <li class="volunteer__list-item"><strong>Volunteer Your Time:</strong> Join our community of volunteers to assist in emergency response efforts, provide support to victims, and help with organizing relief operations.</li>
-                <li class="volunteer__list-item"><strong>Donate Resources:</strong> Whether it's financial support or essential goods like food, water, and medical supplies, your donations help us provide immediate aid.</li>
-                <li class="volunteer__list-item"><strong>Spread the Word:</strong> Help us reach more people by sharing our mission, engaging on social media, and encouraging others to get involved.</li>
-            </ul>
+					<div class="volunteer__container">
+						<h2 id="volunteer__header" class="volunteer__title">
+							Get Involved with United Relief
+						</h2>
 
-            <h3 id="volunteer__start-header" class="volunteer__subheading">How to Get Started</h3>
-            <p class="volunteer__text">
-                Getting started is easy! Here’s how you can begin your journey with United Relief:
-            </p>
+						<p class="volunteer__intro">
+							Every helping hand counts. At United Relief, we are powered by a community
+							of compassionate individuals who dedicate their time and resources to make
+							a difference in times of crisis. By volunteering with us, you can be part
+							of something bigger, help those in need, and bring hope where it's needed
+							most.
+						</p>
 
-            <ol class="volunteer__steps">
-                <li class="volunteer__step"><strong>Sign Up:</strong> Create an account to join our volunteer network or make a donation. Our platform is easy to use and free to join.</li>
-                <li class="volunteer__step"><strong>Choose Your Role:</strong> Whether you're volunteering your time or donating resources, select the way you want to contribute.</li>
-                <li class="volunteer__step"><strong>Make an Impact:</strong> Once you're signed up, you'll receive notifications about upcoming opportunities and events where you can help.</li>
-            </ol>
+						<!-- Newly named wrapper -->
+						<div class="volunteer__content">
+							<!-- First side -->
+							<div class="volunteer__column">
+								<h3 id="volunteer__ways-header" class="volunteer__subheading">
+									Ways You Can Help
+								</h3>
+								<p class="volunteer__text">
+									There are many ways to get involved and make a real impact. Whether
+									you're interested in volunteering your time, donating resources, or
+									helping us spread the word, your contribution is invaluable. Here are
+									some ways you can help:
+								</p>
 
-            <div class="volunteer__cta-buttons">
-                <a class="volunteer__cta-link" href="pages/sign-up.html">
-                    <button class="volunteer__cta-button" aria-label="Sign up to volunteer and get involved">Sign Up to Volunteer</button>
-                </a>
-                <a class="volunteer__cta-link" href="pages/donate.html">
-                    <button class="volunteer__cta-button" aria-label="Donate to help support disaster relief efforts">Donate Now</button>
-                </a>
-            </div>
-        </div>
-    </section>
+								<ul class="volunteer__list">
+									<li class="volunteer__list-item">
+										<strong>Volunteer Your Time:</strong> Join our community of volunteers
+										to assist in emergency response efforts, provide support to victims,
+										and help with organizing relief operations.
+									</li>
+									<li class="volunteer__list-item">
+										<strong>Donate Resources:</strong> Whether it's financial support or
+										essential goods like food, water, and medical supplies, your donations
+										help us provide immediate aid.
+									</li>
+									<li class="volunteer__list-item">
+										<strong>Spread the Word:</strong> Help us reach more people by sharing
+										our mission, engaging on social media, and encouraging others to get
+										involved.
+									</li>
+								</ul>
+							</div>
 
-    <!-- Partners and Sponsors Section -->
-    <section id="partners" class="partners_section" role="region" aria-labelledby="partners__header">
-        <div class="partners__container">
-            <h2 id="partners__header" class="partners__title">Our Partners and Sponsors</h2>
-            <p class="partners__intro">
-                United Relief is proud to work with a dedicated network of partners and sponsors who help make our mission possible. Together, we combine our resources, expertise, and networks to provide life-saving support to those in need during emergencies.
-            </p>
+							<!-- Second side -->
+							<div class="volunteer__column">
+								<h3 id="volunteer__start-header" class="volunteer__subheading">
+									How to Get Started
+								</h3>
+								<p class="volunteer__text">
+									Getting started is easy! Here’s how you can begin your journey with
+									United Relief:
+								</p>
 
-            <h3 id="partners__our-partners-header" class="partners__subheading">Our Partners</h3>
-            <p class="partners__description">
-                We collaborate with organizations across the globe that share our commitment to providing immediate aid in times of crisis...
-            </p>
+								<ol class="volunteer__steps">
+									<li class="volunteer__steps-item">
+										<strong>Sign Up:</strong> Create an account to join our volunteer
+										network or make a donation. Our platform is easy to use and free to
+										join.
+									</li>
+									<li class="volunteer__steps-item">
+										<strong>Choose Your Role:</strong> Whether you're volunteering your
+										time or donating resources, select the way you want to contribute.
+									</li>
+									<li class="volunteer__steps-item">
+										<strong>Make an Impact:</strong> Once you're signed up, you'll receive
+										notifications about upcoming opportunities and events where you can
+										help.
+									</li>
+								</ol>
+							</div>
+						</div>
 
-            <ul class="partners__list" aria-labelledby="partners__our-partners-header">
-                <li class="partners__list-item"><strong>Red Cross:</strong> A global humanitarian organization...</li>
-                <li class="partners__list-item"><strong>World Health Organization (WHO):</strong> A specialized agency of the United Nations...</li>
-                <li class="partners__list-item"><strong>GlobalGiving:</strong> A nonprofit that connects donors...</li>
-            </ul>
+						<div class="volunteer__cta-buttons">
+							<a class="volunteer__cta-link" href="./pages/forms/volunteer.html">
+								<button
+									class="volunteer__cta-button"
+									aria-label="Sign up to volunteer and get involved"
+								>
+									Sign Up to Volunteer
+								</button>
+							</a>
+							<a class="volunteer__cta-link" href="./pages/forms/donate.html">
+								<button
+									class="volunteer__cta-button"
+									aria-label="Donate to help support disaster relief efforts"
+								>
+									Donate Now
+								</button>
+							</a>
+						</div>
+					</div>
+				</section>
 
-            <h3 id="partners__sponsors-header" class="partners__subheading">Sponsors</h3>
-            <p class="partners__description">
-                We are grateful for the generous support of our sponsors...
-            </p>
+				<!-- Partners and Sponsors Section -->
+				<section
+						id="partners"
+						class="partners_section"
+						role="region"
+						aria-labelledby="partners__header"
+				>
+					<div class="partners__container">
+						<!-- Block 1: Title + Intro -->
+						<h2 id="partners__header" class="partners__title">
+							Our Partners and Sponsors
+						</h2>
+						<p class="partners__intro">
+							United Relief is proud to work with a dedicated network of partners and
+							sponsors who help make our mission possible. Together, we combine our
+							resources, expertise, and networks to provide life-saving support to those
+							in need during emergencies.
+						</p>
 
-            <ul class="partners__list" aria-labelledby="partners__sponsors-header">
-                <li class="partners__list-item"><strong>Tech Relief:</strong> A leading technology company...</li>
-                <li class="partners__list-item"><strong>Global Solutions Inc.:</strong> A global consulting firm...</li>
-                <li class="partners__list-item"><strong>EcoAid:</strong> An environmental organization...</li>
-            </ul>
+						<!-- Block 3: Logos (unchanged) -->
+						<div class="partners__logos">
+							<h3 id="partners__trusted-header" class="partners__subheading">
+								Our Trusted Partners and Sponsors
+							</h3>
+							<p class="partners__description">
+								We are proud to collaborate with these incredible partners and
+								sponsors...
+							</p>
+							<div class="partners__logo-gallery">
+								<img
+										class="partners__logo"
+										src="./assets/logos/american-red-cross.svg"
+										alt="Red Cross Logo"
+								/>
+								<img
+										class="partners__logo"
+										src="./assets/logos/who.svg"
+										alt="WHO Logo"
+								/>
+								<img
+										class="partners__logo"
+										src="./assets/logos/globalgiving.png"
+										alt="Global Giving Logo"
+								/>
+								<img
+										class="partners__logo"
+										src="./assets/logos/goodwill.svg"
+										alt="Goodwill"
+								/>
+								<img
+										class="partners__logo"
+										src="./assets/logos/simmons-global-solutions.svg"
+										alt="Global Solutions Inc. Logo"
+								/>
+								<img
+										class="partners__logo"
+										src="./assets/logos/eco-aid.jpg"
+										alt="EcoAid Logo"
+								/>
+							</div>
+						</div>
+					</div>
+				</section>
 
-            <div class="partners__logos">
-                <h3 id="partners__trusted-header" class="partners__subheading">Our Trusted Partners and Sponsors</h3>
-                <p class="partners__description">
-                    We are proud to collaborate with these incredible partners and sponsors...
-                </p>
-                <div class="partners__logo-gallery">
-                    <img class="partners__logo" src="./assets/images/logos/american-red-cross.svg" alt="Red Cross Logo">
-                    <img class="partners__logo" src="./assets/images/logos/who.svg" alt="WHO Logo">
-                    <img class="partners__logo" src="./assets/images/logos/globalgiving.png" alt="Global Giving Logo">
-                    <img class="partners__logo" src="./assets/images/logos/goodwill.svg" alt="Goodwill">
-                    <img class="partners__logo" src="./assets/images/logos/simmons-global-solutions.svg" alt="Global Solutions Inc. Logo">
-                    <img class="partners__logo" src="./assets/images/logos/eco-aid.jpg" alt="EcoAid Logo">
-                </div>
-            </div>
-        </div>
-    </section>
+				<!-- Impact / Results Section -->
+				<section
+					id="impact"
+					class="impact_section"
+					role="region"
+					aria-labelledby="impact__header"
+				>
+					<!-- Background Image -->
+					<img
+						src="./assets/images/achievement.jpg"
+						alt="Impact Background"
+						class="impact__image"
+					/>
 
-    <!-- Impact / Results Section -->
-    <section id="impact" class="impact_section" role="region" aria-labelledby="impact__header">
-        <div class="impact__container">
-            <h2 id="impact__header" class="impact__title">Our Impact and Results</h2>
-            <p class="impact__description">
-                At United Relief, our mission is to make a real, measurable difference in times of crisis. We are proud to share the impact we’ve had so far. With the support of our community, partners, and volunteers, we have been able to provide life-saving assistance to those who need it the most.
-            </p>
+					<!-- Overlay -->
+					<div class="impact__overlay"></div>
 
-            <h3 id="impact__achievements-header" class="impact__subheading">Key Achievements</h3>
-            <ul class="impact__list" aria-labelledby="impact__achievements-header">
-                <li class="impact__list-item"><strong>50,000+ people helped:</strong> Through the efforts of our dedicated volunteers and partners, we have provided immediate aid to over 50,000 disaster victims.</li>
-                <li class="impact__list-item"><strong>1,000+ volunteers mobilized:</strong> Volunteers have given thousands of hours to support emergency response and relief operations.</li>
-                <li class="impact__list-item"><strong>$2 million in donations:</strong> Thanks to generous donors, we’ve raised over $2 million to fund relief operations across the globe.</li>
-                <li class="impact__list-item"><strong>500+ organizations involved:</strong> We’ve collaborated with over 500 organizations worldwide to provide essential resources and services during emergencies.</li>
-            </ul>
+					<div class="impact__container">
+						<h2 id="impact__header" class="impact__title">Our Impact and Results</h2>
+						<p class="impact__description">
+							At United Relief, our mission is to make a real, measurable difference in
+							times of crisis. We are proud to share the impact we’ve had so far. With
+							the support of our community, partners, and volunteers, we have been able
+							to provide life-saving assistance to those who need it the most.
+						</p>
 
-            <h3 id="impact__ongoing-efforts-header" class="impact__subheading">Our Ongoing Efforts</h3>
-            <p class="impact__description">
-                Our work doesn’t stop here. We’re constantly striving to expand our reach, improve our systems, and enhance our services to ensure we can respond effectively during the next crisis.
-            </p>
-        </div>
-    </section>
+						<h3 id="impact__achievements-header" class="impact__subheading">
+							Key Achievements
+						</h3>
+						<ul class="impact__list" aria-labelledby="impact__achievements-header">
+							<li class="impact__list-item">
+								<strong>50,000+ people helped:</strong> Through the efforts of our
+								dedicated volunteers and partners, we have provided immediate aid to over
+								50,000 disaster victims.
+							</li>
+							<li class="impact__list-item">
+								<strong>1,000+ volunteers mobilized:</strong> Volunteers have given
+								thousands of hours to support emergency response and relief operations.
+							</li>
+							<li class="impact__list-item">
+								<strong>$2 million in donations:</strong> Thanks to generous donors,
+								we’ve raised over $2 million to fund relief operations across the globe.
+							</li>
+							<li class="impact__list-item">
+								<strong>500+ organizations involved:</strong> We’ve collaborated with
+								over 500 organizations worldwide to provide essential resources and
+								services during emergencies.
+							</li>
+						</ul>
 
-    <!-- Testimonials / Success Stories Section -->
-    <section id="testimonials" class="testimonials_section" role="region" aria-labelledby="testimonials__header">
-        <div class="testimonials__container">
-            <h2 id="testimonials__header" class="testimonials__title">Success Stories and Testimonials</h2>
-            <p class="testimonials__description">
-                At United Relief, we are privileged to have helped countless individuals and families during their most difficult times. Here are some stories from the people whose lives have been impacted by our disaster relief efforts.
-            </p>
+						<h3 id="impact__ongoing-efforts-header" class="impact__subheading">
+							Our Ongoing Efforts
+						</h3>
+						<p class="impact__description">
+							Our work doesn’t stop here. We’re constantly striving to expand our reach,
+							improve our systems, and enhance our services to ensure we can respond
+							effectively during the next crisis.
+						</p>
+					</div>
+				</section>
 
-            <h3 id="testimonials__what-they-say-header" class="testimonials__subheading">What Our Volunteers and Recipients Say</h3>
+				<!-- Testimonials / Success Stories Section -->
+				<section
+					id="testimonials"
+					class="testimonials_section"
+					role="region"
+					aria-labelledby="testimonials__header"
+				>
+					<div class="testimonials__container">
+						<h2 id="testimonials__header" class="testimonials__title">
+							Success Stories and Testimonials
+						</h2>
+						<p class="testimonials__description">
+							At United Relief, we are privileged to have helped countless individuals
+							and families during their most difficult times. Here are some stories from
+							the people whose lives have been impacted by our disaster relief efforts.
+						</p>
 
-            <div class="testimonials__item">
-                <blockquote class="testimonials__quote">
-                    <p>"United Relief was there when we needed them the most. The support we received after the hurricane saved lives, and the volunteers were so kind and dedicated. Thank you for everything!"</p>
-                </blockquote>
-                <footer class="testimonials__author">– Sarah M., Hurricane Relief Recipient</footer>
-            </div>
+						<h3
+							id="testimonials__what-they-say-header"
+							class="testimonials__subheading"
+						>
+							What Our Volunteers and Recipients Say
+						</h3>
 
-            <div class="testimonials__item">
-                <blockquote class="testimonials__quote">
-                    <p>"As a volunteer with United Relief, I’ve seen the power of helping hands firsthand. It’s amazing to be part of something that makes such a huge difference in people’s lives. I’m proud to be a part of this community!"</p>
-                </blockquote>
-                <footer class="testimonials__author">– John D., Volunteer</footer>
-            </div>
+						<div class="testimonials__item">
+							<blockquote class="testimonials__quote">
+								<p>
+									"United Relief was there when we needed them the most. The support we
+									received after the hurricane saved lives, and the volunteers were so
+									kind and dedicated. Thank you for everything!"
+								</p>
+							</blockquote>
+							<footer class="testimonials__author">
+								– Sarah M., Hurricane Relief Recipient
+							</footer>
+						</div>
 
-            <div class="testimonials__item">
-                <blockquote class="testimonials__quote">
-                    <p>"United Relief helped us provide food and medical supplies to thousands of people in need. Their quick response and organization were key to our success during the crisis."</p>
-                </blockquote>
-                <footer class="testimonials__author">– Jane K., NGO Partner</footer>
-            </div>
+						<div class="testimonials__item">
+							<blockquote class="testimonials__quote">
+								<p>
+									"As a volunteer with United Relief, I’ve seen the power of helping hands
+									firsthand. It’s amazing to be part of something that makes such a huge
+									difference in people’s lives. I’m proud to be a part of this community!"
+								</p>
+							</blockquote>
+							<footer class="testimonials__author">– John D., Volunteer</footer>
+						</div>
 
-            <h3 id="testimonials__share-your-story-header" class="testimonials__subheading">Share Your Story</h3>
-            <p class="testimonials__description">
-                If you’ve been part of our relief efforts and would like to share your experience, please reach out to us. Your story could inspire others to get involved or help those in need.
-            </p>
-        </div>
-    </section>
+						<div class="testimonials__item">
+							<blockquote class="testimonials__quote">
+								<p>
+									"United Relief helped us provide food and medical supplies to thousands
+									of people in need. Their quick response and organization were key to our
+									success during the crisis."
+								</p>
+							</blockquote>
+							<footer class="testimonials__author">– Jane K., NGO Partner</footer>
+						</div>
 
-</main>
+						<h3
+							id="testimonials__share-your-story-header"
+							class="testimonials__subheading"
+						>
+							Share Your Story
+						</h3>
+						<p class="testimonials__description">
+							If you’ve been part of our relief efforts and would like to share your
+							experience, please reach out to us. Your story could inspire others to get
+							involved or help those in need.
+						</p>
+					</div>
+				</section>
+			</main>
 
-<!-- Footer -->
-<footer id="footer" class="footer" role="contentinfo"></footer>
+			<!-- Footer -->
+			<footer id="footer" class="footer__section" role="contentinfo">
+				<div class="footer__container">
+					<div class="footer__top">
+						<div class="footer__brand">
+							<h2 class="footer__logo">
+								<a href="" class="footer__logo-link">UnitedRelief</a>
+							</h2>
+						</div>
+						<nav class="footer__links">
+							<div class="footer__column">
+								<h2 class="footer__heading">Resources</h2>
+								<ul class="footer__list">
+									<li class="footer__list-item">
+										<a href="https://flowbite.com/" class="footer__link" target="_blank" rel="noopener noreferrer">Flowbite</a>
+									</li>
+									<li class="footer__list-item">
+										<a href="https://tailwindcss.com/" class="footer__link" target="_blank" rel="noopener noreferrer">Tailwind CSS</a>
+									</li>
+								</ul>
+							</div>
+							<div class="footer__column">
+								<h2 class="footer__heading">Follow us</h2>
+								<ul class="footer__list">
+									<li class="footer__list-item">
+										<a href="https://github.com/themesberg/flowbite" class="footer__link" target="_blank" rel="noopener noreferrer">Github</a>
+									</li>
+									<li class="footer__list-item">
+										<a href="https://discord.gg/4eeurUVvTy" class="footer__link" target="_blank" rel="noopener noreferrer">Discord</a>
+									</li>
+								</ul>
+							</div>
+							<div class="footer__column">
+								<h2 class="footer__heading">Legal</h2>
+								<ul class="footer__list">
+									<li class="footer__list-item">
+										<a href="#" class="footer__link">Privacy Policy</a>
+									</li>
+									<li class="footer__list-item">
+										<a href="#" class="footer__link">Terms & Conditions</a>
+									</li>
+								</ul>
+							</div>
+						</nav>
+					</div>
 
-<!-- JS -->
-<script src="scripts/index.js"></script>
-<script src="scripts/components/header.js" defer></script>
-<script src="scripts/components/footer.js" defer></script>
+					<hr class="footer__divider">
 
-</body>
+					<div class="footer__bottom">
+      <span class="footer__copyright">
+        © 2023 <a href="#" class="footer__link" target="_blank" rel="noopener noreferrer"> ™</a>. All Rights Reserved.
+      </span>
+						<div class="footer__social">
+							<a href="#" class="footer__social-link" aria-label="Facebook">
+								<!-- Facebook Icon -->
+							</a>
+							<a href="#" class="footer__social-link" aria-label="Discord">
+								<!-- Discord Icon -->
+							</a>
+							<a href="#" class="footer__social-link" aria-label="Twitter">
+								<!-- Twitter Icon -->
+							</a>
+							<a href="#" class="footer__social-link" aria-label="GitHub">
+								<!-- GitHub Icon -->
+							</a>
+							<a href="#" class="footer__social-link" aria-label="Dribbble">
+								<!-- Dribbble Icon -->
+							</a>
+						</div>
+					</div>
+				</div>
+			</footer>
 
+			<!-- JS -->
+			<script src="scripts/index.js"></script>
+			<script src="scripts/components/header.js"></script>
+		</div>
+	</body>
 </html>
