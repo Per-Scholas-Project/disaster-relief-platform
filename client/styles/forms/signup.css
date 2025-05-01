@@ -1,0 +1,193 @@
+@import "../base/main.css";
+
+/* =============================
+   Main Section (Sign-Up Form)
+   ============================= */
+
+.main__section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 2rem;
+}
+
+.main__section-content {
+    width: 100%;
+}
+
+.main__section__form-container {
+    background-color: #ffffff;
+    padding: 4rem 3rem;
+    border-radius: 0.8rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 50rem;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Typography & Heading */
+.signup__heading {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.signup__title {
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #000000;
+    line-height: 1.2;
+}
+
+.signup__description {
+    font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+    color: #666666;
+    margin-top: 1.2rem;
+}
+
+/* Form Structure */
+.signup__form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.signup__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+    gap: 2rem;
+}
+
+.signup__field {
+    position: relative;
+}
+
+.signup__input {
+    width: 100%;
+    font-size: clamp(1.4rem, 2.5vw, 1.6rem);
+    padding: 1.2rem 0;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    background: transparent;
+    outline: none;
+    color: #333;
+}
+
+.signup__input:focus {
+    border-bottom-color: #2563eb;
+}
+
+.signup__label {
+    position: absolute;
+    top: 1.2rem;
+    left: 0;
+    font-size: clamp(1.2rem, 2vw, 1.4rem);
+    color: #888;
+    transition: 0.3s ease all;
+    pointer-events: none;
+}
+
+.signup__input:focus + .signup__label,
+.signup__input:not(:placeholder-shown) + .signup__label {
+    top: -0.8rem;
+    font-size: clamp(1rem, 1.8vw, 1.2rem);
+    color: #2563eb;
+}
+
+/* Password Field Wrapper */
+.signup__password-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.signup__toggle-password {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.6rem;
+    color: #555;
+    position: absolute;
+    right: 0;
+    bottom: 1rem;
+}
+
+/* Sign In Prompt */
+.signup__signin {
+    font-size: clamp(1.2rem, 2vw, 1.4rem);
+    text-align: center;
+}
+
+.signup__signin-link {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.signup__signin-link:hover {
+    text-decoration: underline;
+}
+
+/* Submit Button */
+.signup__submit {
+    padding: 1.2rem 2rem;
+    background-color: #0b1f0f;
+    color: #ffffff;
+    font-size: clamp(1.4rem, 2.5vw, 1.6rem);
+    font-weight: 600;
+    border: none;
+    border-radius: 0.6rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    width: 100%;
+}
+
+.signup__submit:hover {
+    background-color: #06250d;
+}
+
+/* Divider */
+.signup__divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    margin: 2.4rem 0;
+}
+
+.signup__divider::before,
+.signup__divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: #ddd;
+}
+
+.signup__divider-text {
+    font-size: clamp(1.2rem, 2vw, 1.4rem);
+    color: #999;
+}
+
+/* Google Button */
+.signup__google-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    padding: 1.2rem;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 0.6rem;
+    font-size: clamp(1.2rem, 2vw, 1.4rem);
+    cursor: pointer;
+}
+
+.signup__google-button:hover {
+    background-color: #f3f3f3;
+}
+
+.signup__google-logo {
+    width: 2rem;
+    height: 2rem;
+}

@@ -1,0 +1,716 @@
+/* =========================
+   Base Imports
+   ========================= */
+@import '../base/main.css';
+/*@import '../components/header.css';*/
+/*@import '../components/footer.css';*/
+
+/* =========================
+   Hero Section
+   ========================= */
+
+/* Hero Section Container */
+.hero_section {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50rem;
+    overflow: hidden;
+    color: var(--color-white);
+    padding: var(--space-xl) var(--space-lg);
+}
+
+/* Hero Section Background Image */
+.hero__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    z-index: -2;
+}
+
+/* Hero Section Overlay */
+.hero__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+            to right,
+            var(--black-500),
+            rgba(0, 0, 0, 0.1)
+    );
+    z-index: -1;
+}
+
+/* Hero Content Container */
+.hero__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 120rem;
+    margin: 0 auto;
+    padding: var(--space-xxl);
+    gap: var(--space-lg); /* ADD gap between title and description */
+}
+
+.hero__content {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    gap: var(--space-md); /* ADD gap inside hero content */
+}
+
+.hero__title {
+    font-size: var(--font-size-h1);
+    font-weight: var(--font-weight-black);
+    font-family: var(--font-heading), Arial, sans-serif;
+    letter-spacing: 0.05rem;
+    color: var(--white-500);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.hero__title span {
+    display: block; /* Force span to act like a line-break */
+    font-size: var(--font-size-h3);
+    font-family: var(--font-heading), Arial, sans-serif;
+    color: var(--white-500);
+    margin-top: var(--space-sm); /* Optional: small gap between title and subtitle */
+}
+
+.hero__description {
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-regular);
+    font-family: var(--font-body), Arial, sans-serif;
+    letter-spacing: 0.05rem;
+    line-height: 1.5;
+    color: var(--gray-100);
+    margin: 0; /* Remove default margin */
+    text-wrap: balance;
+    align-self: flex-start; /* Force it to align left */
+}
+
+/* =========================
+   About Section
+   ========================= */
+
+/* About Section Container */
+.about_section {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    min-height: 40rem;
+    overflow: hidden;
+    padding: var(--space-lg) var(--space-xl);
+    background: linear-gradient(to left, var(--gray-50) 0%, var(--white-100) 100%);
+    color: var(--gray-900);
+}
+
+/* About Content Container */
+.about__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    max-width: 120rem;
+    margin: 0 auto;
+    height: 100%;
+    padding: var(--space-md) var(--space-md);
+    gap: var(--space-md);
+}
+
+/* About Section Title (h2) */
+.about__header {
+    font-size: var(--font-size-h2);
+    font-weight: var(--font-weight-bold);
+    font-family: var(--font-heading), Arial, sans-serif;
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: var(--space-xl);
+}
+
+/* About Section Description */
+.about__description {
+    font-size: var(--font-size-body);
+    font-family: var(--font-body), Arial, sans-serif;
+    line-height: 1.6;
+    max-width: 80ch;
+    margin: 0 auto;
+    text-align: center;
+    color: var(--gray-700);
+}
+
+/* About Subheading (h3) */
+.about__subheading {
+    font-size: var(--font-size-h3);
+    font-weight: var(--font-weight-bold);
+    font-family: var(--font-heading), Arial, sans-serif;
+    text-align: center;
+    color: var(--color-primary);
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-md);
+}
+
+/* About Section Paragraph */
+.about__paragraph {
+    font-size: var(--font-size-body);
+    font-family: var(--font-body), Arial, sans-serif;
+    line-height: 1.5;
+    max-width: 75ch;
+    margin: 0 auto var(--space-lg) auto;
+    text-align: center;
+    color: var(--gray-700);
+}
+
+/* About List (Unordered List) */
+.about__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    max-width: 75ch;
+    margin: 0 auto;
+    padding-left: 2rem;
+    list-style-type: disc;
+    color: var(--gray-700);
+}
+
+/* About List Item */
+.about__list-item {
+    font-size: var(--font-size-body);
+    font-family: var(--font-body), Arial, sans-serif;
+    line-height: 1.6;
+    text-align: left;
+}
+
+/* =========================
+   Volunteer Section
+   ========================= */
+
+/* Volunteer Section Container */
+.volunteer_section {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: var(--space-lg) var(--space-xl);
+    height: auto;
+    overflow: hidden;
+}
+
+/* Volunteer Section Background Image */
+.volunteer__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: right center;
+    z-index: -2;
+}
+
+/* Volunteer Section Overlay */
+.volunteer__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+            to left,
+            var(--green-950),
+            rgba(0, 0, 0, 0.1)
+    );
+    z-index: -1;
+}
+
+/* Volunteer Content Container */
+.volunteer__container {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    width: 100%;
+    max-width: 120rem;
+    height: auto;
+    padding: var(--space-xxl);
+    gap: var(--space-xl);
+    margin: 0 auto;
+}
+
+/* Volunteer Section Title (h2) */
+.volunteer__title {
+    font-size: var(--font-size-h2);
+    font-weight: var(--font-weight-bold);
+    font-family: var(--font-heading), Arial, sans-serif;
+    color: var(--white-500);
+    text-align: center;
+    margin-bottom: var(--space-sm);
+    text-shadow: -0.25rem 0.25rem 5rem var(--black-500);
+}
+
+/* Volunteer Intro Paragraph */
+.volunteer__intro {
+    font-size: var(--font-size-body);
+    font-family: var(--font-body), Arial, sans-serif;
+    max-width: clamp(80ch, 3.5vw, 80ch);
+    margin: 0 auto;
+    text-align: center;
+    letter-spacing: 0.05rem;
+    line-height: 1.5;
+    color: var(--gray-100);
+    text-shadow: -0.25rem 0.25rem 5rem var(--black-500);
+}
+
+/* Volunteer Inner Grid Layout */
+.volunteer__content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: var(--space-xxl); /* spacing between columns and rows */
+    max-width: 120rem;
+    margin: 0 auto;
+}
+
+/* Volunteer Column */
+.volunteer__column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md); /* control spacing just like your working version */
+    padding: var(--space-xxl);
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--space-md);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(5px);
+    max-width: clamp(100ch, 50vw, 80ch);
+}
+
+/* Volunteer Subheading (h3) */
+.volunteer__subheading {
+    font-size: var(--font-size-h3);
+    font-family: var(--font-heading), Arial, sans-serif;
+    text-align: center;
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-sm);
+    color: var(--white-500);
+    text-shadow: -0.25rem 0.25rem 5rem var(--black-500);
+}
+
+/* Volunteer Text Paragraph */
+.volunteer__text {
+    font-size: var(--font-size-body);
+    font-family: var(--font-body), Arial, sans-serif;
+    margin-top: 0;
+    margin-bottom: var(--space-md);
+    line-height: 1.5;
+    letter-spacing: 0.05rem;
+    text-align: left;
+    color: var(--gray-100);
+    text-shadow: -0.25rem 0.25rem 5rem var(--black-500);
+}
+
+/* Volunteer List (Ways You Can Help) */
+.volunteer__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    padding-left: 2rem;
+}
+
+/* Volunteer List Item */
+.volunteer__list-item {
+    font-size: var(--font-size-body);
+    font-family: var(--font-body), Arial, sans-serif;
+    line-height: 1.5;
+    letter-spacing: 0.05rem;
+    list-style-type: disc;
+    text-align: left;
+    text-shadow: -0.25rem 0.25rem 5rem var(--black-500);
+    color: var(--gray-100);
+}
+
+/* Volunteer Steps (How to Get Started) */
+.volunteer__steps {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    padding-left: 2rem;
+}
+
+/* Volunteer Step Item */
+.volunteer__steps-item {
+    font-size: var(--font-size-body);
+    font-family: var(--font-body), Arial, sans-serif;
+    line-height: 1.5;
+    letter-spacing: 0.05rem;
+    list-style-type: decimal;
+    text-align: left;
+    text-shadow: -0.25rem 0.25rem 5rem var(--black-500);
+    color: var(--gray-100);
+}
+
+/* Volunteer CTA Buttons */
+.volunteer__cta-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-lg);
+    margin-top: var(--space-xl);
+}
+
+/* Volunteer CTA Link */
+.volunteer__cta-link {
+    font-family: var(--font-body), Arial, sans-serif;
+    text-decoration: none;
+}
+
+/* Volunteer CTA Button */
+.volunteer__cta-button {
+    font-size: var(--font-size-body);
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: var(--space-md) var(--space-lg);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-primary);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Volunteer CTA Button Hover / Focus */
+.volunteer__cta-button:hover,
+.volunteer__cta-button:focus {
+    background-color: var(--blue-700);
+    border-color: var(--blue-700);
+}
+
+/* Volunteer CTA Button Active */
+.volunteer__cta-button:active {
+    background-color: var(--blue-800);
+    border-color: var(--blue-800);
+}
+
+/* =========================
+   Partners and Sponsors Section
+   ========================= */
+
+/* Partners Section Container */
+.partners_section {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40rem;
+    overflow: hidden;
+    color: var(--gray-900);
+    padding: var(--space-xl) var(--space-lg);
+    background-color: var(--color-background);
+}
+
+/* Partners Content Container */
+.partners__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    max-width: 120rem;
+    margin: 0 auto;
+    height: 100%;
+    padding: var(--space-xxl);
+    /*gap: var(--space-xxl);*/
+}
+
+/* Partners Section Title (h2) */
+.partners__title {
+    font-family: var(--font-heading), Arial, sans-serif;
+    font-size: var(--font-size-h2);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* Partners Intro Paragraph */
+.partners__intro {
+    font-family: var(--font-body), Arial, sans-serif;
+    font-size: var(--font-size-body);
+    line-height: 1.6;
+    margin-top: 0;
+    text-align: center;
+    color: var(--gray-700);
+    margin-bottom: 4rem;
+    max-width: clamp(80ch, 3.5vw, 80ch);
+}
+
+/* Partners Subheading (h3) */
+.partners__subheading {
+    font-family: var(--font-heading), Arial, sans-serif;
+    font-size: var(--font-size-h3);
+    font-weight: var(--font-weight-bold);
+    text-align: center;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+
+}
+
+/* Partners Description Paragraph */
+.partners__description {
+    font-family: var(--font-body), Arial, sans-serif;
+    font-size: var(--font-size-body);
+    line-height: 1.5;
+    padding-bottom: var(--space-md);
+    text-align: center;
+    color: var(--gray-700);
+    margin-bottom: 2rem;
+}
+
+/* =========================
+   Partners Logo Carousel
+   ========================= */
+/* Individual Partner Logos */
+.partners__logo {
+    width: 12rem;
+    height: 8rem;
+    object-fit: contain;
+    flex-shrink: 0; /* Prevent shrinking */
+    filter: grayscale(20%); /* Optional: slight grayscale for a clean aesthetic */
+    transition: transform 0.3s ease;
+}
+
+.partners__logo:hover {
+    transform: scale(1.05);
+}
+
+/* Logo Gallery (acts like a carousel) */
+.partners__logo-gallery {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: var(--space-xl);
+    padding: var(--space-xxl);
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    background: var(--gray-100);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--space-md);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.partners__logo-gallery::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for a cleaner look */
+}
+
+/* =========================
+   Impact Section
+   ========================= */
+
+/* Impact Section Container */
+.impact_section {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50rem;
+    overflow: hidden;
+    color: var(--color-white);
+    padding: var(--space-xl) var(--space-lg);
+    background-color: var(--color-background); /* fallback if image fails */
+    z-index: -1000;
+}
+
+/* Impact Section Background Image */
+.impact__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    z-index: -2;
+}
+
+/* Impact Section Overlay */
+.impact__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.1), var(--black-500));
+    z-index: -1;
+}
+
+/* Impact Content Container */
+.impact__container {
+    display: flex;
+    flex-direction: column;
+    /*justify-content: flex-end;*/
+    /*align-items: start;*/
+    max-width: 120rem;
+    margin: 0 auto;
+    height: 100%;
+    padding: var(--space-xxl);
+    gap: var(--space-xl);
+    text-align: left;
+}
+
+/* Impact Title (h2) */
+.impact__title {
+    font-size: var(--font-size-h2);
+    font-family: var(--font-heading), Arial, sans-serif;
+    font-weight: var(--font-weight-bold);
+    color: var(--white-500);
+    text-align: center;
+}
+
+/* Impact Description Paragraph */
+.impact__description {
+    font-size: var(--font-size-body);
+    font-family: var(--font-body), Arial, sans-serif;
+    line-height: 1.5;
+    letter-spacing: 0.05rem;
+    max-width: clamp(80ch, 3.5vw, 60ch);
+    color: var(--white-500);
+    margin: 0 auto;
+}
+
+/* Impact Subheading (h3) */
+.impact__subheading {
+    font-size: var(--font-size-h3);
+    font-weight: var(--font-weight-bold);
+    font-family: var(--font-heading), Arial, sans-serif;
+    color: var(--white-500);
+    margin-top: var(--space-xl);
+    text-align: center;
+}
+
+/* Impact List (Key Achievements) */
+.impact__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    list-style-type: disc;
+    color: var(--white-500);
+    max-width: clamp(80ch, 3.5vw, 60ch);
+    margin: 0 auto;
+}
+
+/* Impact List Item */
+.impact__list-item {
+    font-size: var(--font-size-body);
+    font-family: var(--font-body), Arial, sans-serif;
+    line-height: 1.5;
+    letter-spacing: 0.05rem;
+    text-align: left;
+}
+
+/* =========================
+   Testimonials Section
+   ========================= */
+
+/* Testimonials Section Container */
+.testimonials_section {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    min-height: 40rem;
+    overflow: hidden;
+    padding: var(--space-xxl) var(--space-lg);
+    color: var(--gray-900);
+    background: linear-gradient(to left, var(--gray-50) 0%, var(--white-100) 100%);
+}
+
+/* Testimonials Content Container */
+.testimonials__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    max-width: 120rem;
+    margin: 0 auto;
+    height: 100%;
+    gap: var(--space-xl);
+}
+
+/* Testimonials Section Title (h2) */
+.testimonials__title {
+    font-size: var(--font-size-h2);
+    font-weight: var(--font-weight-bold);
+    font-family: var(--font-heading), Arial, sans-serif;
+    color: var(--color-primary);
+    text-align: center;
+}
+
+/* Testimonials Section Description */
+.testimonials__description {
+    font-size: var(--font-size-body);
+    font-family: var(--font-body), Arial, sans-serif;
+    line-height: 1.5;
+    letter-spacing: 0.05rem;
+    max-width: clamp(80ch, 3.5vw, 80ch);
+    margin: 0 auto;
+    text-align: center;
+    color: var(--gray-700);
+}
+
+/* Testimonials Subheading (h3) */
+.testimonials__subheading {
+    font-size: var(--font-size-h3);
+    font-family: var(--font-heading), Arial, sans-serif;
+    font-weight: var(--font-weight-bold);
+    text-align: center;
+    color: var(--color-primary);
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-md);
+}
+
+/* Testimonial Card */
+.testimonials__item {
+    background-color: var(--white-50);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    padding: var(--space-xl);
+    margin: 0 auto;
+    max-width: 80ch;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+/* Testimonial Quote */
+.testimonials__quote p {
+    font-size: var(--font-size-body);
+    font-family: var(--font-body), Arial, sans-serif;
+    font-style: italic;
+    color: var(--gray-800);
+    line-height: 1.5;
+    letter-spacing: 0.05rem;
+}
+
+/* Testimonial Author */
+.testimonials__author {
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-bold);
+    font-family: var(--font-body), Arial, sans-serif;
+    text-align: right;
+    color: var(--gray-600);
+    letter-spacing: 0.05rem;
+}
+@media (max-width: 1200px) {
+    .volunteer__content {
+        grid-template-columns: 1fr;
+    }
+
+    .partners__two-column {
+        grid-template-columns: 1fr;
+    }
+}
