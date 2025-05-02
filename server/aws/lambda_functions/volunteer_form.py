@@ -23,6 +23,18 @@ GMAIL_USER = os.environ['GMAIL_USER']
 GMAIL_APP_PASSWORD = os.environ['GMAIL_APP_PASSWORD']
 
 def lambda_handler(event, context):
+    # === Handle CORS preflight ===
+    if event.get("httpMethod") == "OPTIONS":
+        return {
+            "statusCode": 200,
+            "headers": {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Headers": "Content-Type",
+                "Access-Control-Allow-Methods": "OPTIONS,POST",
+                "Access-Control-Allow-Credentials": "true"
+            }
+        }
+
     try:
         logger.info("Received event")
 

@@ -20,6 +20,18 @@ GMAIL_USER = os.environ['GMAIL_USER']
 GMAIL_APP_PASSWORD = os.environ['GMAIL_APP_PASSWORD']
 
 def lambda_handler(event, context):
+    # === Handle CORS preflight ===
+    if event.get("httpMethod") == "OPTIONS":
+        return {
+            "statusCode": 200,
+            "headers": {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Headers": "Content-Type",
+                "Access-Control-Allow-Methods": "OPTIONS,POST",
+                "Access-Control-Allow-Credentials": "true"
+            }
+        }
+
     try:
         # === Decode multipart/form-data ===
         content_type = event['headers'].get('content-type') or event['headers'].get('Content-Type')
@@ -88,7 +100,9 @@ def lambda_handler(event, context):
             "statusCode": 200,
             "headers": {
                 "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Headers": "*"
+                "Access-Control-Allow-Headers": "Content-Type",
+                "Access-Control-Allow-Methods": "OPTIONS,POST",
+                "Access-Control-Allow-Credentials": "true"
             },
             "body": json.dumps({"message": "Relief request received successfully!"})
         }
@@ -97,6 +111,12 @@ def lambda_handler(event, context):
         print("Error:", str(e))
         return {
             "statusCode": 500,
+            "headers": {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Headers": "Content-Type",
+                "Access-Control-Allow-Methods": "OPTIONS,POST",
+                "Access-Control-Allow-Credentials": "true"
+            },
             "body": json.dumps({"error": str(e)})
         }
 
