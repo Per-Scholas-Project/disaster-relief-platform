@@ -15,7 +15,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 50rem;
+    height: 40rem;
     overflow: hidden;
     color: var(--color-white);
     padding: var(--space-xl) var(--space-lg);
@@ -63,7 +63,7 @@
     display: flex;
     flex-direction: column;
     width: 50%;
-    gap: var(--space-md); /* ADD gap inside hero content */
+    gap: var(--space-sm); /* ADD gap inside hero content */
 }
 
 .hero__title {
@@ -72,7 +72,7 @@
     font-family: var(--font-heading), Arial, sans-serif;
     letter-spacing: 0.05rem;
     color: var(--white-500);
-    line-height: 1.5;
+    line-height: 1;
     margin: 0;
 }
 
@@ -81,7 +81,7 @@
     font-size: var(--font-size-h3);
     font-family: var(--font-heading), Arial, sans-serif;
     color: var(--white-500);
-    margin-top: var(--space-sm); /* Optional: small gap between title and subtitle */
+    margin-top: var(--space-xs); /* Optional: small gap between title and subtitle */
 }
 
 .hero__description {
@@ -373,8 +373,8 @@
 /* Volunteer CTA Button */
 .volunteer__cta-button {
     font-size: var(--font-size-body);
-    background-color: var(--color-primary);
-    color: var(--color-white);
+    background-color: var(--white-500);
+    color: var(--blue-500);
     padding: var(--space-md) var(--space-lg);
     border-radius: var(--radius-md);
     border: 1px solid var(--color-primary);
@@ -705,6 +705,38 @@
     color: var(--gray-600);
     letter-spacing: 0.05rem;
 }
+
+@media (max-width: 640px) {
+
+    .hero_section {
+        height: 30rem;
+    }
+
+    .hero__container {
+        align-items: center;
+        width: 100%;
+        /*border: 1px solid white;*/
+    }
+
+    .hero__content {
+        width: 100%;
+        gap: 1rem;
+    }
+
+    .hero__title {
+        font-size: 3.2rem;
+    }
+
+    .hero__title > span {
+        font-size: 2.4rem;
+    }
+
+    .hero__title, .hero__description {
+        text-align: center;
+    }
+
+}
+
 @media (max-width: 1200px) {
     .volunteer__content {
         grid-template-columns: 1fr;
