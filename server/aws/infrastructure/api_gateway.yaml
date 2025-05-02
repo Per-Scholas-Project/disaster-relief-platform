@@ -1,0 +1,73 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: API Gateway for UnitedRelief Platform
+
+Resources:
+  UnitedReliefApi:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      Name: UnitedReliefAPI
+
+  VolunteerResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref UnitedReliefApi
+      ParentId: !GetAtt UnitedReliefApi.RootResourceId
+      PathPart: volunteer
+
+  ReliefResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref UnitedReliefApi
+      ParentId: !GetAtt UnitedReliefApi.RootResourceId
+      PathPart: relief-request
+
+  VolunteerPostMethod:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref UnitedReliefApi
+      ResourceId: !Ref VolunteerResource
+      HttpMethod: POST
+      AuthorizationType: NONE
+      Integration:
+        IntegrationHttpMethod: POST
+        Type: AWS_PROXY
+        Uri: !Sub arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${VolunteerLambda}/invocations
+      DependsOn: SubmitVolunteerFormFunction
+
+  ReliefPostMethod:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref UnitedReliefApi
+      ResourceId: !Ref ReliefResource
+      HttpMethod: POST
+      AuthorizationType: NONE
+      Integration:
+        IntegrationHttpMethod: POST
+        Type: AWS_PROXY
+        Uri: !Sub arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ReliefLambda}/invocations
+      DependsOn: SubmitReliefRequestFunction
+
+  ApiDeployment:
+    Type: AWS::ApiGateway::Deployment
+    DependsOn:
+      - VolunteerPostMethod
+      - ReliefPostMethod
+    Properties:
+      RestApiId: !Ref UnitedReliefApi
+      StageName: dev
+
+  VolunteerLambdaPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref SubmitVolunteerFormFunction
+      Action: lambda:InvokeFunction
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${UnitedReliefApi}/*/POST/volunteer
+
+  ReliefLambdaPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref SubmitReliefRequestFunction
+      Action: lambda:InvokeFunction
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${UnitedReliefApi}/*/POST/relief-request

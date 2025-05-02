@@ -1,0 +1,35 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: DynamoDB Tables for UnitedRelief Platform
+
+Resources:
+  VolunteerTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: VolunteerSubmissions
+      AttributeDefinitions:
+        - AttributeName: email
+          AttributeType: S
+        - AttributeName: submittedAt
+          AttributeType: S
+      KeySchema:
+        - AttributeName: email
+          KeyType: HASH
+        - AttributeName: submittedAt
+          KeyType: RANGE
+      BillingMode: PAY_PER_REQUEST
+
+  ReliefTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: ReliefRequests
+      AttributeDefinitions:
+        - AttributeName: email
+          AttributeType: S
+        - AttributeName: submittedAt
+          AttributeType: S
+      KeySchema:
+        - AttributeName: email
+          KeyType: HASH
+        - AttributeName: submittedAt
+          KeyType: RANGE
+      BillingMode: PAY_PER_REQUEST

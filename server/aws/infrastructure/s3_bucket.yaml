@@ -1,0 +1,35 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: S3 bucket for storing volunteer and aid request images for UnitedRelief
+
+Resources:
+  UnitedReliefBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: unitedrelief-volunteer-files
+      AccessControl: Private
+      CorsConfiguration:
+        CorsRules:
+          - AllowedHeaders:
+              - "*"
+            AllowedMethods:
+              - GET
+              - PUT
+              - POST
+            AllowedOrigins:
+              - "*"  # ⚠️ For development only; restrict in production
+            MaxAge: 3000
+      LifecycleConfiguration:
+        Rules:
+          - Id: ExpireOldUploads
+            Status: Enabled
+            Prefix: relief-images/
+            ExpirationInDays: 90
+          - Id: ExpireOldVolunteerFiles
+            Status: Enabled
+            Prefix: volunteers/
+            ExpirationInDays: 90
+
+Outputs:
+  S3BucketName:
+    Description: "Bucket used for storing volunteer and relief request submissions"
+    Value: !Ref UnitedReliefBucket

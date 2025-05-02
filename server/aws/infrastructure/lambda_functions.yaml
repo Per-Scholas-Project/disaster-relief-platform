@@ -1,0 +1,69 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Lambda Functions and IAM Role for UnitedRelief
+
+Resources:
+  LambdaExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: UnitedReliefLambdaExecutionRole
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: LambdaAccessPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: dynamodb:*
+                Resource: "*"
+              - Effect: Allow
+                Action:
+                  - s3:PutObject
+                  - s3:GetObject
+                  - s3:ListBucket
+                Resource: "*"
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource: arn:aws:logs:*:*:*
+
+  SubmitVolunteerFormFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: SubmitVolunteerForm
+      Runtime: python3.11
+      Role: !GetAtt LambdaExecutionRole.Arn
+      Handler: volunteer-form.lambda_handler
+      Code:
+        S3Bucket: unitedrelief-volunteer-files
+        S3Key: volunteer_form.zip
+      Timeout: 30
+      Environment:
+        Variables:
+          GMAIL_USER: almontesauel@gmail.com
+          GMAIL_APP_PASSWORD: '{{resolve:secretsmanager:your_secret_name:SecretString:password}}'
+          BUCKET_NAME: unitedrelief-volunteer-files
+
+  SubmitReliefRequestFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: SubmitReliefRequest
+      Runtime: python3.11
+      Role: !GetAtt LambdaExecutionRole.Arn
+      Handler: relief-request.lambda_handler
+      Code:
+        S3Bucket: unitedrelief-volunteer-files
+        S3Key: relief_request.zip
+      Timeout: 30
+      Environment:
+        Variables:
+          GMAIL_USER: almontesauel@gmail.com
+          GMAIL_APP_PASSWORD: '{{resolve:secretsmanager:your_secret_name:SecretString:password}}'
+          BUCKET_NAME: unitedrelief-volunteer-files
