@@ -38,7 +38,7 @@ A backend-driven platform to connect disaster victims with volunteers and resour
 disaster-relief-platform/
 ├── client/                  # Frontend files (HTML/JS/CSS)
 ├── server/                  # Lambda functions (Python)
-│   ├── submit_help_request/
+│   ├── lambda_functions/
 │   ├── fetch_requests/
 │   └── signup_login/
 ├── infrastructure/          # (Optional) API configs, IAM roles

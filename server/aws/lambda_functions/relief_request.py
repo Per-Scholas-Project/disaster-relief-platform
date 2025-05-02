@@ -9,11 +9,11 @@ from email.mime.multipart import MIMEMultipart
 from requests_toolbelt.multipart import decoder
 import base64
 
-# AWS clients
+# === AWS Clients ===
 dynamodb = boto3.resource('dynamodb')
 s3 = boto3.client('s3')
 
-# Constants
+# === Environment Variables ===
 DYNAMODB_TABLE = 'ReliefRequests'
 S3_BUCKET = 'unitedrelief-volunteer-files'
 GMAIL_USER = os.environ['GMAIL_USER']
@@ -21,6 +21,7 @@ GMAIL_APP_PASSWORD = os.environ['GMAIL_APP_PASSWORD']
 
 def lambda_handler(event, context):
     try:
+        # === Decode multipart/form-data ===
         content_type = event['headers'].get('content-type') or event['headers'].get('Content-Type')
         body = event['body']
         if event.get("isBase64Encoded"):
@@ -43,7 +44,7 @@ def lambda_handler(event, context):
                 name = get_field_name(content_disposition)
                 fields[name] = part.text
 
-        # Extract fields
+        # === Extract Fields ===
         firstName = fields.get("firstName")
         lastName = fields.get("lastName")
         email = fields.get("email")
@@ -54,7 +55,7 @@ def lambda_handler(event, context):
         description = fields.get("description")
         submittedAt = datetime.datetime.utcnow().isoformat()
 
-        # Save to DynamoDB
+        # === Save to DynamoDB ===
         table = dynamodb.Table(DYNAMODB_TABLE)
         table.put_item(Item={
             "email": email,
@@ -69,7 +70,7 @@ def lambda_handler(event, context):
             "description": description
         })
 
-        # Upload any images
+        # === Upload Files to S3 ===
         for f in files:
             filename = f"relief-images/{uuid.uuid4()}_{f['filename']}"
             s3.put_object(
@@ -79,34 +80,10 @@ def lambda_handler(event, context):
                 ContentType=f['content_type']
             )
 
-        # Send email
-        msg = MIMEMultipart()
-        msg['From'] = GMAIL_USER
-        msg['To'] = email
-        msg['Subject'] = "UnitedRelief - Your Aid Request Was Received"
+        # === Send Confirmation Email ===
+        send_email_confirmation(email, firstName, lastName, phone, city, state, assistanceType, description)
 
-        body_text = f"""Hi {firstName},
-
-Your request for aid has been received:
-
-- Name: {firstName} {lastName}
-- Phone: {phone}
-- Location: {city}, {state}
-- Type: {assistanceType}
-- Description: {description}
-
-We will follow up with you shortly.
-
-– UnitedRelief Team"""
-
-        msg.attach(MIMEText(body_text, 'plain'))
-
-        server = smtplib.SMTP('smtp.gmail.com', 587)
-        server.starttls()
-        server.login(GMAIL_USER, GMAIL_APP_PASSWORD)
-        server.sendmail(GMAIL_USER, email, msg.as_string())
-        server.quit()
-
+        # === Return Success Response ===
         return {
             "statusCode": 200,
             "headers": {
@@ -123,15 +100,46 @@ We will follow up with you shortly.
             "body": json.dumps({"error": str(e)})
         }
 
-# Helper functions
+# === Helper: Extract field name from Content-Disposition ===
 def get_field_name(content_disposition):
     for item in content_disposition.split(";"):
         if item.strip().startswith("name="):
             return item.strip().split("=")[1].strip('"')
     return None
 
+# === Helper: Extract filename from Content-Disposition ===
 def get_filename(content_disposition):
     for item in content_disposition.split(";"):
         if item.strip().startswith("filename="):
             return item.strip().split("=")[1].strip('"')
     return None
+
+# === Helper: Send Confirmation Email ===
+def send_email_confirmation(to_email, firstName, lastName, phone, city, state, assistanceType, description):
+    subject = "UnitedRelief - Your Aid Request Was Received"
+    body_text = f"""Hi {firstName},
+
+Your request for aid has been received:
+
+- Name: {firstName} {lastName}
+- Phone: {phone}
+- Location: {city}, {state}
+- Type: {assistanceType}
+- Description: {description}
+
+We will follow up with you shortly.
+
+– UnitedRelief Team
+"""
+
+    msg = MIMEMultipart()
+    msg['From'] = GMAIL_USER
+    msg['To'] = to_email
+    msg['Subject'] = subject
+    msg.attach(MIMEText(body_text, 'plain'))
+
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.starttls()
+    server.login(GMAIL_USER, GMAIL_APP_PASSWORD)
+    server.sendmail(GMAIL_USER, to_email, msg.as_string())
+    server.quit()

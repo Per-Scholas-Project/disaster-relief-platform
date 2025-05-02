@@ -21,7 +21,7 @@ aws cloudformation deploy \
   --region ${REGION} \
   --capabilities CAPABILITY_NAMED_IAM
 
-# === DEPLOY Lambda Functions and IAM Roles ===
+# === DEPLOY Lambda Functions ===
 echo "Deploying Lambda Functions..."
 aws cloudformation deploy \
   --stack-name "${STACK_PREFIX}-lambda" \
@@ -37,12 +37,14 @@ aws cloudformation deploy \
   --region ${REGION} \
   --capabilities CAPABILITY_NAMED_IAM
 
-# === DEPLOY SES Configuration ===
-echo "Deploying SES Email Identity..."
-aws cloudformation deploy \
-  --stack-name "${STACK_PREFIX}-ses" \
-  --template-file "${TEMPLATE_DIR}/ses_config.yaml" \
-  --region ${REGION} \
-  --capabilities CAPABILITY_NAMED_IAM
+# === OPTIONAL: Deploy SES Identity ===
+if [ -f "${TEMPLATE_DIR}/ses_config.yaml" ]; then
+  echo "Deploying SES Configuration..."
+  aws cloudformation deploy \
+    --stack-name "${STACK_PREFIX}-ses" \
+    --template-file "${TEMPLATE_DIR}/ses_config.yaml" \
+    --region ${REGION} \
+    --capabilities CAPABILITY_NAMED_IAM
+fi
 
-echo "All infrastructure stacks deployed successfully."
+echo "✅ All infrastructure stacks deployed."

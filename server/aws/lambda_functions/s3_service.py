@@ -20,17 +20,19 @@ class S3Service:
 
             logging.info(f"Uploading image for request_id: {request_id}")
 
-            # Strip base64 header if present
+            # === Remove base64 prefix (if present) ===
             if image_base64.startswith("data:image/jpeg;base64,"):
                 image_base64 = image_base64[len("data:image/jpeg;base64,"):]
 
-            # Fix padding if necessary
-            while len(image_base64) % 4 != 0:
-                image_base64 += '='
+            # === Fix padding for base64 decoding ===
+            image_base64 += '=' * ((4 - len(image_base64) % 4) % 4)
 
             image_data = base64.b64decode(image_base64)
+
+            # === Generate S3 key ===
             key = f"aid-requests/{request_id}.jpg"
 
+            # === Upload to S3 ===
             self.s3.put_object(
                 Bucket=self.bucket_name,
                 Key=key,
@@ -38,6 +40,7 @@ class S3Service:
                 ContentType="image/jpeg"
             )
 
+            # === Construct Public S3 URL ===
             image_url = f"https://{self.bucket_name}.s3.amazonaws.com/{key}"
             logging.info(f"Image successfully uploaded to: {image_url}")
             return image_url

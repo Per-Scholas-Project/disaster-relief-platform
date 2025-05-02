@@ -4,14 +4,19 @@ import uuid
 import datetime
 import os
 import smtplib
+import logging
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-# Initialize AWS clients
+# Configure logging
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+
+# AWS clients
 dynamodb = boto3.resource('dynamodb')
 s3 = boto3.client('s3')
 
-# Resource names
+# Environment & Constants
 DYNAMODB_TABLE = 'VolunteerSubmissions'
 S3_BUCKET = 'unitedrelief-volunteer-files'
 GMAIL_USER = os.environ['GMAIL_USER']
@@ -19,10 +24,12 @@ GMAIL_APP_PASSWORD = os.environ['GMAIL_APP_PASSWORD']
 
 def lambda_handler(event, context):
     try:
-        # Parse the body
+        logger.info("Received event")
+
+        # Parse incoming JSON body
         body = json.loads(event.get('body', '{}'))
 
-        # Extract form fields
+        # Extract fields
         firstName = body.get("firstName")
         lastName = body.get("lastName")
         email = body.get("email")
@@ -46,7 +53,7 @@ def lambda_handler(event, context):
             "message": message
         })
 
-        # Save to S3
+        # Backup to S3
         file_name = f"volunteers/{email.replace('@', '_at_')}_{submittedAt}.json"
         s3.put_object(
             Bucket=S3_BUCKET,
@@ -55,24 +62,23 @@ def lambda_handler(event, context):
             ContentType='application/json'
         )
 
-        # Send confirmation email via Gmail
+        # Send confirmation email via Gmail SMTP
         subject = "Thank you for volunteering with UnitedRelief!"
-        body_text = f"""
-        Hi {firstName},
+        body_text = f"""Hi {firstName},
 
-        Thank you for volunteering with UnitedRelief!
+Thank you for volunteering with UnitedRelief!
 
-        Here’s what we received:
-        Name: {firstName} {lastName}
-        Email: {email}
-        City: {city}, State: {state}
-        Willing to travel: {willingToTravel}
-        Message: {message}
+Here’s what we received:
+- Name: {firstName} {lastName}
+- Email: {email}
+- City/State: {city}, {state}
+- Willing to Travel: {willingToTravel}
+- Message: {message}
 
-        We’ll follow up with next steps soon!
+We’ll follow up with next steps soon!
 
-        - UnitedRelief Team
-        """
+– UnitedRelief Team
+"""
 
         msg = MIMEMultipart()
         msg['From'] = GMAIL_USER
@@ -98,7 +104,7 @@ def lambda_handler(event, context):
         }
 
     except Exception as e:
-        print("Error:", str(e))
+        logger.exception("Error during volunteer submission")
         return {
             "statusCode": 500,
             "headers": {
