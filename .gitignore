@@ -5,38 +5,49 @@ __pycache__/
 *.pyd
 *.egg-info/
 
-# Virtual environment
+# ─── Virtual Environments ────────────────────────────────
+.venv/
+venv/
+server/.venv/
 server/venv/
 
-# Environment variables
+# ─── Environment Variables / Secrets ─────────────────────
+.env
+.env.*
 server/.env
 client/.env
-.env.*
 
-# Log files
+# ─── Build Artifacts / Lambda Packages ───────────────────
+*.zip
+*.tar.gz
+*.egg
+aws/deployment/*.zip
+
+# ─── Logs ────────────────────────────────────────────────
 *.log
 pip-log.txt
 pip-delete-this-directory.txt
 
-# Lambda deployment bundles
-*.zip
-
-# ─── AWS/Serverless ───────────────────────────────────────
+# ─── AWS / Serverless ────────────────────────────────────
 .aws-sam/
 .serverless/
 
-# ─── IDEs/Editors ─────────────────────────────────────────
+# ─── IDEs / Editors ──────────────────────────────────────
 .idea/
 .vscode/
 
-# ─── OS/System ────────────────────────────────────────────
+# ─── OS / System Files ───────────────────────────────────
 .DS_Store
+Thumbs.db
 *.local
 
-# ─── Frontend (client/) ───────────────────────────────────
+# ─── Node / Frontend ─────────────────────────────────────
 client/node_modules/
 client/dist/
 client/build/
 
-# ─── Test/Reports ─────────────────────────────────────────
+# ─── Testing / Coverage ──────────────────────────────────
 coverage/
+*.cover
+coverage-final.json
+test-results/
