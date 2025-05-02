@@ -1,21 +1,22 @@
 import boto3
 from botocore.exceptions import ClientError
 import os
+from typing import Optional, Dict, List, Any
 
 class DynamoDBService:
-    def __init__(self, table_name=None):
+    def __init__(self, table_name: Optional[str] = None):
         self.table_name = table_name or os.getenv("DYNAMODB_TABLE", "AidRequests")
         self.dynamodb = boto3.resource("dynamodb")
         self.table = self.dynamodb.Table(self.table_name)
 
-    def save_request(self, aid_request: dict) -> dict:
+    def save_request(self, aid_request: Dict[str, Any]) -> Dict[str, str]:
         try:
             self.table.put_item(Item=aid_request)
             return {"success": True, "message": "Aid request saved successfully"}
         except ClientError as e:
             raise RuntimeError(f"Failed to save aid request: {e.response['Error']['Message']}")
 
-    def get_all_requests(self) -> list:
+    def get_all_requests(self) -> List[Dict[str, Any]]:
         try:
             aid_requests = []
             response = self.table.scan()
