@@ -1,34 +1,20 @@
-AWSTemplateFormatVersion: '2010-09-09'
-Description: SES configuration for UnitedRelief - Email Identity Verification
-
-Resources:
-  # Primary email identity (already used in Lambda functions)
-  AlmonteEmailIdentity:
-    Type: AWS::SES::EmailIdentity
-    Properties:
-      EmailIdentity: almontesauel@gmail.com
-      Tags:
-        - Key: Project
-          Value: UnitedRelief
-        - Key: Purpose
-          Value: Volunteer and Aid Confirmation Emails
-        - Key: Environment
-          Value: Dev
-
-  # ❗️EXAMPLE: To add additional email identities later, just duplicate this block with a new logical name and email
-  # ExampleSecondaryIdentity:
-  #   Type: AWS::SES::EmailIdentity
-  #   Properties:
-  #     EmailIdentity: another.email@example.com
-  #     Tags:
-  #       - Key: Project
-  #         Value: UnitedRelief
-  #       - Key: Purpose
-  #         Value: Notifications
-  #       - Key: Environment
-  #         Value: Dev
-
-Outputs:
-  PrimaryEmail:
-    Description: "Verified SES email identity used for sending email"
-    Value: !Ref AlmonteEmailIdentity
+#AWSTemplateFormatVersion: '2010-09-09'
+#Description: SES configuration for UnitedRelief - Email Identity Verification
+#
+#Resources:
+#  # Primary email identity (already used in Lambda functions)
+#  AlmonteEmailIdentity:
+#    Type: AWS::SES::EmailIdentity
+#    Properties:
+#      EmailIdentity: almontesauel@gmail.com
+#
+#  # ❗️EXAMPLE: To add additional email identities later, duplicate this block
+#  # ExampleSecondaryIdentity:
+#  #   Type: AWS::SES::EmailIdentity
+#  #   Properties:
+#  #     EmailIdentity: another.email@example.com
+#
+#Outputs:
+#  PrimaryEmail:
+#    Description: "Verified SES email identity used for sending email"
+#    Value: !Ref AlmonteEmailIdentity

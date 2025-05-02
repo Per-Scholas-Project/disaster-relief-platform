@@ -1,7 +1,8 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: Lambda Functions and IAM Role for UnitedRelief
+Description: Lambda Functions + IAM Role for UnitedRelief Platform
 
 Resources:
+
   LambdaExecutionRole:
     Type: AWS::IAM::Role
     Properties:
@@ -19,7 +20,10 @@ Resources:
             Version: '2012-10-17'
             Statement:
               - Effect: Allow
-                Action: dynamodb:*
+                Action:
+                  - dynamodb:PutItem
+                  - dynamodb:GetItem
+                  - dynamodb:Scan
                 Resource: "*"
               - Effect: Allow
                 Action:
@@ -40,7 +44,7 @@ Resources:
       FunctionName: SubmitVolunteerForm
       Runtime: python3.11
       Role: !GetAtt LambdaExecutionRole.Arn
-      Handler: volunteer-form.lambda_handler
+      Handler: volunteer_form.lambda_handler
       Code:
         S3Bucket: unitedrelief-volunteer-files
         S3Key: volunteer_form.zip
@@ -48,7 +52,7 @@ Resources:
       Environment:
         Variables:
           GMAIL_USER: almontesauel@gmail.com
-          GMAIL_APP_PASSWORD: '{{resolve:secretsmanager:your_secret_name:SecretString:password}}'
+          GMAIL_APP_PASSWORD: use-env-variable
           BUCKET_NAME: unitedrelief-volunteer-files
 
   SubmitReliefRequestFunction:
@@ -57,7 +61,7 @@ Resources:
       FunctionName: SubmitReliefRequest
       Runtime: python3.11
       Role: !GetAtt LambdaExecutionRole.Arn
-      Handler: relief-request.lambda_handler
+      Handler: relief_request.lambda_handler
       Code:
         S3Bucket: unitedrelief-volunteer-files
         S3Key: relief_request.zip
@@ -65,5 +69,11 @@ Resources:
       Environment:
         Variables:
           GMAIL_USER: almontesauel@gmail.com
-          GMAIL_APP_PASSWORD: '{{resolve:secretsmanager:your_secret_name:SecretString:password}}'
+          GMAIL_APP_PASSWORD: use-env-variable
           BUCKET_NAME: unitedrelief-volunteer-files
+
+Outputs:
+  VolunteerFunction:
+    Value: !Ref SubmitVolunteerFormFunction
+  ReliefFunction:
+    Value: !Ref SubmitReliefRequestFunction

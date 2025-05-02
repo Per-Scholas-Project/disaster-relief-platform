@@ -2,10 +2,12 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: API Gateway for UnitedRelief Platform
 
 Resources:
+
   UnitedReliefApi:
     Type: AWS::ApiGateway::RestApi
     Properties:
       Name: UnitedReliefAPI
+      Description: API for volunteer and aid form submissions
 
   VolunteerResource:
     Type: AWS::ApiGateway::Resource
@@ -29,10 +31,9 @@ Resources:
       HttpMethod: POST
       AuthorizationType: NONE
       Integration:
-        IntegrationHttpMethod: POST
         Type: AWS_PROXY
-        Uri: !Sub arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${VolunteerLambda}/invocations
-      DependsOn: SubmitVolunteerFormFunction
+        IntegrationHttpMethod: POST
+        Uri: !Sub arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:SubmitVolunteerForm/invocations
 
   ReliefPostMethod:
     Type: AWS::ApiGateway::Method
@@ -42,10 +43,9 @@ Resources:
       HttpMethod: POST
       AuthorizationType: NONE
       Integration:
-        IntegrationHttpMethod: POST
         Type: AWS_PROXY
-        Uri: !Sub arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${ReliefLambda}/invocations
-      DependsOn: SubmitReliefRequestFunction
+        IntegrationHttpMethod: POST
+        Uri: !Sub arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:SubmitReliefRequest/invocations
 
   ApiDeployment:
     Type: AWS::ApiGateway::Deployment
@@ -59,7 +59,7 @@ Resources:
   VolunteerLambdaPermission:
     Type: AWS::Lambda::Permission
     Properties:
-      FunctionName: !Ref SubmitVolunteerFormFunction
+      FunctionName: SubmitVolunteerForm
       Action: lambda:InvokeFunction
       Principal: apigateway.amazonaws.com
       SourceArn: !Sub arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${UnitedReliefApi}/*/POST/volunteer
@@ -67,7 +67,12 @@ Resources:
   ReliefLambdaPermission:
     Type: AWS::Lambda::Permission
     Properties:
-      FunctionName: !Ref SubmitReliefRequestFunction
+      FunctionName: SubmitReliefRequest
       Action: lambda:InvokeFunction
       Principal: apigateway.amazonaws.com
       SourceArn: !Sub arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${UnitedReliefApi}/*/POST/relief-request
+
+Outputs:
+  ApiBaseUrl:
+    Description: Base URL of the API Gateway
+    Value: !Sub https://${UnitedReliefApi}.execute-api.${AWS::Region}.amazonaws.com/dev

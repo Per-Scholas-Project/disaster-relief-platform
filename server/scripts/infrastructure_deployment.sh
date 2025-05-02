@@ -1,19 +1,16 @@
 #!/bin/bash
 
-# === CONFIGURATION ===
 STACK_PREFIX="unitedrelief"
 REGION="us-east-1"
-TEMPLATE_DIR="aws/infrastructure"
+TEMPLATE_DIR="server/aws/infrastructure"
 
-# === DEPLOY S3 BUCKET ===
-echo "Deploying S3 Bucket..."
-aws cloudformation deploy \
-  --stack-name "${STACK_PREFIX}-s3" \
-  --template-file "${TEMPLATE_DIR}/s3_bucket.yaml" \
-  --region ${REGION} \
-  --capabilities CAPABILITY_NAMED_IAM
+#echo "Deploying S3 Bucket..."
+#aws cloudformation deploy \
+#  --stack-name "${STACK_PREFIX}-s3" \
+#  --template-file "${TEMPLATE_DIR}/s3_bucket.yaml" \
+#  --region ${REGION} \
+#  --capabilities CAPABILITY_NAMED_IAM
 
-# === DEPLOY DynamoDB Tables ===
 echo "Deploying DynamoDB Tables..."
 aws cloudformation deploy \
   --stack-name "${STACK_PREFIX}-dynamodb" \
@@ -21,7 +18,6 @@ aws cloudformation deploy \
   --region ${REGION} \
   --capabilities CAPABILITY_NAMED_IAM
 
-# === DEPLOY Lambda Functions ===
 echo "Deploying Lambda Functions..."
 aws cloudformation deploy \
   --stack-name "${STACK_PREFIX}-lambda" \
@@ -29,7 +25,6 @@ aws cloudformation deploy \
   --region ${REGION} \
   --capabilities CAPABILITY_NAMED_IAM
 
-# === DEPLOY API Gateway ===
 echo "Deploying API Gateway..."
 aws cloudformation deploy \
   --stack-name "${STACK_PREFIX}-apigateway" \
@@ -37,14 +32,14 @@ aws cloudformation deploy \
   --region ${REGION} \
   --capabilities CAPABILITY_NAMED_IAM
 
-# === OPTIONAL: Deploy SES Identity ===
-if [ -f "${TEMPLATE_DIR}/ses_config.yaml" ]; then
-  echo "Deploying SES Configuration..."
-  aws cloudformation deploy \
-    --stack-name "${STACK_PREFIX}-ses" \
-    --template-file "${TEMPLATE_DIR}/ses_config.yaml" \
-    --region ${REGION} \
-    --capabilities CAPABILITY_NAMED_IAM
-fi
+# Optional: SES
+#if [ -f "${TEMPLATE_DIR}/ses_config.yaml" ]; then
+#  echo "Deploying SES Configuration..."
+#  aws cloudformation deploy \
+#    --stack-name "${STACK_PREFIX}-ses" \
+#    --template-file "${TEMPLATE_DIR}/ses_config.yaml" \
+#    --region ${REGION} \
+#    --capabilities CAPABILITY_NAMED_IAM
+#fi
 
 echo "✅ All infrastructure stacks deployed."
