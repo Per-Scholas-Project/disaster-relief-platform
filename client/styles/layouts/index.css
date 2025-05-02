@@ -423,7 +423,7 @@
     margin: 0 auto;
     height: 100%;
     padding: var(--space-xxl);
-    /*gap: var(--space-xxl);*/
+    /*gap: var(--space-lg);*/
 }
 
 /* Partners Section Title (h2) */
@@ -478,7 +478,7 @@
     width: 12rem;
     height: 8rem;
     object-fit: contain;
-    flex-shrink: 0; /* Prevent shrinking */
+    /*flex-shrink: 0; !* Prevent shrinking *!*/
     filter: grayscale(20%); /* Optional: slight grayscale for a clean aesthetic */
     transition: transform 0.3s ease;
 }
@@ -492,8 +492,8 @@
     display: flex;
     overflow-x: auto;
     scroll-behavior: smooth;
-    gap: var(--space-xl);
-    padding: var(--space-xxl);
+    gap: var(--space-xxl);
+    padding: var(--space-xl);
     width: 100%;
     align-items: center;
     justify-content: flex-start;
@@ -714,3 +714,4 @@
         grid-template-columns: 1fr;
     }
 }
+
