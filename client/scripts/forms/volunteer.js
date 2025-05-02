@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             alert("Thank you for volunteering with UnitedRelief!");
             form.reset();
-            window.location.href = "/index.html"; // ✅ Redirect after success
+            window.location.href = "../../index.html"; // ✅ Redirect after success
         } catch (error) {
             console.error("Submission error:", error);
             alert(`Could not submit your form: ${error.message}`);
