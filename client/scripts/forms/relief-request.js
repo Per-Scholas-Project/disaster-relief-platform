@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             alert("Relief request submitted successfully.");
             form.reset();
-            window.location.href = "/index.html";
+            window.location.href = "../../index.html";
         } catch (err) {
             console.error("Error:", err.message);
             alert("Something went wrong: " + err.message);
