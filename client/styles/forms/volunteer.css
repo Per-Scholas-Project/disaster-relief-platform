@@ -113,17 +113,19 @@
 /* Submit Button */
 .volunteer__submit {
     padding: 1.2rem 2rem;
-    background-color: #0b1f0f;
-    color: #ffffff;
     font-size: clamp(1.4rem, 2.5vw, 1.6rem);
     font-weight: 600;
     border: none;
-    border-radius: 0.6rem;
     cursor: pointer;
     transition: background 0.3s ease;
     width: 100%;
+    color: var(--white-500);
+    background-color: var(--blue-800);
+    border-radius: var(--radius-md);
 }
 
 .volunteer__submit:hover {
-    background-color: #06250d;
+    background-color: var(--blue-400);
+    color: var(--white-500);
+    border-color: var(--blue-700);
 }

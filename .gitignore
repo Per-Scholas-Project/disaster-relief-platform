@@ -22,6 +22,10 @@ client/.env
 *.tar.gz
 *.egg
 aws/deployment/*.zip
+server/aws/lambda_functions/build/
+server/aws/lambda_functions/build/**/*
+server/aws/deployment/*.zip
+
 
 # ─── Logs ────────────────────────────────────────────────
 *.log

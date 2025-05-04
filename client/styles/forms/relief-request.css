@@ -8,80 +8,92 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 4rem 2rem;
+    padding: var(--space-xxl) var(--space-xl);
+    background-color: var(--color-background);
 }
 
 .relief__container {
-    background-color: #ffffff;
-    padding: 4rem 3rem;
-    border-radius: 0.8rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 60rem;
+    background-color: var(--color-white);
+    padding: var(--space-xxl) var(--space-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    max-width: 50rem;
     width: 100%;
     margin: 0 auto;
 }
 
-/* Typography */
+/* =============================
+   Typography
+   ============================= */
+
 .relief__heading {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: var(--space-xxl);
 }
 
 .relief__title {
-    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
-    font-weight: 800;
+    font-size: var(--font-size-h2);
+    font-weight: var(--font-weight-extra-bold);
     text-transform: uppercase;
-    color: #000000;
+    color: var(--color-black);
     line-height: 1.2;
 }
 
 .relief__description {
-    font-size: clamp(1.3rem, 2.5vw, 1.6rem);
-    color: #666666;
-    margin-top: 1.2rem;
+    font-size: var(--font-size-body);
+    color: var(--gray-600);
+    margin-top: var(--space-sm);
 }
 
-/* Form Structure */
+/* =============================
+   Form Structure
+   ============================= */
+
 .relief__form {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: var(--space-xl);
 }
 
 .relief__grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
-    gap: 2rem;
+    gap: var(--space-xl);
 }
 
 .relief__field {
     position: relative;
 }
 
+/* =============================
+   Inputs & Textareas
+   ============================= */
+
 .relief__input,
 .relief__textarea {
     width: 100%;
-    font-size: clamp(1.4rem, 2.5vw, 1.6rem);
-    padding: 1.2rem 0;
+    font-size: var(--font-size-body);
+    padding: var(--space-md) 0;
     border: none;
-    border-bottom: 2px solid #ccc;
+    border-bottom: 2px solid var(--gray-300);
     background: transparent;
     outline: none;
-    color: #333;
+    color: var(--gray-900);
     resize: none;
+    font-family: var(--font-body), Arial, sans-serif;
 }
 
 .relief__input:focus,
 .relief__textarea:focus {
-    border-bottom-color: #2563eb;
+    border-bottom-color: var(--color-primary);
 }
 
 .relief__label {
     position: absolute;
-    top: 1.2rem;
+    top: var(--space-md);
     left: 0;
-    font-size: clamp(1.2rem, 2vw, 1.4rem);
-    color: #888;
+    font-size: var(--font-size-small);
+    color: var(--gray-500);
     transition: 0.3s ease all;
     pointer-events: none;
 }
@@ -91,28 +103,34 @@
 .relief__input:not(:placeholder-shown) + .relief__label,
 .relief__textarea:not(:placeholder-shown) + .relief__label {
     top: -0.8rem;
-    font-size: clamp(1rem, 1.8vw, 1.2rem);
-    color: #2563eb;
+    font-size: var(--font-size-small);
+    color: var(--color-primary);
 }
 
-/* File Upload */
+/* =============================
+   File Upload
+   ============================= */
+
 .relief__file-label {
-    font-size: clamp(1.2rem, 2vw, 1.4rem);
-    color: #444;
-    margin-bottom: 0.8rem;
+    font-size: var(--font-size-small);
+    color: var(--gray-700);
+    margin-bottom: var(--space-sm);
     display: block;
 }
 
 .relief__file {
-    font-size: 1.4rem;
+    font-size: var(--font-size-body);
 }
 
-/* Checkbox */
+/* =============================
+   Checkbox
+   ============================= */
+
 .relief__checkbox-wrapper {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
-    font-size: clamp(1.2rem, 2vw, 1.4rem);
+    gap: var(--space-sm);
+    font-size: var(--font-size-body);
 }
 
 .relief__checkbox {
@@ -121,24 +139,105 @@
 }
 
 .relief__checkbox-label {
-    color: #333;
+    color: var(--gray-900);
     cursor: pointer;
 }
 
-/* Submit Button */
+/* =============================
+   Submit Button
+   ============================= */
+
 .relief__submit {
-    padding: 1.2rem 2rem;
-    background-color: #0b1f0f;
-    color: #ffffff;
-    font-size: clamp(1.4rem, 2.5vw, 1.6rem);
-    font-weight: 600;
+    padding: var(--space-md) var(--space-lg);
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-semi-bold);
     border: none;
-    border-radius: 0.6rem;
     cursor: pointer;
     transition: background 0.3s ease;
     width: 100%;
+    color: var(--color-white);
+    background-color: var(--blue-800);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
 }
 
 .relief__submit:hover {
-    background-color: #06250d;
+    background-color: var(--blue-400);
+    color: var(--color-white);
+    border-color: var(--blue-700);
+}
+
+/* =============================
+   Error Highlighting
+   ============================= */
+
+.relief__input--error,
+.relief__textarea.relief__input--error {
+    border-bottom-color: var(--red-500) !important;
+    outline-color: var(--red-500);
+}
+
+/* =============================
+   Image Previews + Delete Button
+   ============================= */
+
+.relief__image-preview {
+    display: flex;
+    gap: var(--space-md);
+    margin-top: var(--space-sm);
+    flex-wrap: wrap;
+}
+
+.relief__preview-wrapper {
+    position: relative;
+    display: inline-block;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    box-shadow: 0 0 4px var(--gray-400);
+}
+
+.relief__preview-thumb {
+    width: 80px;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--gray-200);
+}
+
+.relief__delete-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--red-500);
+    color: var(--white-50);
+    border: none;
+    border-radius: var(--radius-full);
+    font-size: 1rem;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    box-shadow: 0 0 2px var(--gray-700);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.relief__delete-btn:hover {
+    background-color: var(--red-700);
+    transform: scale(1.1);
+}
+
+/* =============================
+   Helper Text
+   ============================= */
+
+.relief__helper-text {
+    display: block;
+    margin-top: var(--space-xs);
+    font-size: var(--font-size-small);
+    color: var(--gray-600);
 }

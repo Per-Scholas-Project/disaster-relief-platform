@@ -66,11 +66,12 @@
 
 .header__title .logo-link {
     color: var(--white-500);
+    text-decoration: none;
 }
 
-.logo-link:hover {
-    color: var(--blue-300);
-    text-decoration: underline;
+.header__title .logo-link:hover {
+    color: var(--gray-100);
+    text-decoration: none;
 }
 
 /* Nav List */
@@ -99,19 +100,21 @@
 }
 
 .header__nav-item-bg:hover {
-    background: var(--blue-50);
+    background-color: var(--blue-400);
+    color: var(--white-500);
+    border-color: var(--blue-700);
 }
 
 .header__nav-link-signin {
     font-size: var(--font-size-body);
     font-weight: var(--font-weight-semi-bold);
-    color: var(--blue-500);
     transition: color 0.3s ease;
 }
 
 .header__nav-link-signin:hover {
-    color: var(--blue-500);
+    /*color: var(--blue-500);*/
     transition: color 0.3s ease;
+    text-decoration: none;
 }
 
 /*.header__nav-link > a {*/
@@ -125,8 +128,8 @@
 /*.header__nav-link:hover,*/
 .header__nav-item .header__nav-link:hover,
 .header__nav-item .header__nav-link:focus {
-    color: var(--blue-300);
-    text-decoration: underline;
+    color: var(--gray-200);
+    /*text-decoration: underline;*/
 }
 
 /* ---------- Hamburger Menu Button (Hidden on Desktop) ---------- */

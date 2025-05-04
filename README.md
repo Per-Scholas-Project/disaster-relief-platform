@@ -36,35 +36,31 @@ A backend-driven platform to connect disaster victims with volunteers and resour
 
 ```plaintext
 disaster-relief-platform/
-├── client/                  # Frontend files (HTML/JS/CSS)
-|-- server/
-├── aws/
-│   ├── deployment/
-│   │   ├── disaster_relief_bundle.zip
-│   │   ├── relief_request.zip ✅ (should go here)
-│   │   └── volunteer_form.zip ✅ (should go here)
-│   ├── infrastructure/
-│   │   ├── api_gateway.yaml
-│   │   ├── dynamodb_tables.yaml
-│   │   ├── lambda_functions.yaml
-│   │   ├── s3_bucket.yaml
-│   │   └── ses_config.yaml
-│   └── lambda_functions/
-│       └── package/
-│           ├── __init__.py
-│           ├── dynamodb_service.py
-│           ├── lambda_handler.py
-│           ├── relief_request.py
-│           ├── s3_service.py
-│           ├── service.py
-│           └── volunteer_form.py
-├── scripts/
-│   ├── infrastructure_deployment.sh
-│   └── lambda_deployment.sh ✅ (you are running this)
-├── .env
-├── __init__.py
-└── requirements.txt ✅
-
+├── .venv/
+├── client/
+│   ├── assets/
+│   │   ├── fonts/
+│   │   ├── icons/
+│   │   ├── images/
+│   │   └── logos/
+│   ├── pages/
+│   │   └── forms/
+│   ├── scripts/
+│   │   ├── components/
+│   │   ├── forms/
+│   │   ├── utils/
+│   │   └── index.js
+│   ├── styles/
+│   └── index.html
+├── server/
+│   ├── aws/
+│   │   ├── deployment/
+│   │   ├── infrastructure/
+│   │   └── lambda_functions/
+│   ├── scripts/
+│   └── requirements.txt
+├── .gitignore
+└── README.md
 ```
 
 ---

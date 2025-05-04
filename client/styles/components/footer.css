@@ -41,6 +41,10 @@
     text-decoration: none;
 }
 
+.footer__logo .footer__logo-link:hover {
+    color: var(--gray-200);
+}
+
 /* ----- Footer Links: Responsive Grid ----- */
 .footer__links {
     color: var(--white-500);
@@ -78,8 +82,8 @@
 }
 
 .footer__link:hover {
-    text-decoration: underline;
-    color: #000000;
+    text-decoration: none;
+    color: var(--gray-300);
 }
 
 .footer__social {

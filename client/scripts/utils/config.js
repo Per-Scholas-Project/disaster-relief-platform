@@ -1,6 +1,6 @@
 // scripts/utils/config.js
 
-const BASE_API = "https://qoo9outku3.execute-api.us-east-1.amazonaws.com/dev";
+const BASE_API = "https://1f2o2lugxi.execute-api.us-east-1.amazonaws.com/dev";
 
 export const CONTACT_API_URL = `${BASE_API}/contact`;
 export const DONATE_API_URL = `${BASE_API}/donate`;

@@ -44,11 +44,11 @@
 						<li class="header__nav-item">
 							<a class="header__nav-link" href="contact.html">Contact Us</a>
 						</li>
-						<li class="header__nav-item-bg">
-							<a class="header__nav-link-signin" href="signin.html"
-							>Sign In / Sign Up</a
-							>
-						</li>
+						<a class="header__nav-link-signin" href="./pages/forms/signin.html">
+							<button class="header__nav-item-bg" aria-label="Signin">
+								Sign In / Sign Up
+							</button>
+						</a>
 					</ul>
 				</nav>
 			</header>
@@ -67,27 +67,15 @@
 						</div>
 
 						<!-- Relief Request Form -->
-						<form class="relief__form" enctype="multipart/form-data">
+						<form class="relief__form" enctype="multipart/form-data" novalidate>
 							<!-- First + Last Name -->
 							<div class="relief__grid">
 								<div class="relief__field">
-									<input
-										type="text"
-										id="relief_first_name"
-										class="relief__input"
-										placeholder=" "
-										required
-									/>
+									<input type="text" id="relief_first_name" class="relief__input" placeholder=" " required />
 									<label for="relief_first_name" class="relief__label">First Name</label>
 								</div>
 								<div class="relief__field">
-									<input
-										type="text"
-										id="relief_last_name"
-										class="relief__input"
-										placeholder=" "
-										required
-									/>
+									<input type="text" id="relief_last_name" class="relief__input" placeholder=" " required />
 									<label for="relief_last_name" class="relief__label">Last Name</label>
 								</div>
 							</div>
@@ -95,23 +83,11 @@
 							<!-- Email + Phone -->
 							<div class="relief__grid">
 								<div class="relief__field">
-									<input
-										type="email"
-										id="relief_email"
-										class="relief__input"
-										placeholder=" "
-										required
-									/>
+									<input type="email" id="relief_email" class="relief__input" placeholder=" " required />
 									<label for="relief_email" class="relief__label">Email</label>
 								</div>
 								<div class="relief__field">
-									<input
-										type="tel"
-										id="relief_phone"
-										class="relief__input"
-										placeholder=" "
-										required
-									/>
+									<input type="tel" id="relief_phone" class="relief__input" placeholder=" " required />
 									<label for="relief_phone" class="relief__label">Phone Number</label>
 								</div>
 							</div>
@@ -119,88 +95,56 @@
 							<!-- City + State -->
 							<div class="relief__grid">
 								<div class="relief__field">
-									<input
-										type="text"
-										id="relief_city"
-										class="relief__input"
-										placeholder=" "
-										required
-									/>
+									<input type="text" id="relief_city" class="relief__input" placeholder=" " required />
 									<label for="relief_city" class="relief__label">City</label>
 								</div>
 								<div class="relief__field">
-									<input
-										type="text"
-										id="relief_state"
-										class="relief__input"
-										placeholder=" "
-										required
-									/>
+									<input type="text" id="relief_state" class="relief__input" placeholder=" " required />
 									<label for="relief_state" class="relief__label">State</label>
 								</div>
 							</div>
 
 							<!-- Type of Assistance -->
 							<div class="relief__field">
-								<input
-									type="text"
-									id="relief_type"
-									class="relief__input"
-									placeholder=" "
-									required
-								/>
-								<label for="relief_type" class="relief__label"
-									>Type of Assistance Needed</label
-								>
+								<input type="text" id="relief_type" class="relief__input" placeholder=" " required />
+								<label for="relief_type" class="relief__label">Type of Assistance Needed</label>
 							</div>
 
 							<!-- Description -->
 							<div class="relief__field">
-								<textarea
-									id="relief_description"
-									class="relief__textarea"
-									placeholder=" "
-									rows="5"
-									required
-								></textarea>
-								<label for="relief_description" class="relief__label"
-									>Describe Your Situation</label
-								>
+								<textarea id="relief_description" class="relief__textarea" placeholder=" " rows="5" required></textarea>
+								<label for="relief_description" class="relief__label">Describe Your Situation</label>
 							</div>
 
 							<!-- Image Upload -->
 							<div class="relief__field">
-								<label for="relief_images" class="relief__file-label"
-									>Upload Photos (max 6 images)</label
-								>
+								<label for="relief_images" class="relief__file-label">Upload Photos (max 2 images, 2MB each)</label>
 								<input
-									type="file"
-									id="relief_images"
-									name="relief_images[]"
-									class="relief__file"
-									accept="image/*"
-									multiple
+										type="file"
+										id="relief_images"
+										class="relief__file"
+										accept="image/jpeg, image/png"
+										multiple
 								/>
+								<small class="relief__helper-text">
+									Upload up to <strong>2 images</strong> (JPG or PNG), each under <strong>2MB</strong>.
+								</small>
+								<!-- Thumbnail Previews -->
+								<div class="relief__image-preview"></div>
 							</div>
 
 							<!-- Confirmation Checkbox -->
 							<div class="relief__checkbox-wrapper">
-								<input
-									type="checkbox"
-									id="relief_confirm"
-									class="relief__checkbox"
-									required
-								/>
-								<label for="relief_confirm" class="relief__checkbox-label"
-									>I confirm that the information provided is accurate.</label
-								>
+								<input type="checkbox" id="relief_confirm" class="relief__checkbox" required />
+								<label for="relief_confirm" class="relief__checkbox-label">
+									I confirm that the information provided is accurate.
+								</label>
 							</div>
 
 							<!-- Submit Button -->
-							<button type="submit" class="relief__submit">
-								Submit Relief Request
-							</button>
+							<button type="submit" class="relief__submit">Submit Relief Request</button>
 						</form>
+
 					</div>
 				</section>
 			</main>

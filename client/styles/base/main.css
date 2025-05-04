@@ -318,7 +318,8 @@ button {
 
 /* --- Hover and Focus states --- */
 button:hover {
-	background-color: var(--blue-700);
+	background-color: var(--blue-400);
+	color: var(--white-500);
 	border-color: var(--blue-700);
 	/*box-shadow: var(--shadow-sm);*/
 }
