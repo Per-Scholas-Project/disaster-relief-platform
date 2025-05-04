@@ -1,0 +1,110 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Lambda + API Gateway to generate pre-signed S3 URLs for viewing images
+
+Parameters:
+  CodeBucket:
+    Type: String
+    Description: Name of the S3 bucket containing Lambda ZIP files
+
+Resources:
+
+  # === Lambda: GeneratePreSignedUrl ===
+  GeneratePreSignedUrlFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: GeneratePreSignedUrl
+      Description: Returns a temporary signed S3 URL for viewing uploaded relief images
+      Runtime: python3.11
+      Handler: generate_presigned_url.lambda_handler
+      Role: !ImportValue LambdaExecutionRoleArn
+      Code:
+        S3Bucket: !Ref CodeBucket
+        S3Key: generate_presigned_url.zip
+      Timeout: 15
+      MemorySize: 128
+      Environment:
+        Variables:
+          S3_BUCKET: unitedrelief-submissions
+
+  # === REST API ===
+  GeneratePresignedUrlApi:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      Name: GeneratePresignedUrlApi
+      Description: API to return presigned S3 URLs
+
+  # === /presigned-url path ===
+  PresignedUrlResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref GeneratePresignedUrlApi
+      ParentId: !GetAtt GeneratePresignedUrlApi.RootResourceId
+      PathPart: presigned-url
+
+  # === GET /presigned-url ===
+  PresignedUrlGetMethod:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref GeneratePresignedUrlApi
+      ResourceId: !Ref PresignedUrlResource
+      HttpMethod: GET
+      AuthorizationType: NONE
+      Integration:
+        Type: AWS_PROXY
+        IntegrationHttpMethod: POST
+        Uri: !Sub arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${GeneratePreSignedUrlFunction.Arn}/invocations
+      MethodResponses:
+        - StatusCode: 200
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Origin: true
+
+  # === OPTIONS /presigned-url (CORS) ===
+  PresignedUrlOptionsMethod:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref GeneratePresignedUrlApi
+      ResourceId: !Ref PresignedUrlResource
+      HttpMethod: OPTIONS
+      AuthorizationType: NONE
+      Integration:
+        Type: MOCK
+        RequestTemplates:
+          application/json: '{"statusCode": 200}'
+        IntegrationResponses:
+          - StatusCode: 200
+            ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type'"
+              method.response.header.Access-Control-Allow-Methods: "'OPTIONS,GET'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            ResponseTemplates:
+              application/json: ""
+      MethodResponses:
+        - StatusCode: 200
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: true
+            method.response.header.Access-Control-Allow-Methods: true
+            method.response.header.Access-Control-Allow-Origin: true
+
+  # === Deployment to dev stage ===
+  PresignedUrlDeployment:
+    Type: AWS::ApiGateway::Deployment
+    DependsOn:
+      - PresignedUrlGetMethod
+      - PresignedUrlOptionsMethod
+    Properties:
+      RestApiId: !Ref GeneratePresignedUrlApi
+      StageName: dev
+
+  # === Lambda permission for API Gateway ===
+  GeneratePreSignedUrlPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref GeneratePreSignedUrlFunction
+      Action: lambda:InvokeFunction
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${GeneratePresignedUrlApi}/*/GET/presigned-url
+
+Outputs:
+  GeneratePresignedUrlApiBaseUrl:
+    Description: Invoke URL for the presigned-url endpoint
+    Value: !Sub https://${GeneratePresignedUrlApi}.execute-api.${AWS::Region}.amazonaws.com/dev/presigned-url

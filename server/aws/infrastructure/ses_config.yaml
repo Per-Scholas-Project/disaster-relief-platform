@@ -2,19 +2,25 @@
 #Description: SES configuration for UnitedRelief - Email Identity Verification
 #
 #Resources:
-#  # Primary email identity (already used in Lambda functions)
+#
+#  # === SES Email Identity ===
+#  # This is the verified email address used to send messages via SMTP in Lambda functions.
+#  # Must be verified in AWS SES before sending is allowed.
 #  AlmonteEmailIdentity:
 #    Type: AWS::SES::EmailIdentity
 #    Properties:
 #      EmailIdentity: almontesauel@gmail.com
 #
-#  # ❗️EXAMPLE: To add additional email identities later, duplicate this block
+#  # === (Optional) Additional Email Identities ===
+#  # You can duplicate the block below to verify more addresses later.
+#  #
 #  # ExampleSecondaryIdentity:
 #  #   Type: AWS::SES::EmailIdentity
 #  #   Properties:
 #  #     EmailIdentity: another.email@example.com
 #
+## === Outputs ===
 #Outputs:
 #  PrimaryEmail:
-#    Description: "Verified SES email identity used for sending email"
+#    Description: Verified SES email identity used for sending email
 #    Value: !Ref AlmonteEmailIdentity

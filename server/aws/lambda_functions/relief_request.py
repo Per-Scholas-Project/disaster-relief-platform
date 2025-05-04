@@ -1,165 +1,150 @@
 import json
 import boto3
-import os
 import uuid
+import os
+import base64
 import datetime
 import smtplib
+import logging
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from botocore.exceptions import ClientError
 from requests_toolbelt.multipart import decoder
-import base64
+from io import BytesIO
+
+# === Logging ===
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
 
 # === AWS Clients ===
 dynamodb = boto3.resource('dynamodb')
 s3 = boto3.client('s3')
+secretsmanager = boto3.client('secretsmanager')
 
 # === Environment Variables ===
-DYNAMODB_TABLE = 'ReliefRequests'
-S3_BUCKET = 'unitedrelief-volunteer-files'
-GMAIL_USER = os.environ['GMAIL_USER']
-GMAIL_APP_PASSWORD = os.environ['GMAIL_APP_PASSWORD']
+DYNAMODB_TABLE = os.environ['DYNAMODB_TABLE']
+S3_BUCKET = os.environ['S3_BUCKET']
+SECRET_NAME = os.environ['GMAIL_SECRET_NAME']
 
 def lambda_handler(event, context):
-    # === Handle CORS preflight ===
-    if event.get("httpMethod") == "OPTIONS":
-        return {
-            "statusCode": 200,
-            "headers": {
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Headers": "Content-Type",
-                "Access-Control-Allow-Methods": "OPTIONS,POST",
-                "Access-Control-Allow-Credentials": "true"
-            }
-        }
-
     try:
-        # === Decode multipart/form-data ===
-        content_type = event['headers'].get('content-type') or event['headers'].get('Content-Type')
-        body = event['body']
+        logger.info("Received event for relief request")
+
+        if event.get("httpMethod") == "OPTIONS":
+            return cors_response(200, {"message": "CORS preflight successful"})
+
+        content_type = event["headers"].get("content-type") or event["headers"].get("Content-Type")
+        body = event["body"]
         if event.get("isBase64Encoded"):
             body = base64.b64decode(body)
+        else:
+            body = body.encode('utf-8')
 
         multipart_data = decoder.MultipartDecoder(body, content_type)
 
-        fields = {}
-        files = []
+        form_data = {}
+        image_keys = []
 
         for part in multipart_data.parts:
             content_disposition = part.headers.get(b'Content-Disposition', b'').decode()
-            if 'filename' in content_disposition:
-                files.append({
-                    "filename": get_filename(content_disposition),
-                    "content": part.content,
-                    "content_type": part.headers.get(b'Content-Type', b'').decode()
-                })
+            if "filename=" in content_disposition:
+                filename = content_disposition.split("filename=")[1].strip('"')
+                key = f"relief-images/{uuid.uuid4()}_{filename}"
+                s3.upload_fileobj(
+                    Fileobj=BytesIO(part.content),
+                    Bucket=S3_BUCKET,
+                    Key=key,
+                    ExtraArgs={'ContentType': part.headers.get(b'Content-Type', b'application/octet-stream').decode()}
+                )
+                image_keys.append(key)
             else:
-                name = get_field_name(content_disposition)
-                fields[name] = part.text
+                name = content_disposition.split("name=")[1].strip('"')
+                form_data[name] = part.text
 
-        # === Extract Fields ===
-        firstName = fields.get("firstName")
-        lastName = fields.get("lastName")
-        email = fields.get("email")
-        phone = fields.get("phone")
-        city = fields.get("city")
-        state = fields.get("state")
-        assistanceType = fields.get("assistanceType")
-        description = fields.get("description")
-        submittedAt = datetime.datetime.utcnow().isoformat()
+        submission_id = str(uuid.uuid4())
+        submitted_at = datetime.datetime.utcnow().isoformat()
 
-        # === Save to DynamoDB ===
+        dynamo_item = {
+            "id": submission_id,
+            "submittedAt": submitted_at,
+            "firstName": form_data.get("firstName"),
+            "lastName": form_data.get("lastName"),
+            "email": form_data.get("email"),
+            "phone": form_data.get("phone"),
+            "city": form_data.get("city"),
+            "state": form_data.get("state"),
+            "assistanceType": form_data.get("assistanceType"),
+            "description": form_data.get("description"),
+            "imageKeys": image_keys
+        }
+
+        # Save to DynamoDB
         table = dynamodb.Table(DYNAMODB_TABLE)
-        table.put_item(Item={
-            "email": email,
-            "submittedAt": submittedAt,
-            "id": str(uuid.uuid4()),
-            "firstName": firstName,
-            "lastName": lastName,
-            "phone": phone,
-            "city": city,
-            "state": state,
-            "assistanceType": assistanceType,
-            "description": description
-        })
+        table.put_item(Item=dynamo_item)
 
-        # === Upload Files to S3 ===
-        for f in files:
-            filename = f"relief-images/{uuid.uuid4()}_{f['filename']}"
-            s3.put_object(
-                Bucket=S3_BUCKET,
-                Key=filename,
-                Body=f['content'],
-                ContentType=f['content_type']
-            )
+        # Fetch Gmail credentials securely
+        creds = get_gmail_credentials()
+        GMAIL_USER = creds['GMAIL_USER']
+        GMAIL_PASS = creds['GMAIL_APP_PASSWORD']
 
-        # === Send Confirmation Email ===
-        send_email_confirmation(email, firstName, lastName, phone, city, state, assistanceType, description)
+        # Compose and send email
+        subject = "UnitedRelief – Request Received"
+        email_body = f"""Hi {form_data.get('firstName')},
 
-        # === Return Success Response ===
-        return {
-            "statusCode": 200,
-            "headers": {
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Headers": "Content-Type",
-                "Access-Control-Allow-Methods": "OPTIONS,POST",
-                "Access-Control-Allow-Credentials": "true"
-            },
-            "body": json.dumps({"message": "Relief request received successfully!"})
-        }
+Thank you for submitting your relief request. We’ve received the following:
 
-    except Exception as e:
-        print("Error:", str(e))
-        return {
-            "statusCode": 500,
-            "headers": {
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Headers": "Content-Type",
-                "Access-Control-Allow-Methods": "OPTIONS,POST",
-                "Access-Control-Allow-Credentials": "true"
-            },
-            "body": json.dumps({"error": str(e)})
-        }
+- Name: {form_data.get('firstName')} {form_data.get('lastName')}
+- Phone: {form_data.get('phone')}
+- City/State: {form_data.get('city')}, {form_data.get('state')}
+- Type of Assistance: {form_data.get('assistanceType')}
+- Description: {form_data.get('description')}
 
-# === Helper: Extract field name from Content-Disposition ===
-def get_field_name(content_disposition):
-    for item in content_disposition.split(";"):
-        if item.strip().startswith("name="):
-            return item.strip().split("=")[1].strip('"')
-    return None
-
-# === Helper: Extract filename from Content-Disposition ===
-def get_filename(content_disposition):
-    for item in content_disposition.split(";"):
-        if item.strip().startswith("filename="):
-            return item.strip().split("=")[1].strip('"')
-    return None
-
-# === Helper: Send Confirmation Email ===
-def send_email_confirmation(to_email, firstName, lastName, phone, city, state, assistanceType, description):
-    subject = "UnitedRelief - Your Aid Request Was Received"
-    body_text = f"""Hi {firstName},
-
-Your request for aid has been received:
-
-- Name: {firstName} {lastName}
-- Phone: {phone}
-- Location: {city}, {state}
-- Type: {assistanceType}
-- Description: {description}
-
-We will follow up with you shortly.
+We'll follow up soon.
 
 – UnitedRelief Team
 """
 
-    msg = MIMEMultipart()
-    msg['From'] = GMAIL_USER
-    msg['To'] = to_email
-    msg['Subject'] = subject
-    msg.attach(MIMEText(body_text, 'plain'))
+        msg = MIMEMultipart()
+        msg['From'] = GMAIL_USER
+        msg['To'] = form_data.get("email")
+        msg['Subject'] = subject
+        msg.attach(MIMEText(email_body, 'plain'))
 
-    server = smtplib.SMTP('smtp.gmail.com', 587)
-    server.starttls()
-    server.login(GMAIL_USER, GMAIL_APP_PASSWORD)
-    server.sendmail(GMAIL_USER, to_email, msg.as_string())
-    server.quit()
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login(GMAIL_USER, GMAIL_PASS)
+        server.sendmail(GMAIL_USER, form_data.get("email"), msg.as_string())
+        server.quit()
+
+        return cors_response(200, {"message": "Relief request submitted successfully."})
+
+    except Exception as e:
+        logger.exception("Error in relief_request")
+        return cors_response(500, {"error": str(e)})
+
+
+# === Fetch Gmail credentials securely ===
+def get_gmail_credentials():
+    try:
+        response = secretsmanager.get_secret_value(SecretId=SECRET_NAME)
+        secret = json.loads(response["SecretString"])
+        return {
+            "GMAIL_USER": secret["GMAIL_USER"],
+            "GMAIL_APP_PASSWORD": secret["GMAIL_APP_PASSWORD"]
+        }
+    except ClientError as e:
+        raise RuntimeError(f"Failed to retrieve Gmail credentials: {e}")
+
+# === CORS Response Helper ===
+def cors_response(status_code, body):
+    return {
+        "statusCode": status_code,
+        "headers": {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Headers": "Content-Type",
+            "Access-Control-Allow-Methods": "OPTIONS,POST",
+            "Access-Control-Allow-Credentials": "true"
+        },
+        "body": json.dumps(body)
+    }

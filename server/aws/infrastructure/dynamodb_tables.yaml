@@ -1,35 +1,51 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: DynamoDB Tables for UnitedRelief Platform
 
+# === Resources ===
 Resources:
+
+  # === DynamoDB Table: VolunteerSubmissions ===
   VolunteerTable:
     Type: AWS::DynamoDB::Table
     Properties:
       TableName: VolunteerSubmissions
+
+      # Define table attributes
       AttributeDefinitions:
-        - AttributeName: email
+        - AttributeName: email       # Partition key
           AttributeType: S
-        - AttributeName: submittedAt
+        - AttributeName: submittedAt  # Sort key
           AttributeType: S
+
+      # Define primary key schema
       KeySchema:
         - AttributeName: email
           KeyType: HASH
         - AttributeName: submittedAt
           KeyType: RANGE
+
+      # On-demand billing (scales automatically)
       BillingMode: PAY_PER_REQUEST
 
+  # === DynamoDB Table: ReliefRequests ===
   ReliefTable:
     Type: AWS::DynamoDB::Table
     Properties:
       TableName: ReliefRequests
+
+      # Define table attributes
       AttributeDefinitions:
-        - AttributeName: email
+        - AttributeName: email       # Partition key
           AttributeType: S
-        - AttributeName: submittedAt
+        - AttributeName: submittedAt  # Sort key
           AttributeType: S
+
+      # Define primary key schema
       KeySchema:
         - AttributeName: email
           KeyType: HASH
         - AttributeName: submittedAt
           KeyType: RANGE
+
+      # On-demand billing (no provisioning required)
       BillingMode: PAY_PER_REQUEST

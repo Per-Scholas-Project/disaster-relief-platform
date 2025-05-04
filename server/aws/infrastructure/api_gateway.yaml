@@ -3,12 +3,14 @@ Description: API Gateway for UnitedRelief Platform
 
 Resources:
 
+  # === REST API ===
   UnitedReliefApi:
     Type: AWS::ApiGateway::RestApi
     Properties:
       Name: UnitedReliefAPI
       Description: API for volunteer and aid form submissions
 
+  # === /volunteer resource ===
   VolunteerResource:
     Type: AWS::ApiGateway::Resource
     Properties:
@@ -16,6 +18,7 @@ Resources:
       ParentId: !GetAtt UnitedReliefApi.RootResourceId
       PathPart: volunteer
 
+  # === /relief-request resource ===
   ReliefResource:
     Type: AWS::ApiGateway::Resource
     Properties:
@@ -23,6 +26,15 @@ Resources:
       ParentId: !GetAtt UnitedReliefApi.RootResourceId
       PathPart: relief-request
 
+  # === /presigned-url resource ===
+  PresignedUrlResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref UnitedReliefApi
+      ParentId: !GetAtt UnitedReliefApi.RootResourceId
+      PathPart: presigned-url
+
+  # === POST /volunteer ===
   VolunteerPostMethod:
     Type: AWS::ApiGateway::Method
     Properties:
@@ -34,7 +46,39 @@ Resources:
         Type: AWS_PROXY
         IntegrationHttpMethod: POST
         Uri: !Sub arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:SubmitVolunteerForm/invocations
+      MethodResponses:
+        - StatusCode: 200
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Origin: true
 
+  # === OPTIONS /volunteer ===
+  VolunteerOptionsMethod:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref UnitedReliefApi
+      ResourceId: !Ref VolunteerResource
+      HttpMethod: OPTIONS
+      AuthorizationType: NONE
+      Integration:
+        Type: MOCK
+        RequestTemplates:
+          application/json: '{"statusCode": 200}'
+        IntegrationResponses:
+          - StatusCode: 200
+            ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type'"
+              method.response.header.Access-Control-Allow-Methods: "'OPTIONS,POST'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            ResponseTemplates:
+              application/json: ""
+      MethodResponses:
+        - StatusCode: 200
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: true
+            method.response.header.Access-Control-Allow-Methods: true
+            method.response.header.Access-Control-Allow-Origin: true
+
+  # === POST /relief-request ===
   ReliefPostMethod:
     Type: AWS::ApiGateway::Method
     Properties:
@@ -46,16 +90,97 @@ Resources:
         Type: AWS_PROXY
         IntegrationHttpMethod: POST
         Uri: !Sub arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:SubmitReliefRequest/invocations
+      MethodResponses:
+        - StatusCode: 200
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Origin: true
 
+  # === OPTIONS /relief-request ===
+  ReliefOptionsMethod:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref UnitedReliefApi
+      ResourceId: !Ref ReliefResource
+      HttpMethod: OPTIONS
+      AuthorizationType: NONE
+      Integration:
+        Type: MOCK
+        RequestTemplates:
+          application/json: '{"statusCode": 200}'
+        IntegrationResponses:
+          - StatusCode: 200
+            ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type'"
+              method.response.header.Access-Control-Allow-Methods: "'OPTIONS,POST'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            ResponseTemplates:
+              application/json: ""
+      MethodResponses:
+        - StatusCode: 200
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: true
+            method.response.header.Access-Control-Allow-Methods: true
+            method.response.header.Access-Control-Allow-Origin: true
+
+  # === GET /presigned-url ===
+  PresignedUrlGetMethod:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref UnitedReliefApi
+      ResourceId: !Ref PresignedUrlResource
+      HttpMethod: GET
+      AuthorizationType: NONE
+      Integration:
+        Type: AWS_PROXY
+        IntegrationHttpMethod: POST
+        Uri: !Sub arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:GeneratePreSignedUrl/invocations
+      MethodResponses:
+        - StatusCode: 200
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Origin: true
+
+  # === OPTIONS /presigned-url ===
+  PresignedUrlOptionsMethod:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref UnitedReliefApi
+      ResourceId: !Ref PresignedUrlResource
+      HttpMethod: OPTIONS
+      AuthorizationType: NONE
+      Integration:
+        Type: MOCK
+        RequestTemplates:
+          application/json: '{"statusCode": 200}'
+        IntegrationResponses:
+          - StatusCode: 200
+            ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type'"
+              method.response.header.Access-Control-Allow-Methods: "'OPTIONS,GET'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            ResponseTemplates:
+              application/json: ""
+      MethodResponses:
+        - StatusCode: 200
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: true
+            method.response.header.Access-Control-Allow-Methods: true
+            method.response.header.Access-Control-Allow-Origin: true
+
+  # === Deployment to 'dev' stage ===
   ApiDeployment:
     Type: AWS::ApiGateway::Deployment
     DependsOn:
       - VolunteerPostMethod
+      - VolunteerOptionsMethod
       - ReliefPostMethod
+      - ReliefOptionsMethod
+      - PresignedUrlGetMethod
+      - PresignedUrlOptionsMethod
     Properties:
       RestApiId: !Ref UnitedReliefApi
       StageName: dev
 
+  # === Lambda Permissions for API Gateway Invocation ===
   VolunteerLambdaPermission:
     Type: AWS::Lambda::Permission
     Properties:
@@ -72,6 +197,15 @@ Resources:
       Principal: apigateway.amazonaws.com
       SourceArn: !Sub arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${UnitedReliefApi}/*/POST/relief-request
 
+  PresignedUrlLambdaPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: GeneratePreSignedUrl
+      Action: lambda:InvokeFunction
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${UnitedReliefApi}/*/GET/presigned-url
+
+# === Outputs ===
 Outputs:
   ApiBaseUrl:
     Description: Base URL of the API Gateway

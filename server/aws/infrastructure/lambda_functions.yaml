@@ -1,79 +1,61 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: Lambda Functions + IAM Role for UnitedRelief Platform
+Description: Lambda Functions for UnitedRelief Platform
 
+# === Parameters ===
+Parameters:
+  CodeBucket:
+    Type: String
+    Description: Name of the S3 bucket containing Lambda ZIP files
+
+# === Resources ===
 Resources:
 
-  LambdaExecutionRole:
-    Type: AWS::IAM::Role
-    Properties:
-      RoleName: UnitedReliefLambdaExecutionRole
-      AssumeRolePolicyDocument:
-        Version: '2012-10-17'
-        Statement:
-          - Effect: Allow
-            Principal:
-              Service: lambda.amazonaws.com
-            Action: sts:AssumeRole
-      Policies:
-        - PolicyName: LambdaAccessPolicy
-          PolicyDocument:
-            Version: '2012-10-17'
-            Statement:
-              - Effect: Allow
-                Action:
-                  - dynamodb:PutItem
-                  - dynamodb:GetItem
-                  - dynamodb:Scan
-                Resource: "*"
-              - Effect: Allow
-                Action:
-                  - s3:PutObject
-                  - s3:GetObject
-                  - s3:ListBucket
-                Resource: "*"
-              - Effect: Allow
-                Action:
-                  - logs:CreateLogGroup
-                  - logs:CreateLogStream
-                  - logs:PutLogEvents
-                Resource: arn:aws:logs:*:*:*
-
-  SubmitVolunteerFormFunction:
-    Type: AWS::Lambda::Function
-    Properties:
-      FunctionName: SubmitVolunteerForm
-      Runtime: python3.11
-      Role: !GetAtt LambdaExecutionRole.Arn
-      Handler: volunteer_form.lambda_handler
-      Code:
-        S3Bucket: unitedrelief-volunteer-files
-        S3Key: volunteer_form.zip
-      Timeout: 30
-      Environment:
-        Variables:
-          GMAIL_USER: almontesauel@gmail.com
-          GMAIL_APP_PASSWORD: use-env-variable
-          BUCKET_NAME: unitedrelief-volunteer-files
-
+  # === Lambda: SubmitReliefRequest ===
   SubmitReliefRequestFunction:
     Type: AWS::Lambda::Function
     Properties:
       FunctionName: SubmitReliefRequest
+      Description: Handles disaster relief request form submissions
       Runtime: python3.11
-      Role: !GetAtt LambdaExecutionRole.Arn
+      Role: !ImportValue LambdaExecutionRoleArn  # IAM role from separate stack
       Handler: relief_request.lambda_handler
       Code:
-        S3Bucket: unitedrelief-volunteer-files
+        S3Bucket: !Ref CodeBucket
         S3Key: relief_request.zip
       Timeout: 30
+      MemorySize: 256
       Environment:
         Variables:
-          GMAIL_USER: almontesauel@gmail.com
-          GMAIL_APP_PASSWORD: use-env-variable
-          BUCKET_NAME: unitedrelief-volunteer-files
+          GMAIL_SECRET_NAME: unitedrelief/gmail
+          S3_BUCKET: unitedrelief-submissions
+          DYNAMODB_TABLE: ReliefRequests
 
+  # === Lambda: SubmitVolunteerForm ===
+  SubmitVolunteerFormFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: SubmitVolunteerForm
+      Description: Handles volunteer form submissions
+      Runtime: python3.11
+      Role: !ImportValue LambdaExecutionRoleArn
+      Handler: volunteer_form.lambda_handler
+      Code:
+        S3Bucket: !Ref CodeBucket
+        S3Key: volunteer_form.zip
+      Timeout: 30
+      MemorySize: 256
+      Environment:
+        Variables:
+          GMAIL_SECRET_NAME: unitedrelief/gmail
+          S3_BUCKET: unitedrelief-submissions
+          DYNAMODB_TABLE: VolunteerSubmissions
+
+# === Outputs ===
 Outputs:
-  VolunteerFunction:
-    Value: !Ref SubmitVolunteerFormFunction
-  ReliefFunction:
+  ReliefFunctionName:
+    Description: Name of the SubmitReliefRequest Lambda function
     Value: !Ref SubmitReliefRequestFunction
+
+  VolunteerFunctionName:
+    Description: Name of the SubmitVolunteerForm Lambda function
+    Value: !Ref SubmitVolunteerFormFunction
