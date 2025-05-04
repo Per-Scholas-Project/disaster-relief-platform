@@ -17,7 +17,7 @@ Resources:
       FunctionName: SubmitReliefRequest
       Description: Handles disaster relief request form submissions
       Runtime: python3.11
-      Role: !ImportValue LambdaExecutionRoleArn  # IAM role from separate stack
+      Role: !ImportValue LambdaExecutionRoleArn  # IAM role from IAM stack
       Handler: relief_request.lambda_handler
       Code:
         S3Bucket: !Ref CodeBucket
@@ -26,9 +26,10 @@ Resources:
       MemorySize: 256
       Environment:
         Variables:
-          GMAIL_SECRET_NAME: unitedrelief/gmail
-          S3_BUCKET: unitedrelief-submissions
-          DYNAMODB_TABLE: ReliefRequests
+          GMAIL_SECRET_NAME: unitedrelief/gmail                # For secure SMTP creds
+          S3_BUCKET: unitedrelief-submissions                  # Target bucket for image uploads
+          DYNAMODB_TABLE: ReliefRequests                       # DynamoDB table for relief form data
+          SNS_TOPIC_ARN: arn:aws:sns:us-east-1:650856831762:unitedrelief-submissions-alerts  # Admin alert topic
 
   # === Lambda: SubmitVolunteerForm ===
   SubmitVolunteerFormFunction:
@@ -46,9 +47,10 @@ Resources:
       MemorySize: 256
       Environment:
         Variables:
-          GMAIL_SECRET_NAME: unitedrelief/gmail
-          S3_BUCKET: unitedrelief-submissions
-          DYNAMODB_TABLE: VolunteerSubmissions
+          GMAIL_SECRET_NAME: unitedrelief/gmail                # For secure SMTP creds
+          S3_BUCKET: unitedrelief-submissions                  # Target bucket for backups
+          DYNAMODB_TABLE: VolunteerSubmissions                 # DynamoDB table for volunteer form data
+          SNS_TOPIC_ARN: arn:aws:sns:us-east-1:650856831762:unitedrelief-submissions-alerts  # Admin alert topic
 
 # === Outputs ===
 Outputs:

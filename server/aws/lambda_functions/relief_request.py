@@ -19,12 +19,14 @@ logger.setLevel(logging.INFO)
 # === AWS Clients ===
 dynamodb = boto3.resource('dynamodb')
 s3 = boto3.client('s3')
+sns = boto3.client('sns')
 secretsmanager = boto3.client('secretsmanager')
 
 # === Environment Variables ===
 DYNAMODB_TABLE = os.environ['DYNAMODB_TABLE']
 S3_BUCKET = os.environ['S3_BUCKET']
 SECRET_NAME = os.environ['GMAIL_SECRET_NAME']
+SNS_TOPIC_ARN = os.environ['SNS_TOPIC_ARN']
 
 def lambda_handler(event, context):
     try:
@@ -87,7 +89,7 @@ def lambda_handler(event, context):
         GMAIL_USER = creds['GMAIL_USER']
         GMAIL_PASS = creds['GMAIL_APP_PASSWORD']
 
-        # Compose and send email
+        # Compose and send confirmation email
         subject = "UnitedRelief – Request Received"
         email_body = f"""Hi {form_data.get('firstName')},
 
@@ -115,6 +117,22 @@ We'll follow up soon.
         server.login(GMAIL_USER, GMAIL_PASS)
         server.sendmail(GMAIL_USER, form_data.get("email"), msg.as_string())
         server.quit()
+
+        # === Send Admin Notification via SNS ===
+        sns.publish(
+            TopicArn=SNS_TOPIC_ARN,
+            Subject="New Relief Request Submission",
+            Message=f"""A new relief request has been submitted by {form_data.get("email")}.
+
+Details:
+Name: {form_data.get("firstName")} {form_data.get("lastName")}
+Phone: {form_data.get("phone")}
+City/State: {form_data.get("city")}, {form_data.get("state")}
+Type of Assistance: {form_data.get("assistanceType")}
+Description: {form_data.get("description")}
+Images: {len(image_keys)} file(s) uploaded
+"""
+        )
 
         return cors_response(200, {"message": "Relief request submitted successfully."})
 

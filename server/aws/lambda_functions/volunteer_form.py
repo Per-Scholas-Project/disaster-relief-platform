@@ -16,12 +16,14 @@ logger.setLevel(logging.INFO)
 # === AWS Clients ===
 dynamodb = boto3.resource('dynamodb')
 s3 = boto3.client('s3')
+sns = boto3.client('sns')
 secretsmanager = boto3.client('secretsmanager')
 
 # === Environment Variables ===
 DYNAMODB_TABLE = os.environ['DYNAMODB_TABLE']              # e.g. VolunteerSubmissions
 S3_BUCKET = os.environ['S3_BUCKET']                        # e.g. unitedrelief-submissions
 SECRET_NAME = os.environ['GMAIL_SECRET_NAME']              # e.g. unitedrelief/gmail
+SNS_TOPIC_ARN = os.environ['SNS_TOPIC_ARN']                # e.g. arn:aws:sns:...
 
 def lambda_handler(event, context):
     # === CORS Preflight Support ===
@@ -102,6 +104,20 @@ We’ll follow up with next steps soon!
         server.login(GMAIL_USER, GMAIL_PASS)
         server.sendmail(GMAIL_USER, email, msg.as_string())
         server.quit()
+
+        # === Send Admin Notification via SNS ===
+        sns.publish(
+            TopicArn=SNS_TOPIC_ARN,
+            Subject="New Volunteer Submission",
+            Message=f"""A new volunteer form was submitted by {email}.
+
+Details:
+Name: {firstName} {lastName}
+City/State: {city}, {state}
+Willing to Travel: {"Yes" if willingToTravel else "No"}
+Message: {message}
+"""
+        )
 
         return cors_response(200, {"message": "Volunteer submission received!"})
 

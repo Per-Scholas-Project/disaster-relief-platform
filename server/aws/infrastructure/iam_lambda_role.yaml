@@ -34,7 +34,6 @@ Resources:
                   - arn:aws:dynamodb:*:*:table/VolunteerSubmissions
 
               # === S3 Access: ReliefRequests ===
-              # Allows image uploads and read access for relief requests
               - Effect: Allow
                 Action:
                   - s3:PutObject
@@ -45,7 +44,6 @@ Resources:
                   - arn:aws:s3:::unitedrelief-submissions/*
 
               # === S3 Access: VolunteerSubmissions ===
-              # Allows JSON backups and read access for volunteer submissions
               - Effect: Allow
                 Action:
                   - s3:PutObject
@@ -64,12 +62,18 @@ Resources:
                 Resource: arn:aws:logs:*:*:*
 
               # === Secrets Manager Access ===
-              # Used to retrieve Gmail SMTP credentials securely
               - Effect: Allow
                 Action:
                   - secretsmanager:GetSecretValue
                 Resource:
                   - arn:aws:secretsmanager:*:*:secret:unitedrelief/gmail-*
+
+              # === SNS Publish Access (Admin Alerts) ===
+              - Effect: Allow
+                Action:
+                  - sns:Publish
+                Resource:
+                  - arn:aws:sns:*:*:unitedrelief-submissions-alerts
 
 # === Outputs ===
 Outputs:
