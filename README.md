@@ -42,13 +42,32 @@ Its **serverless**, **scalable**, and **cost-efficient** architecture ensures op
 - Built entirely with AWS Lambda, API Gateway, CloudFormation, and DynamoDB
 
 ---
-
 ## 🧱 Tech Stack
 
 ### Frontend (`client/`)
 - **HTML/CSS/JavaScript** – Lightweight, accessible UI for all devices
 - **Form validation & file preview** – Ensures user input accuracy
 - **RESTful integration** – Submits requests via API Gateway
+
+<div align="center">
+
+  <!-- Top-level AWS logo -->
+  <img src="client/assets/logos/aws-logos/AWS-Cloud-logo_32.svg" alt="AWS Cloud" height="80" style="margin-bottom: 16px;" />
+
+  <!-- Service icons wrapped underneath -->
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px;">
+    <img src="client/assets/logos/aws-logos/Lambda.svg" alt="AWS Lambda" height="40" />
+    <img src="client/assets/logos/aws-logos/Simple-Storage-Service.svg" alt="Amazon S3" height="40" />
+    <img src="client/assets/logos/aws-logos/DynamoDB.svg" alt="Amazon DynamoDB" height="40" />
+    <img src="client/assets/logos/aws-logos/CloudFormation.svg" alt="AWS CloudFormation" height="40" />
+    <img src="client/assets/logos/aws-logos/Secrets-Manager.svg" alt="AWS Secrets Manager" height="40" />
+    <img src="client/assets/logos/aws-logos/CloudWatch.svg" alt="AWS CloudWatch" height="40" />
+    <img src="client/assets/logos/aws-logos/API-Gateway.svg" alt="Amazon API Gateway" height="40" />
+    <img src="client/assets/logos/aws-logos/Simple-Notification-Service.svg" alt="Amazon SNS" height="40" />
+  </div>
+
+</div>
+
 
 ### Backend (`server/`)
 - **Python (AWS Lambda)** – Stateless business logic
@@ -57,9 +76,44 @@ Its **serverless**, **scalable**, and **cost-efficient** architecture ensures op
 - **Amazon S3** – Stores image uploads and JSON backups
 - **Amazon SNS** – Notifies admins of new submissions
 - **Gmail SMTP** – Sends confirmation emails to users
-- **AWS Secrets Manager** – Protects credentials like Gmail passwords
-- **AWS CloudFormation** – Manages all infrastructure as code
-- **AWS IAM & CloudWatch** – Secures access and logs Lambda activity
+- **Amazon Secrets Manager** – Protects credentials like Gmail passwords
+- **Amazon CloudFormation** – Manages all infrastructure as code
+- **Amazon IAM & CloudWatch** – Secures access and logs Lambda activity
+- **Amazon CloudTrail**
+
+---
+## 🧱 Tech Stack
+
+### Frontend (`client/`)
+- ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
+  ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
+  ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)  
+  HTML, CSS, and JavaScript for responsive UI and form components
+
+- 🖼️ Form validation, image preview, and mobile-friendly layout
+
+### Backend (`server/`)
+- ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)  
+  Python (Lambda functions)
+- ![API Gateway](https://img.shields.io/badge/AWS%20API%20Gateway-FF9900?style=flat&logo=amazonaws&logoColor=white)  
+  RESTful endpoints for form handling
+- ![DynamoDB](https://img.shields.io/badge/Amazon%20DynamoDB-4053D6?style=flat&logo=amazon-dynamodb&logoColor=white)  
+  NoSQL data storage
+- ![S3](https://img.shields.io/badge/Amazon%20S3-569A31?style=flat&logo=amazon-aws&logoColor=white)  
+  Stores image uploads and backups
+- ![SNS](https://img.shields.io/badge/Amazon%20SNS-FF9900?style=flat&logo=amazonaws&logoColor=white)  
+  Admin alert notifications
+- ![Secrets Manager](https://img.shields.io/badge/AWS%20Secrets%20Manager-336666?style=flat&logo=amazonaws&logoColor=white)  
+  Protects Gmail credentials
+- ![IAM](https://img.shields.io/badge/AWS%20IAM-4E8CDF?style=flat&logo=amazonaws&logoColor=white)  
+  Scoped Lambda permissions
+- ![CloudFormation](https://img.shields.io/badge/AWS%20CloudFormation-FF4F8B?style=flat&logo=amazonaws&logoColor=white)  
+  Infrastructure-as-Code
+- ![CloudWatch](https://img.shields.io/badge/Amazon%20CloudWatch-2D572C?style=flat&logo=amazon-aws&logoColor=white)  
+  Lambda monitoring and logs
+- ![Gmail SMTP](https://img.shields.io/badge/Gmail%20SMTP-D14836?style=flat&logo=gmail&logoColor=white)  
+  Sends email confirmations
+
 
 ---
 
