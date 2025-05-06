@@ -1,5 +1,5 @@
-# 🌍 United Relief – Disaster Relief Coordination Platform
-
+# 🌍 United Relief
+## Disaster Relief Coordination Platform
 United Relief is a full-stack disaster response platform built on AWS to connect disaster victims with volunteers and aid organizations.  
 This backend-driven application automates request intake, file handling, notifications, and storage using scalable, secure AWS cloud services.
 
