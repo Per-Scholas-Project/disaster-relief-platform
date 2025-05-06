@@ -66,20 +66,20 @@ Its **serverless**, **scalable**, and **cost-efficient** architecture ensures op
 
   <!-- Service icons wrapped underneath -->
   <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px;">
-    <img src="client/assets/logos/aws-logos/Lambda.svg" alt="AWS Lambda" height="40" />
-    <img src="client/assets/logos/aws-logos/Simple-Storage-Service.svg" alt="Amazon S3" height="40" />
-    <img src="client/assets/logos/aws-logos/DynamoDB.svg" alt="Amazon DynamoDB" height="40" />
-    <img src="client/assets/logos/aws-logos/CloudFormation.svg" alt="AWS CloudFormation" height="40" />
-    <img src="client/assets/logos/aws-logos/Secrets-Manager.svg" alt="AWS Secrets Manager" height="40" />
-    <img src="client/assets/logos/aws-logos/CloudWatch.svg" alt="AWS CloudWatch" height="40" />
-    <img src="client/assets/logos/aws-logos/CloudTrail.svg" alt="AWS CloudTrail" height="40" />
-    <img src="client/assets/logos/aws-logos/API-Gateway.svg" alt="Amazon API Gateway" height="40" />
-    <img src="client/assets/logos/aws-logos/Simple-Notification-Service.svg" alt="Amazon SNS" height="40" />
-    <img src="client/assets/logos/aws-logos/Config.svg" alt="Amazon Config" height="40" />
-    <img src="client/assets/logos/aws-logos/Shield.svg" alt="Amazon Shield" height="40" />
-    <img src="client/assets/logos/aws-logos/IAM-Identity-Center.svg" alt="Amazon IAM Access Analyzer" height="40" />
-    <img src="client/assets/logos/aws-logos/Identity-and-Access-Management.svg" alt="Amazon IAM" height="40" />
-    <img src="client/assets/logos/aws-logos/Identity-and-Access-Management.svg" alt="Amazon IAM" height="40" />
+    <img src="client/assets/logos/aws-logos/Lambda.svg" alt="AWS Lambda" height="50" />
+    <img src="client/assets/logos/aws-logos/Simple-Storage-Service.svg" alt="Amazon S3" height="50" />
+    <img src="client/assets/logos/aws-logos/DynamoDB.svg" alt="Amazon DynamoDB" height="50" />
+    <img src="client/assets/logos/aws-logos/CloudFormation.svg" alt="AWS CloudFormation" height="50" />
+    <img src="client/assets/logos/aws-logos/Secrets-Manager.svg" alt="AWS Secrets Manager" height="50" />
+    <img src="client/assets/logos/aws-logos/CloudWatch.svg" alt="AWS CloudWatch" height="50" />
+    <img src="client/assets/logos/aws-logos/CloudTrail.svg" alt="AWS CloudTrail" height="50" />
+    <img src="client/assets/logos/aws-logos/API-Gateway.svg" alt="Amazon API Gateway" height="50" />
+    <img src="client/assets/logos/aws-logos/Simple-Notification-Service.svg" alt="Amazon SNS" height="50" />
+    <img src="client/assets/logos/aws-logos/Config.svg" alt="Amazon Config" height="50" />
+    <img src="client/assets/logos/aws-logos/Shield.svg" alt="Amazon Shield" height="50" />
+    <img src="client/assets/logos/aws-logos/IAM-Identity-Center.svg" alt="Amazon IAM Access Analyzer" height="50" />
+    <img src="client/assets/logos/aws-logos/Identity-and-Access-Management.svg" alt="Amazon IAM" height="50" />
+    <img src="client/assets/logos/aws-logos/Identity-and-Access-Management.svg" alt="Amazon IAM" height="50" />
   </div>
 
 </div>
