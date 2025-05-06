@@ -43,6 +43,7 @@ Its **serverless**, **scalable**, and **cost-efficient** architecture ensures op
 
 ---
 ## 🧱 Tech Stack
+### Frontend (`client/`)
 <div align="center">
   <!-- Service icons wrapped underneath -->
   <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px;">
@@ -50,15 +51,14 @@ Its **serverless**, **scalable**, and **cost-efficient** architecture ensures op
     <img src="client/assets/logos/front-end/css-3.svg" alt="CSS" height="60" />
     <img src="client/assets/logos/front-end/javascript-r.svg" alt="JavaScript" height="60" />
   </div>
-
 </div>
 
-### Frontend (`client/`)
 - **HTML/CSS/JavaScript** – Lightweight, accessible UI for all devices
 - **Form validation & file preview** – Ensures user input accuracy
 - **RESTful integration** – Submits requests via API Gateway
 
 ---
+### Backend (`server/`)
 <div align="center">
 
   <!-- Top-level AWS logo -->
@@ -81,10 +81,8 @@ Its **serverless**, **scalable**, and **cost-efficient** architecture ensures op
     <img src="client/assets/logos/aws-logos/Identity-and-Access-Management.svg" alt="Amazon IAM" height="50" />
     <img src="client/assets/logos/aws-logos/Identity-and-Access-Management.svg" alt="Amazon IAM" height="50" />
   </div>
-
 </div>
 
-### Backend (`server/`)
 1. **AWS IAM (Identity and Access Management)** – Manages roles and permissions for Lambda, API Gateway, DynamoDB, and S3 with least-privilege policies.
 
 
@@ -205,14 +203,6 @@ bash deploy_presigned_url_lambda.sh
 ```bash
 bash subscribe_admins.sh
 ```
-
----
-
-### 🔐 Security Notes
-- Secrets are encrypted in AWS Secrets Manager
-- Lambda roles are tightly scoped via IAM
-- All endpoints served over HTTPS via API Gateway
-
 ---
 # DISCLAIMER
 
