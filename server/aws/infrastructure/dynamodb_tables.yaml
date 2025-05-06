@@ -1,51 +1,58 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: DynamoDB Tables for UnitedRelief Platform
 
-# === Resources ===
 Resources:
 
   # === DynamoDB Table: VolunteerSubmissions ===
-  VolunteerTable:
+  VolunteerSubmissionsTable:
     Type: AWS::DynamoDB::Table
     Properties:
       TableName: VolunteerSubmissions
-
-      # Define table attributes
       AttributeDefinitions:
-        - AttributeName: email       # Partition key
+        - AttributeName: email
           AttributeType: S
-        - AttributeName: submittedAt  # Sort key
+        - AttributeName: submittedAt
           AttributeType: S
-
-      # Define primary key schema
       KeySchema:
         - AttributeName: email
           KeyType: HASH
         - AttributeName: submittedAt
           KeyType: RANGE
-
-      # On-demand billing (scales automatically)
       BillingMode: PAY_PER_REQUEST
+      Tags:
+        - Key: Project
+          Value: UnitedRelief
+        - Key: Environment
+          Value: Development
 
   # === DynamoDB Table: ReliefRequests ===
-  ReliefTable:
+  ReliefRequestsTable:
     Type: AWS::DynamoDB::Table
     Properties:
       TableName: ReliefRequests
-
-      # Define table attributes
       AttributeDefinitions:
-        - AttributeName: email       # Partition key
+        - AttributeName: email
           AttributeType: S
-        - AttributeName: submittedAt  # Sort key
+        - AttributeName: submittedAt
           AttributeType: S
-
-      # Define primary key schema
       KeySchema:
         - AttributeName: email
           KeyType: HASH
         - AttributeName: submittedAt
           KeyType: RANGE
-
-      # On-demand billing (no provisioning required)
       BillingMode: PAY_PER_REQUEST
+      Tags:
+        - Key: Project
+          Value: UnitedRelief
+        - Key: Environment
+          Value: Development
+
+Outputs:
+
+  VolunteerSubmissionsTableName:
+    Description: Name of the DynamoDB table for volunteer submissions
+    Value: !Ref VolunteerSubmissionsTable
+
+  ReliefRequestsTableName:
+    Description: Name of the DynamoDB table for relief requests
+    Value: !Ref ReliefRequestsTable

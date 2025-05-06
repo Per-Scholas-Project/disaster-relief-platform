@@ -3,14 +3,12 @@ Description: API Gateway for UnitedRelief Platform
 
 Resources:
 
-  # === REST API ===
   UnitedReliefApi:
     Type: AWS::ApiGateway::RestApi
     Properties:
       Name: UnitedReliefAPI
       Description: API for volunteer and aid form submissions
 
-  # === /volunteer resource ===
   VolunteerResource:
     Type: AWS::ApiGateway::Resource
     Properties:
@@ -18,7 +16,6 @@ Resources:
       ParentId: !GetAtt UnitedReliefApi.RootResourceId
       PathPart: volunteer
 
-  # === /relief-request resource ===
   ReliefResource:
     Type: AWS::ApiGateway::Resource
     Properties:
@@ -26,7 +23,6 @@ Resources:
       ParentId: !GetAtt UnitedReliefApi.RootResourceId
       PathPart: relief-request
 
-  # === /presigned-url resource ===
   PresignedUrlResource:
     Type: AWS::ApiGateway::Resource
     Properties:
@@ -34,7 +30,6 @@ Resources:
       ParentId: !GetAtt UnitedReliefApi.RootResourceId
       PathPart: presigned-url
 
-  # === POST /volunteer ===
   VolunteerPostMethod:
     Type: AWS::ApiGateway::Method
     Properties:
@@ -49,9 +44,9 @@ Resources:
       MethodResponses:
         - StatusCode: 200
           ResponseParameters:
-            method.response.header.Access-Control-Allow-Origin: true
+            method.response.header.Access-Control-Allow-Origin: "'https://unitedrelief.vercel.app'"
+            method.response.header.Access-Control-Allow-Headers: true
 
-  # === OPTIONS /volunteer ===
   VolunteerOptionsMethod:
     Type: AWS::ApiGateway::Method
     Properties:
@@ -68,7 +63,7 @@ Resources:
             ResponseParameters:
               method.response.header.Access-Control-Allow-Headers: "'Content-Type'"
               method.response.header.Access-Control-Allow-Methods: "'OPTIONS,POST'"
-              method.response.header.Access-Control-Allow-Origin: "'*'"
+              method.response.header.Access-Control-Allow-Origin: "'https://unitedrelief.vercel.app'"
             ResponseTemplates:
               application/json: ""
       MethodResponses:
@@ -78,7 +73,6 @@ Resources:
             method.response.header.Access-Control-Allow-Methods: true
             method.response.header.Access-Control-Allow-Origin: true
 
-  # === POST /relief-request ===
   ReliefPostMethod:
     Type: AWS::ApiGateway::Method
     Properties:
@@ -93,9 +87,9 @@ Resources:
       MethodResponses:
         - StatusCode: 200
           ResponseParameters:
-            method.response.header.Access-Control-Allow-Origin: true
+            method.response.header.Access-Control-Allow-Origin: "'https://unitedrelief.vercel.app'"
+            method.response.header.Access-Control-Allow-Headers: true
 
-  # === OPTIONS /relief-request ===
   ReliefOptionsMethod:
     Type: AWS::ApiGateway::Method
     Properties:
@@ -112,7 +106,7 @@ Resources:
             ResponseParameters:
               method.response.header.Access-Control-Allow-Headers: "'Content-Type'"
               method.response.header.Access-Control-Allow-Methods: "'OPTIONS,POST'"
-              method.response.header.Access-Control-Allow-Origin: "'*'"
+              method.response.header.Access-Control-Allow-Origin: "'https://unitedrelief.vercel.app'"
             ResponseTemplates:
               application/json: ""
       MethodResponses:
@@ -122,7 +116,6 @@ Resources:
             method.response.header.Access-Control-Allow-Methods: true
             method.response.header.Access-Control-Allow-Origin: true
 
-  # === GET /presigned-url ===
   PresignedUrlGetMethod:
     Type: AWS::ApiGateway::Method
     Properties:
@@ -137,9 +130,9 @@ Resources:
       MethodResponses:
         - StatusCode: 200
           ResponseParameters:
-            method.response.header.Access-Control-Allow-Origin: true
+            method.response.header.Access-Control-Allow-Origin: "'https://unitedrelief.vercel.app'"
+            method.response.header.Access-Control-Allow-Headers: true
 
-  # === OPTIONS /presigned-url ===
   PresignedUrlOptionsMethod:
     Type: AWS::ApiGateway::Method
     Properties:
@@ -156,7 +149,7 @@ Resources:
             ResponseParameters:
               method.response.header.Access-Control-Allow-Headers: "'Content-Type'"
               method.response.header.Access-Control-Allow-Methods: "'OPTIONS,GET'"
-              method.response.header.Access-Control-Allow-Origin: "'*'"
+              method.response.header.Access-Control-Allow-Origin: "'https://unitedrelief.vercel.app'"
             ResponseTemplates:
               application/json: ""
       MethodResponses:
@@ -166,7 +159,6 @@ Resources:
             method.response.header.Access-Control-Allow-Methods: true
             method.response.header.Access-Control-Allow-Origin: true
 
-  # === Deployment to 'dev' stage ===
   ApiDeployment:
     Type: AWS::ApiGateway::Deployment
     DependsOn:
@@ -180,7 +172,6 @@ Resources:
       RestApiId: !Ref UnitedReliefApi
       StageName: dev
 
-  # === Lambda Permissions for API Gateway Invocation ===
   VolunteerLambdaPermission:
     Type: AWS::Lambda::Permission
     Properties:
@@ -205,7 +196,6 @@ Resources:
       Principal: apigateway.amazonaws.com
       SourceArn: !Sub arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${UnitedReliefApi}/*/GET/presigned-url
 
-# === Outputs ===
 Outputs:
   ApiBaseUrl:
     Description: Base URL of the API Gateway

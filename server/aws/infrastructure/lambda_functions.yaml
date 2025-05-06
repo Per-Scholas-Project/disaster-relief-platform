@@ -1,23 +1,21 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: Lambda Functions for UnitedRelief Platform
 
-# === Parameters ===
 Parameters:
   CodeBucket:
     Type: String
     Description: Name of the S3 bucket containing Lambda ZIP files
 
-# === Resources ===
 Resources:
 
-  # === Lambda: SubmitReliefRequest ===
+  # === Lambda Function: SubmitReliefRequest ===
   SubmitReliefRequestFunction:
     Type: AWS::Lambda::Function
     Properties:
       FunctionName: SubmitReliefRequest
       Description: Handles disaster relief request form submissions
       Runtime: python3.11
-      Role: !ImportValue LambdaExecutionRoleArn  # IAM role from IAM stack
+      Role: !ImportValue LambdaExecutionRoleArn
       Handler: relief_request.lambda_handler
       Code:
         S3Bucket: !Ref CodeBucket
@@ -26,12 +24,17 @@ Resources:
       MemorySize: 256
       Environment:
         Variables:
-          GMAIL_SECRET_NAME: unitedrelief/gmail                # For secure SMTP creds
-          S3_BUCKET: unitedrelief-submissions                  # Target bucket for image uploads
-          DYNAMODB_TABLE: ReliefRequests                       # DynamoDB table for relief form data
-          SNS_TOPIC_ARN: arn:aws:sns:us-east-1:650856831762:unitedrelief-submissions-alerts  # Admin alert topic
+          GMAIL_SECRET_NAME: unitedrelief/gmail
+          S3_BUCKET: unitedrelief-submissions
+          DYNAMODB_TABLE: ReliefRequests
+          SNS_TOPIC_ARN: arn:aws:sns:us-east-1:650856831762:unitedrelief-submissions-alerts
+      Tags:
+        - Key: Project
+          Value: UnitedRelief
+        - Key: Environment
+          Value: Dev
 
-  # === Lambda: SubmitVolunteerForm ===
+  # === Lambda Function: SubmitVolunteerForm ===
   SubmitVolunteerFormFunction:
     Type: AWS::Lambda::Function
     Properties:
@@ -47,12 +50,16 @@ Resources:
       MemorySize: 256
       Environment:
         Variables:
-          GMAIL_SECRET_NAME: unitedrelief/gmail                # For secure SMTP creds
-          S3_BUCKET: unitedrelief-submissions                  # Target bucket for backups
-          DYNAMODB_TABLE: VolunteerSubmissions                 # DynamoDB table for volunteer form data
-          SNS_TOPIC_ARN: arn:aws:sns:us-east-1:650856831762:unitedrelief-submissions-alerts  # Admin alert topic
+          GMAIL_SECRET_NAME: unitedrelief/gmail
+          S3_BUCKET: unitedrelief-submissions
+          DYNAMODB_TABLE: VolunteerSubmissions
+          SNS_TOPIC_ARN: arn:aws:sns:us-east-1:650856831762:unitedrelief-submissions-alerts
+      Tags:
+        - Key: Project
+          Value: UnitedRelief
+        - Key: Environment
+          Value: Dev
 
-# === Outputs ===
 Outputs:
   ReliefFunctionName:
     Description: Name of the SubmitReliefRequest Lambda function

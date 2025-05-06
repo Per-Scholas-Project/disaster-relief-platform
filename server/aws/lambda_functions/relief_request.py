@@ -159,8 +159,8 @@ def cors_response(status_code, body):
         "statusCode": status_code,
         "headers": {
             "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Headers": "Content-Type",
+            "Access-Control-Allow-Origin": "https://unitedrelief.vercel.app",  # ✅ Set exact origin
+            "Access-Control-Allow-Headers": "Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token",
             "Access-Control-Allow-Methods": "OPTIONS,POST",
             "Access-Control-Allow-Credentials": "true"
         },

@@ -45,7 +45,7 @@ def cors_response(status_code, body_dict):
         "statusCode": status_code,
         "headers": {
             "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Origin": "https://unitedrelief.vercel.app",  # ✅ Exact domain
             "Access-Control-Allow-Headers": "Content-Type",
             "Access-Control-Allow-Methods": "OPTIONS,GET",
             "Access-Control-Allow-Credentials": "true"

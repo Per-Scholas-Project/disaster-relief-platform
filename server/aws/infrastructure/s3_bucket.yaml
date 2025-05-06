@@ -1,29 +1,24 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: S3 bucket for UnitedRelief image uploads
+Description: S3 bucket for UnitedRelief image and data submissions
 
-# === Resources ===
 Resources:
 
-  # === S3 Bucket: unitedrelief-submissions ===
   UnitedReliefSubmissionsBucket:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: unitedrelief-submissions
 
-      # Restrict public access and enforce ownership
       AccessControl: Private
       OwnershipControls:
         Rules:
           - ObjectOwnership: BucketOwnerEnforced
 
-      # Block all forms of public access
       PublicAccessBlockConfiguration:
         BlockPublicAcls: true
         BlockPublicPolicy: true
         IgnorePublicAcls: true
         RestrictPublicBuckets: true
 
-      # Enable CORS for browser-based form uploads
       CorsConfiguration:
         CorsRules:
           - AllowedHeaders:
@@ -33,10 +28,9 @@ Resources:
               - PUT
               - POST
             AllowedOrigins:
-              - "*"  # ⚠️ Dev setting only — replace with exact domain(s) in production
-            MaxAge: 3000  # Cache duration for preflight responses (in seconds)
+              - "https://unitedrelief.vercel.app"
+            MaxAge: 3000
 
-      # Auto-expire uploaded relief images after 90 days
       LifecycleConfiguration:
         Rules:
           - Id: ExpireOldReliefImages
@@ -44,8 +38,7 @@ Resources:
             Prefix: relief-images/
             ExpirationInDays: 90
 
-# === Outputs ===
 Outputs:
   UnitedReliefBucketName:
-    Description: "S3 bucket for storing relief request image uploads"
+    Description: S3 bucket for storing relief request image uploads
     Value: !Ref UnitedReliefSubmissionsBucket

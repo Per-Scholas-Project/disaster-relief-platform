@@ -1,14 +1,14 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: Lambda + API Gateway to generate pre-signed S3 URLs for viewing images
+Description: Lambda and API Gateway setup to generate pre-signed S3 URLs for UnitedRelief
 
 Parameters:
   CodeBucket:
     Type: String
-    Description: Name of the S3 bucket containing Lambda ZIP files
+    Description: Name of the S3 bucket containing Lambda deployment ZIPs
 
 Resources:
 
-  # === Lambda: GeneratePreSignedUrl ===
+  # Lambda Function to generate presigned URLs
   GeneratePreSignedUrlFunction:
     Type: AWS::Lambda::Function
     Properties:
@@ -26,14 +26,14 @@ Resources:
         Variables:
           S3_BUCKET: unitedrelief-submissions
 
-  # === REST API ===
+  # REST API
   GeneratePresignedUrlApi:
     Type: AWS::ApiGateway::RestApi
     Properties:
       Name: GeneratePresignedUrlApi
       Description: API to return presigned S3 URLs
 
-  # === /presigned-url path ===
+  # /presigned-url resource
   PresignedUrlResource:
     Type: AWS::ApiGateway::Resource
     Properties:
@@ -41,7 +41,7 @@ Resources:
       ParentId: !GetAtt GeneratePresignedUrlApi.RootResourceId
       PathPart: presigned-url
 
-  # === GET /presigned-url ===
+  # GET /presigned-url
   PresignedUrlGetMethod:
     Type: AWS::ApiGateway::Method
     Properties:
@@ -56,9 +56,10 @@ Resources:
       MethodResponses:
         - StatusCode: 200
           ResponseParameters:
-            method.response.header.Access-Control-Allow-Origin: true
+            method.response.header.Access-Control-Allow-Origin: "'https://unitedrelief.vercel.app'"
+            method.response.header.Access-Control-Allow-Headers: true
 
-  # === OPTIONS /presigned-url (CORS) ===
+  # OPTIONS /presigned-url for CORS
   PresignedUrlOptionsMethod:
     Type: AWS::ApiGateway::Method
     Properties:
@@ -75,7 +76,7 @@ Resources:
             ResponseParameters:
               method.response.header.Access-Control-Allow-Headers: "'Content-Type'"
               method.response.header.Access-Control-Allow-Methods: "'OPTIONS,GET'"
-              method.response.header.Access-Control-Allow-Origin: "'*'"
+              method.response.header.Access-Control-Allow-Origin: "'https://unitedrelief.vercel.app'"
             ResponseTemplates:
               application/json: ""
       MethodResponses:
@@ -85,7 +86,7 @@ Resources:
             method.response.header.Access-Control-Allow-Methods: true
             method.response.header.Access-Control-Allow-Origin: true
 
-  # === Deployment to dev stage ===
+  # Deployment
   PresignedUrlDeployment:
     Type: AWS::ApiGateway::Deployment
     DependsOn:
@@ -95,7 +96,7 @@ Resources:
       RestApiId: !Ref GeneratePresignedUrlApi
       StageName: dev
 
-  # === Lambda permission for API Gateway ===
+  # Lambda permission for API Gateway to invoke
   GeneratePreSignedUrlPermission:
     Type: AWS::Lambda::Permission
     Properties:
