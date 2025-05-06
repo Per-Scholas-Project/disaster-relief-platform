@@ -58,7 +58,7 @@ Its **serverless**, **scalable**, and **cost-efficient** architecture ensures op
 - **Form validation & file preview** – Ensures user input accuracy
 - **RESTful integration** – Submits requests via API Gateway
 
-<br>
+---
 <div align="center">
 
   <!-- Top-level AWS logo -->
