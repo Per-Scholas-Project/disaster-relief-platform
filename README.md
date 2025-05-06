@@ -43,12 +43,22 @@ Its **serverless**, **scalable**, and **cost-efficient** architecture ensures op
 
 ---
 ## 🧱 Tech Stack
+<div align="center">
+  <!-- Service icons wrapped underneath -->
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px;">
+    <img src="client/assets/logos/front-end/html-1.svg" alt="HTML" height="60" />
+    <img src="client/assets/logos/front-end/css-3.svg" alt="CSS" height="60" />
+    <img src="client/assets/logos/front-end/javascript-r.svg" alt="JavaScript" height="60" />
+  </div>
+
+</div>
 
 ### Frontend (`client/`)
 - **HTML/CSS/JavaScript** – Lightweight, accessible UI for all devices
 - **Form validation & file preview** – Ensures user input accuracy
 - **RESTful integration** – Submits requests via API Gateway
 
+<br>
 <div align="center">
 
   <!-- Top-level AWS logo -->
@@ -62,58 +72,65 @@ Its **serverless**, **scalable**, and **cost-efficient** architecture ensures op
     <img src="client/assets/logos/aws-logos/CloudFormation.svg" alt="AWS CloudFormation" height="40" />
     <img src="client/assets/logos/aws-logos/Secrets-Manager.svg" alt="AWS Secrets Manager" height="40" />
     <img src="client/assets/logos/aws-logos/CloudWatch.svg" alt="AWS CloudWatch" height="40" />
+    <img src="client/assets/logos/aws-logos/CloudTrail.svg" alt="AWS CloudTrail" height="40" />
     <img src="client/assets/logos/aws-logos/API-Gateway.svg" alt="Amazon API Gateway" height="40" />
     <img src="client/assets/logos/aws-logos/Simple-Notification-Service.svg" alt="Amazon SNS" height="40" />
+    <img src="client/assets/logos/aws-logos/Config.svg" alt="Amazon Config" height="40" />
+    <img src="client/assets/logos/aws-logos/Shield.svg" alt="Amazon Shield" height="40" />
+    <img src="client/assets/logos/aws-logos/IAM-Identity-Center.svg" alt="Amazon IAM Access Analyzer" height="40" />
+    <img src="client/assets/logos/aws-logos/Identity-and-Access-Management.svg" alt="Amazon IAM" height="40" />
+    <img src="client/assets/logos/aws-logos/Identity-and-Access-Management.svg" alt="Amazon IAM" height="40" />
   </div>
 
 </div>
 
-
 ### Backend (`server/`)
-- **Python (AWS Lambda)** – Stateless business logic
-- **Amazon API Gateway** – Triggers Lambda with HTTP requests
-- **Amazon DynamoDB** – NoSQL storage for submissions
-- **Amazon S3** – Stores image uploads and JSON backups
-- **Amazon SNS** – Notifies admins of new submissions
-- **Gmail SMTP** – Sends confirmation emails to users
-- **Amazon Secrets Manager** – Protects credentials like Gmail passwords
-- **Amazon CloudFormation** – Manages all infrastructure as code
-- **Amazon IAM & CloudWatch** – Secures access and logs Lambda activity
-- **Amazon CloudTrail**
+1. **AWS IAM (Identity and Access Management)** – Manages roles and permissions for Lambda, API Gateway, DynamoDB, and S3 with least-privilege policies.
 
----
-## 🧱 Tech Stack
 
-### Frontend (`client/`)
-- ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
-  ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
-  ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)  
-  HTML, CSS, and JavaScript for responsive UI and form components
+2. **Amazon S3** – Stores uploaded relief images **relief-images/**, volunteer backups **volunteers/**, and Lambda deployment ZIPs.
 
-- 🖼️ Form validation, image preview, and mobile-friendly layout
 
-### Backend (`server/`)
-- ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)  
-  Python (Lambda functions)
-- ![API Gateway](https://img.shields.io/badge/AWS%20API%20Gateway-FF9900?style=flat&logo=amazonaws&logoColor=white)  
-  RESTful endpoints for form handling
-- ![DynamoDB](https://img.shields.io/badge/Amazon%20DynamoDB-4053D6?style=flat&logo=amazon-dynamodb&logoColor=white)  
-  NoSQL data storage
-- ![S3](https://img.shields.io/badge/Amazon%20S3-569A31?style=flat&logo=amazon-aws&logoColor=white)  
-  Stores image uploads and backups
-- ![SNS](https://img.shields.io/badge/Amazon%20SNS-FF9900?style=flat&logo=amazonaws&logoColor=white)  
-  Admin alert notifications
-- ![Secrets Manager](https://img.shields.io/badge/AWS%20Secrets%20Manager-336666?style=flat&logo=amazonaws&logoColor=white)  
-  Protects Gmail credentials
-- ![IAM](https://img.shields.io/badge/AWS%20IAM-4E8CDF?style=flat&logo=amazonaws&logoColor=white)  
-  Scoped Lambda permissions
-- ![CloudFormation](https://img.shields.io/badge/AWS%20CloudFormation-FF4F8B?style=flat&logo=amazonaws&logoColor=white)  
-  Infrastructure-as-Code
-- ![CloudWatch](https://img.shields.io/badge/Amazon%20CloudWatch-2D572C?style=flat&logo=amazon-aws&logoColor=white)  
-  Lambda monitoring and logs
-- ![Gmail SMTP](https://img.shields.io/badge/Gmail%20SMTP-D14836?style=flat&logo=gmail&logoColor=white)  
-  Sends email confirmations
+3. **Amazon DynamoDB** – NoSQL storage for relief request **ReliefRequests** and volunteer form submissions **VolunteerSubmissions**.
 
+
+4. **AWS Lambda (Python)** – Stateless compute for backend form processing, file uploads, email sending, SNS alerts, and presigned URL generation.
+
+
+5. **Amazon API Gateway** – REST API endpoints that trigger Lambda functions for relief and volunteer forms, and image retrieval.
+
+
+6. **Amazon CloudFormation** – Infrastructure as Code for reproducible deployment of Lambda, IAM, S3, DynamoDB, API Gateway, and environment variables.
+
+
+7. **Amazon CloudWatch** – Logs and monitors Lambda function execution, errors, and debugging events.
+
+
+8. **Amazon Secrets Manager** – Stores Gmail credentials securely **unitedrelief/gmail** for use in Lambda SMTP email delivery.
+
+
+9. **Amazon SNS (Simple Notification Service)** – Sends email notifications to admins when forms are submitted topic: **unitedrelief-submissions-alerts**.
+
+
+10. **Gmail SMTP (via smtplib)** – Sends confirmation emails to users after submission, integrated through Python's **smtplib**.
+
+
+11. **AWS Config** – Tracks configuration changes in critical resources like S3, IAM, Lambda, and API Gateway for auditability.
+
+
+12. **AWS Shield Standard** – Provides automatic DDoS protection for API Gateway and AWS-managed endpoints.
+
+
+13. **AWS IAM Access Analyzer** – Continuously scans IAM roles/policies for public or cross-account exposure.
+
+
+14. **AWS Budgets** – Monitors costs with a **5 monthly budget and email alerts at $0.01 usage**.
+
+
+15. **AWS Cost Explorer** – Analyzes cost trends and breakdowns by service to support budgeting and optimization.
+
+
+16. **AWS Free Tier Usage Alerts** – Sends notifications when resource usage approaches free tier limits to avoid surprise charges.
 
 ---
 
@@ -121,14 +138,14 @@ Its **serverless**, **scalable**, and **cost-efficient** architecture ensures op
 
 We’re a multidisciplinary team of developers and cloud engineers committed to scalable and impactful technology.
 
-| Name                                                        | Role                                                       |
-|-------------------------------------------------------------|------------------------------------------------------------|
-| [**Sauel Almonte**](https://www.linkedin.com/in/sauel-almonte/) | Full-Stack Engineer & Cloud Solutions Architect (**Lead**) |
-| [**Imran Masud**](https://www.linkedin.com/in/imran-masud-im/) | Backend Engineer (AWS Lambda & Python)                     |
-| [**Ahmet Aygun**](https://www.linkedin.com/in/ahmet-aygun/) | Frontend Developer (UI & Interaction)                      |
-| [**Michelle Quashie**](https://www.linkedin.com/in/michellequashie/) | AWS Security Architect (IAM & Secrets Manager)             |
-| [**Jamaal Foster**](https://www.linkedin.com/in/jamaal-foster/) | AWS Security Architect (Policy Enforcement)                |
-| [**Nathnael Girma**](https://www.linkedin.com/in/nathnael-girma/) | Frontend Developer (UX & Forms)                            |
+| Name                                                        | Role                                                           |
+|-------------------------------------------------------------|----------------------------------------------------------------|
+| [**Sauel Almonte**](https://www.linkedin.com/in/sauel-almonte/) | (**Lead**) Full-Stack Engineer & AWS Cloud Solutions Architect |
+| [**Imran Masud**](https://www.linkedin.com/in/imran-masud-im/) | Backend Engineer (AWS Lambda & Python)                         |
+| [**Ahmet Aygun**](https://www.linkedin.com/in/ahmet-aygun/) | Frontend Developer (UI/UX with AWS Integration)                          |
+| [**Nathnael Girma**](https://www.linkedin.com/in/nathnael-girma/) | Frontend Developer (UI/UX with AWS Integration)                                |
+| [**Michelle Quashie**](https://www.linkedin.com/in/michellequashie/) | AWS Security Architect (IAM & Secrets Manager)                 |
+| [**Jamaal Foster**](https://www.linkedin.com/in/jamaal-foster/) | AWS Security Architect (Policy Enforcement)                    |
 
 ---
 
