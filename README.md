@@ -124,11 +124,11 @@ We’re a multidisciplinary team of developers and cloud engineers committed to 
 | Name                                                        | Role                                                       |
 |-------------------------------------------------------------|------------------------------------------------------------|
 | [**Sauel Almonte**](https://www.linkedin.com/in/sauel-almonte/) | Full-Stack Engineer & Cloud Solutions Architect (**Lead**) |
-| **Imran Masud**                                             | Backend Engineer (AWS Lambda & Python)                     |
-| **Ahmet Aygun**                                             | Frontend Developer (UI & Interaction)                      |
-| **Michelle Quashie**                                        | AWS Security Architect (IAM & Secrets Manager)             |
-| **Jamaal Foster**                                           | AWS Security Architect (Policy Enforcement)                |
-| **Nathnael Girma**                                          | Frontend Developer (UX & Forms)                            |
+| [**Imran Masud**](https://www.linkedin.com/in/imran-masud-im/) | Backend Engineer (AWS Lambda & Python)                     |
+| [**Ahmet Aygun**](https://www.linkedin.com/in/ahmet-aygun/) | Frontend Developer (UI & Interaction)                      |
+| [**Michelle Quashie**](https://www.linkedin.com/in/michellequashie/) | AWS Security Architect (IAM & Secrets Manager)             |
+| [**Jamaal Foster**](https://www.linkedin.com/in/jamaal-foster/) | AWS Security Architect (Policy Enforcement)                |
+| [**Nathnael Girma**](https://www.linkedin.com/in/nathnael-girma/) | Frontend Developer (UX & Forms)                            |
 
 ---
 
