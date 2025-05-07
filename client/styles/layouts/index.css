@@ -400,7 +400,6 @@
    Partners and Sponsors Section
    ========================= */
 
-/* Partners Section Container */
 .partners_section {
     position: relative;
     display: flex;
@@ -413,7 +412,6 @@
     background-color: var(--color-background);
 }
 
-/* Partners Content Container */
 .partners__container {
     display: flex;
     flex-direction: column;
@@ -423,10 +421,8 @@
     margin: 0 auto;
     height: 100%;
     padding: var(--space-xxl);
-    /*gap: var(--space-lg);*/
 }
 
-/* Partners Section Title (h2) */
 .partners__title {
     font-family: var(--font-heading), Arial, sans-serif;
     font-size: var(--font-size-h2);
@@ -436,7 +432,6 @@
     margin-bottom: 1rem;
 }
 
-/* Partners Intro Paragraph */
 .partners__intro {
     font-family: var(--font-body), Arial, sans-serif;
     font-size: var(--font-size-body);
@@ -445,10 +440,9 @@
     text-align: center;
     color: var(--gray-700);
     margin-bottom: 4rem;
-    max-width: clamp(80ch, 3.5vw, 80ch);
+    max-width: clamp(80ch, 95%, 80ch);
 }
 
-/* Partners Subheading (h3) */
 .partners__subheading {
     font-family: var(--font-heading), Arial, sans-serif;
     font-size: var(--font-size-h3);
@@ -456,10 +450,8 @@
     text-align: center;
     color: var(--color-primary);
     margin-bottom: 1rem;
-
 }
 
-/* Partners Description Paragraph */
 .partners__description {
     font-family: var(--font-body), Arial, sans-serif;
     font-size: var(--font-size-body);
@@ -473,39 +465,90 @@
 /* =========================
    Partners Logo Carousel
    ========================= */
-/* Individual Partner Logos */
-.partners__logo {
-    width: 12rem;
+
+.partners {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* Animation */
+@keyframes slide {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+/* Container holding both original + cloned slides */
+.partners__logos-container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 1.5rem 0;
+    position: relative;
+    border-radius: 10px;
+    border: 1px solid var(--gray-200);
+    box-shadow: 0 0.5rem 1rem var(--gray-300);
+    background: var(--white-500);
+}
+
+
+/* Gradient fade overlays */
+.partners__logos-container:before,
+.partners__logos-container:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 10rem;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.partners__logos-container:before {
+    left: 0;
+    background: linear-gradient(to left, rgba(255,255,255,0), var(--white-500));
+}
+
+.partners__logos-container:after {
+    right: 0;
+    background: linear-gradient(to right, rgba(255,255,255,0), var(--white-500));
+}
+
+/* Scrolling row */
+.logos-slides {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    align-items: center;
+    animation: slide 25s linear infinite;
+    min-width: 100%;
+}
+
+
+/* Individual logos */
+.logos-slides .logo {
     height: 8rem;
-    object-fit: contain;
-    /*flex-shrink: 0; !* Prevent shrinking *!*/
-    filter: grayscale(20%); /* Optional: slight grayscale for a clean aesthetic */
+    width: 12rem;
+    margin: 0 1rem;
     transition: transform 0.3s ease;
 }
 
-.partners__logo:hover {
-    transform: scale(1.05);
+.logos-slides .logo:hover {
+    transform: scale(1.1);
 }
 
-/* Logo Gallery (acts like a carousel) */
-.partners__logo-gallery {
-    display: flex;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    gap: var(--space-xxl);
-    padding: var(--space-xl);
-    width: 100%;
-    align-items: center;
-    justify-content: flex-start;
-    background: var(--gray-100);
-    border: 1px solid var(--gray-200);
-    border-radius: var(--space-md);
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+/* Pause scroll on hover */
+.partners__logos-container:hover .logos-slides {
+    animation-play-state: paused;
 }
 
-.partners__logo-gallery::-webkit-scrollbar {
-    display: none; /* Hide scrollbar for a cleaner look */
-}
 
 /* =========================
    Impact Section
@@ -745,5 +788,26 @@
     .partners__two-column {
         grid-template-columns: 1fr;
     }
+
+    .partners__logos-container {
+        width: 75rem;
+    }
 }
 
+@media (max-width: 800px) {
+    .partners__logos-container {
+        width: 55rem;
+    }
+}
+
+@media (max-width: 610px) {
+    .partners__logos-container {
+        width: 45rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .partners__logos-container {
+        width: 35rem;
+    }
+}
