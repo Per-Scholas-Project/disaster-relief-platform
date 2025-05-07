@@ -478,7 +478,7 @@
         transform: translateX(0);
     }
     to {
-        transform: translateX(-50%);
+        transform: translateX(-100%);
     }
 }
 
@@ -534,9 +534,10 @@
 
 /* Individual logos */
 .logos-slides .logo {
-    height: 8rem;
-    width: 12rem;
-    margin: 0 1rem;
+    width: clamp(5rem, 12vw, 10rem);
+    height: auto;
+    margin: 0 1.5vw;
+    flex-shrink: 0;
     transition: transform 0.3s ease;
 }
 
