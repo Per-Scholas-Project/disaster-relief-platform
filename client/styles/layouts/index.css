@@ -15,7 +15,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 40rem;
+    height: 50rem;
     overflow: hidden;
     color: var(--color-white);
     padding: var(--space-xl) var(--space-lg);
@@ -534,7 +534,7 @@
 
 /* Individual logos */
 .logos-slides .logo {
-    width: clamp(5rem, 12vw, 10rem);
+    width: clamp(5rem, 10vw, 8rem);
     height: auto;
     margin: 0 1.5vw;
     flex-shrink: 0;
