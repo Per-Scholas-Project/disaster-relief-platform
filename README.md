@@ -197,18 +197,6 @@ cd disaster-relief-platform
 cd server/scripts
 bash deploy_infra_stack.sh
 ```
-
-### 3. Deploy Lambda Functions
-```bash
-bash deploy_relief_request.sh
-bash deploy_volunteer_form.sh
-bash deploy_presigned_url_lambda.sh
-```
-
-### 4. Subscribe Admins to SNS
-```bash
-bash subscribe_admins.sh
-```
 ---
 # DISCLAIMER
 
