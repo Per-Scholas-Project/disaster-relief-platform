@@ -83,59 +83,132 @@ Its **serverless**, **scalable**, and **cost-efficient** architecture ensures op
   </div>
 </div>
 
-1. **AWS IAM (Identity and Access Management)** – Manages roles and permissions for Lambda, API Gateway, DynamoDB, and S3 with least-privilege policies.
+## 🔐 Security & Identity Management
 
+**Services:**
+- **AWS IAM** – Manages roles and permissions for Lambda, API Gateway, DynamoDB, and S3 using least-privilege policies.
+- **AWS IAM Access Analyzer** – Continuously scans IAM roles and policies for public or cross-account exposure.
+- **AWS Config** – Tracks configuration changes to resources like S3, IAM, Lambda, and API Gateway for auditability.
+- **AWS Shield Standard** – Automatically provides DDoS protection for API Gateway and other AWS-managed endpoints.
+- **Amazon Secrets Manager** – Securely stores credentials, such as Gmail credentials at `unitedrelief/gmail`, for Lambda use.
 
-2. **Amazon S3** – Stores uploaded relief images **relief-images/**, volunteer backups **volunteers/**, and Lambda deployment ZIPs.
+**Purpose & Implementation:**
+- Enforces strict access control between AWS services to prevent over-permissioning.
+- Identifies unintended public or external access using IAM Access Analyzer.
+- Monitors changes to infrastructure configuration for compliance and security.
+- Secures email credentials without embedding them in code.
+- Protects public APIs from DDoS attacks automatically.
 
+---
 
-3. **Amazon DynamoDB** – NoSQL storage for relief request **ReliefRequests** and volunteer form submissions **VolunteerSubmissions**.
+## ⚙️ Application Logic & Integration
 
+**Services:**
+- **AWS Lambda (Python)** – Handles stateless compute for form processing, file uploads, email dispatch, presigned URL generation, and SNS alerts.
+- **Amazon API Gateway** – RESTful interface that connects frontend forms with backend Lambda functions.
+- **Amazon SNS** – Sends alert emails to admins on form submission using the topic `unitedrelief-submissions-alerts`.
+- **Gmail SMTP (via smtplib)** – Sends confirmation emails to users after submission via Python’s `smtplib`, integrated with Lambda.
 
-4. **AWS Lambda (Python)** – Stateless compute for backend form processing, file uploads, email sending, SNS alerts, and presigned URL generation.
+**Purpose & Implementation:**
+- Processes backend logic serverlessly and scales with traffic demand.
+- Connects external users securely to internal AWS logic.
+- Notifies stakeholders in real-time on critical form activity.
+- Ensures timely communication with users using secure and integrated email delivery.
 
+---
 
-5. **Amazon API Gateway** – REST API endpoints that trigger Lambda functions for relief and volunteer forms, and image retrieval.
+## 🗂️ Storage & Data Management
 
+**Services:**
+- **Amazon DynamoDB** – Stores structured application data such as `ReliefRequests` and `VolunteerSubmissions` using NoSQL tables.
+- **Amazon S3** – Stores uploaded assets such as images (`relief-images/`), volunteer backups (`volunteers/`), and Lambda deployment ZIPs.
 
-6. **Amazon CloudFormation** – Infrastructure as Code for reproducible deployment of Lambda, IAM, S3, DynamoDB, API Gateway, and environment variables.
+**Purpose & Implementation:**
+- Dynamically stores and retrieves structured user data with low latency.
+- Ensures secure, scalable file storage for uploads and deployments.
+- Uses logical prefixes in S3 for easy organization and access.
+- All storage is natively integrated with Lambda functions for seamless read/write operations.
 
+---
 
-7. **Amazon CloudWatch** – Logs and monitors Lambda function execution, errors, and debugging events.
+## 🧰 Infrastructure & Monitoring
 
+**Services:**
+- **Amazon CloudFormation** – Defines infrastructure (Lambda, IAM, S3, DynamoDB, API Gateway, environment variables) using code templates for repeatable deployments.
+- **Amazon CloudWatch** – Collects logs, execution traces, and error metrics from Lambda functions for real-time monitoring.
+- **Amazon CloudTrail** – Tracks account activity and service usage for security audits and compliance reporting.
 
-8. **Amazon Secrets Manager** – Stores Gmail credentials securely **unitedrelief/gmail** for use in Lambda SMTP email delivery.
+**Purpose & Implementation:**
+- Uses Infrastructure as Code (IaC) to manage deployments consistently across environments.
+- Enables debugging, performance tuning, and alerting through real-time telemetry.
+- Provides traceability and governance of all API activity.
 
+---
 
-9. **Amazon SNS (Simple Notification Service)** – Sends email notifications to admins when forms are submitted topic: **unitedrelief-submissions-alerts**.
+## 💰 Cost Management
 
+**Services:**
+- **AWS Budgets** – Enforces a monthly cost cap with email alerts starting at $0.01 usage.
+- **AWS Cost Explorer** – Analyzes and visualizes cost breakdowns across AWS services for optimization.
+- **AWS Free Tier Usage Alerts** – Sends alerts when usage approaches or exceeds Free Tier limits.
 
-10. **Gmail SMTP (via smtplib)** – Sends confirmation emails to users after submission, integrated through Python's **smtplib**.
-
-
-11. **AWS Config** – Tracks configuration changes in critical resources like S3, IAM, Lambda, and API Gateway for auditability.
-
-
-12. **AWS Shield Standard** – Provides automatic DDoS protection for API Gateway and AWS-managed endpoints.
-
-
-13. **AWS IAM Access Analyzer** – Continuously scans IAM roles/policies for public or cross-account exposure.
-
-
-14. **AWS Budgets** – Monitors costs with a **5 monthly budget and email alerts at $0.01 usage**.
-
-
-15. **AWS Cost Explorer** – Analyzes cost trends and breakdowns by service to support budgeting and optimization.
-
-
-16. **AWS Free Tier Usage Alerts** – Sends notifications when resource usage approaches free tier limits to avoid surprise charges.
+**Purpose & Implementation:**
+- Prevents unexpected billing by proactively alerting at minimal usage thresholds.
+- Helps analyze and optimize usage for cost efficiency.
+- Supports budgeting efforts during development and production phases.
 
 ---
 ## 🖼️ AWS System Architecture
 
 Here is a diagram that illustrates the architecture of the **UnitedRelief** system:
 
-![UnitedRelief AWS System Architecture](/client/assets/aws-system-architectured/UnitedRelief%20AWS%20System%20Architecture-4.png)
+![UnitedRelief AWS System Architecture](/client/assets/aws-system-architectured/UnitedRelief%20AWS%20System%20Architecture-6.png)
+
+---
+## Future Scope & Improvements
+
+As UnitedRelief continues to evolve, we plan to expand our AWS infrastructure beyond the current Free Tier–eligible services to enhance performance, scalability, and long-term sustainability. Below are key areas of focus for future implementation:
+
+### ⚙️ Compute & Scalability
+
+- **Amazon EC2 (Elastic Compute Cloud)**  
+  We aim to introduce EC2 instances for workloads requiring persistent compute environments, such as background batch processing, analytics, or scalable backend services that exceed Lambda’s execution limits.
+
+- **Amazon ECS / EKS (Containerization)**  
+  Future containerization of services using **Amazon ECS (Elastic Container Service)** or **EKS (Elastic Kubernetes Service)** will enable microservice-based architecture. This shift would allow for:
+    - Easier scaling and deployment of modular services
+    - Improved development workflows using Docker
+    - Enhanced CI/CD pipelines and version control over runtime environments
+
+### 🧠 Machine Learning & Data Intelligence
+
+- **Amazon SageMaker**  
+  To support future data-driven decision-making, we plan to explore **Amazon SageMaker** for building and deploying machine learning models. Possible use cases include:
+    - Predicting high-need zones for resource allocation
+    - Automating categorization of relief requests
+    - Prioritization models for volunteer assignments
+
+### 🔐 Advanced Security & Compliance
+
+- **AWS WAF Advanced & AWS Shield Advanced**  
+  As public traffic increases, we may upgrade to **Advanced WAF rules** and **Shield Advanced** for enhanced threat detection, custom mitigation, and 24/7 DDoS response support.
+
+- **AWS Organizations & Control Tower**  
+  For larger deployments or multi-team collaboration, **AWS Organizations** and **Control Tower** could be introduced to centrally govern security, compliance, and billing across multiple accounts.
+
+### 📈 Data Warehousing & Analytics
+
+- **Amazon Redshift / Athena**  
+  For future data reporting and business intelligence, we anticipate using **Amazon Redshift** or **Amazon Athena** to run complex queries across archived relief and volunteer data.
+
+### 🔄 Infrastructure Automation & CI/CD
+
+- **AWS CodePipeline / CodeBuild**  
+  Introducing infrastructure automation through **AWS CodePipeline**, **CodeBuild**, and related services will streamline updates, automate deployments, and enable DevOps best practices.
+
+---
+
+These enhancements will help UnitedRelief support larger operational scale, reduce manual workload, and enable intelligent response strategies—all while maintaining security, governance, and cost-efficiency as the platform grows.
 
 ---
 
