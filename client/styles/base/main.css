@@ -68,6 +68,33 @@ ol {
 	list-style: none;
 }
 
+/* ---------- Link Styling ---------- */
+/* Base link styles */
+a {
+	font-family: var(--font-body), Arial, sans-serif;
+	text-decoration: none;
+	/*color: var(--color-primary);*/
+}
+
+/* Visited link */
+a:visited {
+	color: var(--blue-300);
+}
+
+/* Active (clicked) link */
+a:active {
+	color: var(--blue-100);
+	text-decoration: none;
+}
+
+/* Hover and focus states */
+a:hover,
+a:focus {
+	color: var(--blue-300);
+	font-weight: var(--font-weight-semi-bold);
+	text-decoration: none;
+}
+
 img {
 	max-width: 100%;
 	display: block;
@@ -270,34 +297,6 @@ img {
 }
 
 /* ---------- Adjustments for Accessibility and Responsiveness ---------- */
-
-/* ---------- Link Styling ---------- */
-
-/* Base link styles */
-a {
-	font-family: var(--font-body), Arial, sans-serif;
-	text-decoration: none;
-	/*color: var(--color-primary);*/
-}
-
-/* Visited link */
-a:visited {
-	color: var(--blue-600);
-}
-
-/* Active (clicked) link */
-a:active {
-	color: var(--blue-800);
-	/*text-decoration: underline;*/
-}
-
-/* Hover and focus states */
-a:hover,
-a:focus {
-	color: var(--blue-700);
-	font-weight: var(--font-weight-semi-bold);
-	text-decoration: underline;
-}
 
 /* ========== Buttons ========== */
 
