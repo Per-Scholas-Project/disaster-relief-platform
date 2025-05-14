@@ -135,7 +135,7 @@ Its **serverless**, **scalable**, and **cost-efficient** architecture ensures op
 
 Here is a diagram that illustrates the architecture of the **UnitedRelief** system:
 
-![UnitedRelief AWS System Architecture](/client/assets/aws-system-architectured/UnitedRelief%20AWS%20System%20Architecture-5.png)
+![UnitedRelief AWS System Architecture](/client/assets/aws-system-architectured/UnitedRelief%20AWS%20System%20Architecture-4.png)
 
 ---
 
