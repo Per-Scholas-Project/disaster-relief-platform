@@ -131,22 +131,28 @@ Its **serverless**, **scalable**, and **cost-efficient** architecture ensures op
 16. **AWS Free Tier Usage Alerts** – Sends notifications when resource usage approaches free tier limits to avoid surprise charges.
 
 ---
+## 🖼️ AWS System Architecture
+
+Here is a diagram that illustrates the architecture of the **UnitedRelief** system:
+
+![UnitedRelief AWS System Architecture](/client/assets/aws-system-architectured/UnitedRelief%20AWS%20System%20Architecture-5.png)
+
+---
 
 ## 👥 Project Contributors
 
 We’re a multidisciplinary team of developers and cloud engineers committed to scalable and impactful technology.
 
-| Name                                                        | Role                                                           |
-|-------------------------------------------------------------|----------------------------------------------------------------|
+| Name                                                        | Role                        |
+|-------------------------------------------------------------|-----------------------------|
 | [**Sauel Almonte**](https://www.linkedin.com/in/sauel-almonte/) | (**Lead**) Full-Stack Engineer & AWS Cloud Solutions Architect |
-| [**Imran Masud**](https://www.linkedin.com/in/imran-masud-im/) | Backend Engineer (AWS Lambda & Python)                         |
-| [**Ahmet Aygun**](https://www.linkedin.com/in/ahmet-aygun/) | Frontend Developer (UI/UX with AWS Integration)                          |
-| [**Nathnael Girma**](https://www.linkedin.com/in/nathnael-girma/) | Frontend Developer (UI/UX with AWS Integration)                                |
-| [**Michelle Quashie**](https://www.linkedin.com/in/michellequashie/) | AWS Security Architect (IAM & Secrets Manager)                 |
-| [**Jamaal Foster**](https://www.linkedin.com/in/jamaal-foster/) | AWS Security Architect (Policy Enforcement)                    |
+| [**Imran Masud**](https://www.linkedin.com/in/imran-masud-im/) | Backend Engineer (AWS Lambda & Python) |
+| [**Ahmet Aygun**](https://www.linkedin.com/in/ahmet-aygun/) | Frontend Developer (UI/UX with AWS Integration) |
+| [**Nathnael Girma**](https://www.linkedin.com/in/nathnael-girma/) | Frontend Developer (UI/UX with AWS Integration) |
+| [**Michelle Quashie**](https://www.linkedin.com/in/michellequashie/) | AWS Security Architect (IAM & Secrets Manager) |
+| [**Jamaal Foster**](https://www.linkedin.com/in/jamaal-foster/) | AWS Security Architect (Policy Enforcement) |
 
 ---
-
 ## 🗂 Project Structure
 ```plaintext
 disaster-relief-platform/
