@@ -3,14 +3,101 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta
-			name="viewport"
-			content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+				name="viewport"
+				content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"
 		/>
-		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<!-- Basic SEO -->
+		<meta name="title" content="Disaster Relief Coordinating Platform" />
+		<meta
+				name="description"
+				content="A platform that helps connect disaster victims with volunteers and resources. Built using AWS services."
+		/>
+		<meta
+				name="keywords"
+				content="disaster relief, emergency aid, volunteer help, AWS, S3, Lambda, DynamoDB"
+		/>
+		<meta name="author" content="Sauel Almonte" />
+
+		<!-- Open Graph / Facebook / LinkedIn -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://yourdomain.com/" />
+		<meta property="og:title" content="Disaster Relief Coordinating Platform" />
+		<meta
+				property="og:description"
+				content="Connect disaster victims with help. Built on AWS."
+		/>
+		<meta property="og:image" content="https://yourdomain.com/preview.png" />
+
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:url" content="https://yourdomain.com/" />
+		<meta name="twitter:title" content="Disaster Relief Coordinating Platform" />
+		<meta
+				name="twitter:description"
+				content="Connect disaster victims with help. Built on AWS."
+		/>
+		<meta name="twitter:image" content="https://yourdomain.com/preview.png" />
+
+		<!-- Structured Data for SEO: Organization -->
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "Organization",
+				"name": "Disaster Relief Coordinating Platform",
+				"url": "https://yourdomain.com",
+				"logo": "https://yourdomain.com/logo.png",
+				"contactPoint": {
+					"@type": "ContactPoint",
+					"telephone": "+1-800-555-5555",
+					"contactType": "Customer Service"
+				},
+				"sameAs": [
+					"https://www.facebook.com/YourPage",
+					"https://twitter.com/YourProfile",
+					"https://www.linkedin.com/company/yourcompany"
+				]
+			}
+		</script>
+
+		<!-- Structured Data for SEO: Event (Optional) -->
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "Event",
+				"name": "Disaster Relief Fundraising Event",
+				"startDate": "2025-05-01T19:00:00Z",
+				"endDate": "2025-05-01T22:00:00Z",
+				"location": {
+					"@type": "Place",
+					"name": "Community Center",
+					"address": {
+						"@type": "PostalAddress",
+						"streetAddress": "123 Relief St.",
+						"addressLocality": "Boston",
+						"addressRegion": "MA",
+						"postalCode": "02115",
+						"addressCountry": "US"
+					}
+				},
+				"image": "https://yourdomain.com/images/event-image.jpg",
+				"description": "Join us for a fundraising event to support disaster relief efforts."
+			}
+		</script>
+
+		<!-- Performance & Font Optimization -->
+		<link
+				href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+				rel="stylesheet"
+		/>
+
+		<!-- Favicon (optional) -->
+		<link rel="icon" href="../../assets/favicon/favicon.ico" type="image/x-icon" />
 
 		<link rel="stylesheet" href="../../styles/forms/relief-request.css" />
 
-		<title>CSS Grid Layout</title>
+		<!-- Title -->
+		<title>United Relief</title>
 	</head>
 	<body>
 		<!-- Grid Container -->
