@@ -73,10 +73,10 @@
 
 .volunteer__label {
     position: absolute;
-    top: 1.2rem;
+    top: var(--space-md);
     left: 0;
     font-size: clamp(1.2rem, 2vw, 1.4rem);
-    color: #888;
+    color: var(--gray-300);
     transition: 0.3s ease all;
     pointer-events: none;
 }
