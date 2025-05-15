@@ -12,8 +12,8 @@
 }
 
 .volunteer__container {
-    background-color: #ffffff;
-    padding: 4rem 3rem;
+    background-color: var(--color-white);
+    padding: var(--space-xxl) var(--space-xl);
     border-radius: 0.8rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-width: 50rem;
@@ -28,17 +28,20 @@
 }
 
 .volunteer__title {
-    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
-    font-weight: 800;
+    font-family: var(--font-heading), Arial, sans-serif;
+    font-weight: var(--font-weight-semi-bold);
+    font-size: var(--font-size-h2);
     text-transform: uppercase;
-    color: #000000;
+    color: var(--color-black);
     line-height: 1.2;
 }
 
 .volunteer__description {
-    font-size: clamp(1.3rem, 2.5vw, 1.6rem);
-    color: #666666;
-    margin-top: 1.2rem;
+    font-family: var(--font-body), Arial, sans-serif;
+    font-weight: var(--font-weight-regular);
+    font-size: var(--font-size-body);
+    color: var(--gray-400);
+    margin-top: var(--space-sm);
 }
 
 /* Form Structure */
@@ -112,20 +115,21 @@
 
 /* Submit Button */
 .volunteer__submit {
-    padding: 1.2rem 2rem;
-    font-size: clamp(1.4rem, 2.5vw, 1.6rem);
-    font-weight: 600;
-    border: none;
+    padding: var(--space-md) var(--space-lg);
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-semi-bold);
+    border:  var(--blue-800);
     cursor: pointer;
     transition: background 0.3s ease;
     width: 100%;
-    color: var(--white-500);
+    color: var(--color-white);
     background-color: var(--blue-800);
     border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
 }
 
 .volunteer__submit:hover {
     background-color: var(--blue-400);
-    color: var(--white-500);
+    color: var(--color-white);
     border-color: var(--blue-700);
 }
