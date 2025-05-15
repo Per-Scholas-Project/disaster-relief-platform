@@ -164,34 +164,54 @@ Here is a diagram that illustrates the architecture of the **UnitedRelief** syst
 
 ![UnitedRelief AWS System Architecture](/client/assets/aws-system-architectured/UnitedRelief%20AWS%20System%20Architecture-6.png)
 
----
 ## Future Scope & Improvements
 
-As UnitedRelief continues to evolve, we plan to expand our AWS infrastructure beyond the current Free Tier–eligible services to enhance performance, scalability, and long-term sustainability. Below are key areas of focus for future implementation:
+As **UnitedRelief** continues to evolve, we plan to expand our AWS infrastructure beyond the current Free Tier–eligible services to enhance performance, scalability, and long-term sustainability. Below are key areas of focus for future implementation:
+
+### ⚙️ Front-End Improvements
+
+**React.js, VITE, and TailwindCSS**  
+- We plan to modernize the front-end by migrating to **React.js**, which will enable us to build a more dynamic, responsive, and maintainable user interface. 
+- Using **VITE** as a build tool will significantly speed up the development process with fast hot module reloading, making the user experience smoother. 
+- Additionally, we will implement **TailwindCSS** to streamline our CSS management, enabling quick and customizable designs with minimal effort.
+
+Key Goals:
+- **Revamping the UI/UX:** Giving the front-end a complete facelift to enhance usability and user engagement.
+- **Improved Performance:** Reducing load times with optimized React.js components and VITE’s efficient build process.
+- **Responsive Design:** Ensuring the platform is highly responsive across devices using TailwindCSS’s utility-first approach.
 
 ### ⚙️ Compute & Scalability
 
 - **Amazon EC2 (Elastic Compute Cloud)**  
-  We aim to introduce EC2 instances for workloads requiring persistent compute environments, such as background batch processing, analytics, or scalable backend services that exceed Lambda’s execution limits.
+  We aim to introduce **EC2 instances** for workloads requiring persistent compute environments, such as background batch processing, analytics, or scalable backend services that exceed **Lambda’s execution limits**.
 
 - **Amazon ECS / EKS (Containerization)**  
   Future containerization of services using **Amazon ECS (Elastic Container Service)** or **EKS (Elastic Kubernetes Service)** will enable microservice-based architecture. This shift would allow for:
-    - Easier scaling and deployment of modular services
-    - Improved development workflows using Docker
-    - Enhanced CI/CD pipelines and version control over runtime environments
+  - Easier scaling and deployment of modular services
+  - Improved development workflows using **Docker**
+  - Enhanced CI/CD pipelines and version control over runtime environments
+
+- **AWS Lambda@Edge**  
+  To reduce latency and enhance performance, **Lambda@Edge** will be used to run code closer to the user’s location, improving content delivery and real-time data processing for end users.
 
 ### 🧠 Machine Learning & Data Intelligence
 
 - **Amazon SageMaker**  
   To support future data-driven decision-making, we plan to explore **Amazon SageMaker** for building and deploying machine learning models. Possible use cases include:
-    - Predicting high-need zones for resource allocation
-    - Automating categorization of relief requests
-    - Prioritization models for volunteer assignments
+  - Predicting high-need zones for resource allocation
+  - Automating categorization of relief requests
+  - Prioritization models for volunteer assignments
+
+- **Amazon Comprehend**  
+  We may implement **Amazon Comprehend** for natural language processing (NLP) to analyze and categorize user-submitted relief requests, enabling more efficient prioritization and response.
 
 ### 🔐 Advanced Security & Compliance
 
 - **AWS WAF Advanced & AWS Shield Advanced**  
   As public traffic increases, we may upgrade to **Advanced WAF rules** and **Shield Advanced** for enhanced threat detection, custom mitigation, and 24/7 DDoS response support.
+
+- **AWS Secrets Manager**  
+  **AWS Secrets Manager** will be used to securely store and manage sensitive credentials, such as API keys and database passwords, ensuring that sensitive information is handled securely.
 
 - **AWS Organizations & Control Tower**  
   For larger deployments or multi-team collaboration, **AWS Organizations** and **Control Tower** could be introduced to centrally govern security, compliance, and billing across multiple accounts.
@@ -204,11 +224,11 @@ As UnitedRelief continues to evolve, we plan to expand our AWS infrastructure be
 ### 🔄 Infrastructure Automation & CI/CD
 
 - **AWS CodePipeline / CodeBuild**  
-  Introducing infrastructure automation through **AWS CodePipeline**, **CodeBuild**, and related services will streamline updates, automate deployments, and enable DevOps best practices.
+  Introducing infrastructure automation through **AWS CodePipeline**, **CodeBuild**, and related services will streamline updates, automate deployments, and enable **DevOps** best practices.
 
 ---
 
-These enhancements will help UnitedRelief support larger operational scale, reduce manual workload, and enable intelligent response strategies—all while maintaining security, governance, and cost-efficiency as the platform grows.
+These enhancements will help **UnitedRelief** support larger operational scale, reduce manual workload, and enable intelligent response strategies—all while maintaining security, governance, and cost-efficiency as the platform grows.
 
 ---
 
