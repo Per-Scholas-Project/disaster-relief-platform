@@ -230,6 +230,10 @@ Key Goals:
 
 These enhancements will help **UnitedRelief** support larger operational scale, reduce manual workload, and enable intelligent response strategies—all while maintaining security, governance, and cost-efficiency as the platform grows.
 
+#### Preview of whats to come.
+
+![Sneak Peak](/client/assets/images/upgrade-2.png)
+
 ---
 
 ## 👥 Project Contributors
