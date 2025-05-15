@@ -76,20 +76,26 @@ a {
 	/*color: var(--color-primary);*/
 }
 
-/* Visited link */
-a:visited {
-	color: var(--blue-300);
-}
+/*!* Visited link *!*/
+/*a:visited {*/
+/*	color: var(--blue-300);*/
+/*}*/
 
-/* Active (clicked) link */
-a:active {
-	color: var(--blue-100);
-	text-decoration: none;
-}
+/*!* Active (clicked) link *!*/
+/*a:active {*/
+/*	color: var(--blue-100);*/
+/*	text-decoration: none;*/
+/*}*/
 
 /* Hover and focus states */
-a:hover,
-a:focus {
+/*a:hover,*/
+/*a:focus {*/
+/*	color: var(--blue-300);*/
+/*	font-weight: var(--font-weight-semi-bold);*/
+/*	text-decoration: none;*/
+/*}*/
+
+a:hover {
 	color: var(--blue-300);
 	font-weight: var(--font-weight-semi-bold);
 	text-decoration: none;
